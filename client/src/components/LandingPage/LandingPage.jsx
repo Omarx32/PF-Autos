@@ -105,6 +105,14 @@ export default function LandingPage() {
       <Link to="/Home">
         <button className={styles.button}>Catalogo</button>
       </Link>
+      <div className={styles.imgCont}>
+        <img src="img/mercedes.jpg" alt="" />
+        <p className={styles.texto}>
+          TENEMOS TODO PARA OFRECERTE, DESDE LAS PICKUPS MAS POTENTES PARA EL
+          TRABAJO, COMO SEDANES COMODOS Y ELEGANTES, HASTA LAS SUVS MAS
+          ESPACIOSAS PARA LA VIDA FAMILIAR.
+        </p>
+      </div>
     </div>
   );
 }

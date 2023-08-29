@@ -1,7 +1,7 @@
 .background {
   background-color: black;
-  width: 1600px;
-  height: 25000px;
+  width: 1522px;
+  height: 15000px;
   position: absolute;
 }
 
@@ -13,6 +13,20 @@
   text-align: center;
 }
 
+.imgCont {
+  height: 3750px;
+  width: 1150px;
+  display: flex;
+  margin: auto;
+  padding-top: 2%;
+}
+.texto {
+  color: #fff;
+  position: absolute;
+  top: 8.5%;
+  left: 15%;
+  font-size: x-small;
+}
 ul,
 li {
   list-style: none;
