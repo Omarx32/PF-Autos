@@ -31,4 +31,4 @@ function Footer() {
   );
 }
 
-export default BasicExample;
+export default Footer;
