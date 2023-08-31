@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { postVehiculo } from '../../redux/action/action';
-import { useDispatch } from "react-redux"
+import axios from 'axios'; 
+//import { useDispatch } from "react-redux";
+//import { postVehiculo } from '../../redux/action/action';
 
 import "./Form.css"
 
 const Form = () => {
-
-  const dispatch = useDispatch();
-
+  //const dispatch = useDispatch();
 
   const [state, setState] = useState({
     name: '',
@@ -19,7 +18,7 @@ const Form = () => {
     maker: '',
     model: '',
     visible: '',
-    category: '',
+    category: [],
   })
 
   const [error, setError] = useState({
@@ -36,14 +35,22 @@ const Form = () => {
   })
 
   const handleChange = (event) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.value
-    })
+    const { name, value } = event.target;
+    if (name === "category") {
+      setState({
+        ...state,
+        [name]: [value] // aquí se actualiza como un array con el valor ingresado
+      });
+    } else {
+      setState({
+        ...state,
+        [name]: value
+      });
+    }
     validate({
       ...state,
-      [event.target.name]: event.target.value
-    }, event.target.name)
+      [name]: value
+    }, name);
   }
 
   const validate = (state, name) => {
@@ -99,17 +106,29 @@ const Form = () => {
     }
   }
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(postVehiculo(state));
-  }
+    // Realiza la solicitud POST al servidor
+    try {
+      const response = await axios.post('http://localhost:3001/product', state);
+      console.log("Respuesta del servidor:", response.data);
 
- 
+      // Verifica la respuesta del servidor (puedes personalizar esto según tus necesidades)
+      if (response.status === 201) {
+        console.log('Vehículo creado con éxito');
+        // Puedes realizar alguna acción adicional aquí, como redireccionar o mostrar un mensaje de éxito.
+      } else {
+        console.error('Error al crear el vehículo');
+      }
+    } catch (error) {
+      console.error('Error al crear el vehículo', error);
+    }
+  };
+
   return (
     <div className='form-cont'>
       <div className='style'>
-
         <form onSubmit={handleSubmit}>
           <h1 className='title-form'>VENDER VEHICULO</h1>
           <hr></hr>
@@ -121,7 +140,7 @@ const Form = () => {
           <label className='form-error'>{error.image}</label>
 
           <hr></hr>
-          <input name="brand"onChange={handleChange} placeholder='BRAND' type="text"></input>
+          <input name="brand" onChange={handleChange} placeholder='BRAND' type="text"></input>
           <label className='form-error'>{error.name}</label>
 
           <hr></hr>
@@ -158,7 +177,7 @@ const Form = () => {
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default Form
+export default Form;

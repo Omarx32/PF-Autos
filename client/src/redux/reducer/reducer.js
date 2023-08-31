@@ -9,7 +9,7 @@ function rootReducer(state = inicialState, action) {
         
         default:
             return state
-            break;
+            
     }
 
 }
