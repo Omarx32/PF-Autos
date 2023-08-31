@@ -1,3 +1,4 @@
+
 import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
 
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/Form" element={<Form />}></Route>
       </Routes>
     </BrowserRouter>
+
   );
 }
 
