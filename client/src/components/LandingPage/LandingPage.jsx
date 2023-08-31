@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
+import { Link } from "react-router-dom";
 import styles from "../LandingPage/LandingPage.module.css";
+
 export default function LandingPage() {
   const slides = [
     {
@@ -13,7 +15,6 @@ export default function LandingPage() {
     {
       url: "img/descargatrs.jpg",
     },
-
     {
       url: "img/descargados.jpg",
     },
@@ -21,7 +22,6 @@ export default function LandingPage() {
       url: "img/raptor.jpg",
     },
   ];
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
@@ -66,6 +66,9 @@ export default function LandingPage() {
           </div>
         ))}
       </div>
+      <Link to="/home" className={styles.homeButton}>
+        Home
+      </Link>
     </div>
   );
 }

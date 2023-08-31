@@ -1,11 +1,11 @@
 
 import "./App.css";
-import LandingPage from "./components/LandingPage/LandingPage";
+import LandingPage from "./Components/LandingPage/LandingPage";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/Home/Home";
+import Home from "./Components/Home/Home";
 
-import Form from "./components/Form/Form";
+import Form from "./Components/Form/Form";
 
 function App() {
   return (
