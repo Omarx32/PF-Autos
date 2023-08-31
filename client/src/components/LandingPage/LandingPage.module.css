@@ -1,0 +1,134 @@
+.background {
+  background-color: black;
+  width: 1522px;
+  height: 15000px;
+  position: absolute;
+}
+
+.AppTitle {
+  color: white;
+  flex-direction: column;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  font-size: 80px;
+  text-align: center;
+}
+
+.imgCont {
+  height: 3750px;
+  width: 1150px;
+  display: flex;
+  margin: auto;
+  padding-top: 2%;
+}
+.texto {
+  color: #fff;
+  position: absolute;
+  top: 8.5%;
+  left: 15%;
+  font-size: x-small;
+}
+ul,
+li {
+  list-style: none;
+  white-space: nowrap;
+}
+
+li {
+  display: inline;
+}
+
+img {
+  margin-top: -16px;
+  height: 20%;
+  width: 110%;
+}
+
+/* Main container */
+
+.mainContainer {
+  width: 80%;
+  height: 80%;
+  margin: auto;
+}
+
+/* Slider container */
+.sliderContainer {
+  position: relative;
+  height: 100%;
+}
+
+/* dots carrusel */
+.dotsContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.dotContainerItem {
+  margin: 8px 3px;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Arrows */
+.leftArrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 40px;
+  font-size: 50px;
+  font-weight: 700;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 32px;
+  font-size: 50px;
+  font-weight: 700;
+  color: #fff;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.containerImages {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+.active {
+  background: #ccc;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.button {
+  background-color: transparent;
+  flex-direction: column;
+  color: #fff;
+  font-size: 25px;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  border-radius: 9999px;
+  border: #fff solid 3px;
+  padding: 25px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  margin-top: 1px;
+  margin-top: 40px;
+  margin-left: 45%;
+}
+
+.button:hover {
+  background-color: #fff;
+  color: #220f00;
+  transition-delay: 0.2s;
+  transition: 0.8s;
+}
