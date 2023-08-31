@@ -1,25 +1,164 @@
- import React from 'react'
+import React, { useState } from 'react';
+import { postVehiculo } from '../../redux/action/action';
+import { useDispatch } from "react-redux"
 
- import "./Form.css"
+import "./Form.css"
+
+const Form = () => {
+
+  const dispatch = useDispatch();
+
+
+  const [state, setState] = useState({
+    name: '',
+    image: '',
+    brand: '',
+    description: '',
+    price: '',
+    stock: '',
+    maker: '',
+    model: '',
+    visible: '',
+    category: '',
+  })
+
+  const [error, setError] = useState({
+    name: "Campo requerido",
+    image: "Campo requerido",
+    brand: "Campo requerido",
+    description: "Campo requerido",
+    price: "Campo requerido",
+    stock: "Campo requerido",
+    maker: "Campo requerido",
+    model: "Campo requerido",
+    visible: "Campo requerido",
+    category: "Campo requerido",
+  })
+
+  const handleChange = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.value
+    })
+    validate({
+      ...state,
+      [event.target.name]: event.target.value
+    }, event.target.name)
+  }
+
+  const validate = (state, name) => {
+    if (name === "name") {
+      if (state.name !== "") {
+        if (/^[A-Za-z\s]+$/.test(state.name)) {
+          if (state.name.length >= 1 && state.name.length <= 30) {
+            setError({ ...error, name: "" });
+          } else {
+            setError({ ...error, name: "Debe contener entre 1 y 30 caracteres" });
+          }
+        } else {
+          setError({ ...error, name: "Debe contener solo letras y espacios" });
+        }
+      } else {
+        setError({ ...error, name: "Campo requerido" });
+      }
+    }
+    if (name === "stock") {
+      const stockValue = state.stock.trim();
+
+      if (!/^\d+$/.test(stockValue)) {
+        setError({ ...error, stock: "Debe ser un número" });
+      } else if (parseInt(stockValue) > 1000) {
+        setError({ ...error, stock: "No puede ser mayor que 1000" });
+      } else {
+        setError({ ...error, stock: "" });
+      }
+    }
+    if (name === "model") {
+      const modelValue = state.model.trim();
+
+      if (!/^\d+$/.test(modelValue)) {
+        setError({ ...error, model: "Debe ser un número" });
+      } else if (parseInt(modelValue) > 2023) {
+        setError({ ...error, model: "No puede ser mayor que 2023" });
+      } else {
+        setError({ ...error, model: "" });
+      }
+    }
+    if (name === "image") {
+      if (state.image !== "") {
+        // Expresión regular para validar URL
+        const urlPattern = /^(http[s]?:\/\/){0,1}(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}[.]{0,1}/;
+        if (urlPattern.test(state.image)) {
+          setError({ ...error, image: "" });
+        } else {
+          setError({ ...error, image: "Ingrese una URL válida" });
+        }
+      } else {
+        setError({ ...error, image: "Campo requerido" });
+      }
+    }
+  }
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(postVehiculo(state));
+  }
+
  
- const Form = () => {
+  return (
+    <div className='form-cont'>
+      <div className='style'>
 
+        <form onSubmit={handleSubmit}>
+          <h1 className='title-form'>VENDER VEHICULO</h1>
+          <hr></hr>
+          <input name="name" onChange={handleChange} placeholder='NAME' type="text"></input>
+          <label className='form-error'>{error.name}</label>
 
-   return (
-     <div className='form-cont'>
-      <form>
-      <h1 className='title-form'>VENDER VEHICULO</h1>
-       <input placeholder='TIPO' type="text"></input>
-       <input placeholder='MODELO' type="text"></input>
-       <input placeholder='AÑO' type="text"></input>
-       <input placeholder='KMS' type="text"></input>
-       <input placeholder='MARCA' type="text"></input>
-       <input placeholder='PRECIO ESTIMADO' type="text"></input>
-       <input placeholder='DESCRIPCION DEL VIHICULO' type="text"></input>
-       <input type="submit" value={"PUBLICAR VEHICULO"}></input>
-      </form>
-     </div>
-   )
- }
- 
- export default Form
+          <hr></hr>
+          <input name="image" onChange={handleChange} placeholder='IMAGE' type="text"></input>
+          <label className='form-error'>{error.image}</label>
+
+          <hr></hr>
+          <input name="brand"onChange={handleChange} placeholder='BRAND' type="text"></input>
+          <label className='form-error'>{error.name}</label>
+
+          <hr></hr>
+          <input name="description" onChange={handleChange} placeholder='DESCRIPTION' type="text"></input>
+          <label className='form-error'>{error.name}</label>
+
+          <hr></hr>
+          <input name="price" onChange={handleChange} placeholder='PRICE' type="text"></input>
+          <label className='form-error'>{error.name}</label>
+
+          <hr></hr>
+          <input name="stock" onChange={handleChange} placeholder='STOCK' type="text"></input>
+          <label className='form-error'>{error.stock}</label>
+
+          <hr></hr>
+          <input name="maker" onChange={handleChange} placeholder='MAKER' type="text"></input>
+          <label className='form-error'>{error.name}</label>
+
+          <hr></hr>
+          <input name="model" onChange={handleChange} placeholder='MODEL' type="text"></input>
+          <label className='form-error'>{error.model}</label>
+
+          <hr></hr>
+          <input name="visible" onChange={handleChange} placeholder='VISIBLE' type="text"></input>
+          <label className='form-error'>{error.name}</label>
+
+          <hr></hr>
+          <input name="category" onChange={handleChange} placeholder='CATEGORY' type="text"></input>
+          <label className='form-error'>{error.name}</label>
+
+          <hr></hr>
+          <input  type="submit" value={"PUBLICAR VEHICULO"}></input>
+          <hr></hr>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+export default Form
