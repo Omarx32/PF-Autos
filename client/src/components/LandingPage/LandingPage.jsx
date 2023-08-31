@@ -1,117 +1,70 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import styles from "../LandingPage/LandingPage.module.css";
+import React, { useState } from 'react';
+import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
+import { RxDotFilled } from 'react-icons/rx';
+
 
 export default function LandingPage() {
-  // Declaraciones de estados y refs dentro de la función
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const listRef = useRef(null);
-  const data = [
+  const slides = [
     {
-      id: 1,
-      imgUrl: "img/descargauno.jpg",
+      url: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2620&q=80',
     },
     {
-      id: 2,
-      imgUrl: "img/descargados.jpg",
+      url: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80',
     },
     {
-      id: 3,
-      imgUrl: "img/descargatrs.jpg",
+      url: 'https://images.unsplash.com/photo-1661961112951-f2bfd1f253ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2672&q=80',
+    },
+
+    {
+      url: 'https://images.unsplash.com/photo-1512756290469-ec264b7fbf87?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2253&q=80',
     },
     {
-      id: 4,
-      imgUrl: "img/descarga.jpg",
-    },
-    {
-      id: 5,
-      imgUrl:
-        "img/ford-f-150-raptor-pickup-trucks-car-wallpaper-d930f81d116a8d1b3637f8bf006166bd.jpg",
+      url: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2671&q=80',
     },
   ];
-  useEffect(() => {
-    const listNode = listRef.current;
-    const imgNode = listNode.querySelectorAll("li > img")[currentIndex];
 
-    if (imgNode) {
-      imgNode.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-  }, [currentIndex]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const scrollToImage = (direction) => {
-    if (direction === "prev") {
-      setCurrentIndex((curr) => {
-        const isFirstSlide = currentIndex === 0;
-        return isFirstSlide ? 0 : curr - 1;
-      });
-    } else {
-      const isLastSlide = currentIndex === data.length - 1;
-      if (!isLastSlide) {
-        setCurrentIndex((curr) => curr + 1);
-      }
-    }
+  const prevSlide = () => {
+    const isFirstSlide = currentIndex === 0;
+    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
   };
+
+  const nextSlide = () => {
+    const isLastSlide = currentIndex === slides.length - 1;
+    const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  };
+
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
   };
 
   return (
-    <div className={styles.background}>
-      <div>
-        <h1 className={styles.AppTitle}>NN</h1>
-        <div className={styles.mainContainer}>
-          <div className={styles.sliderContainer}>
-            <div
-              className={styles.leftArrow}
-              onClick={() => scrollToImage("prev")}
-            >
-              &#10092;
-            </div>
-            <div
-              className={styles.rightArrow}
-              onClick={() => scrollToImage("next")}
-            >
-              &#10093;
-            </div>
-            <div className={styles.containerImages}>
-              <ul ref={listRef}>
-                {data.map((item) => {
-                  return (
-                    <li key={item.id}>
-                      <img alt="" src={item.imgUrl} />
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-            <div className={styles.dotsContainer}>
-              {data.map((_, idx) => (
-                <div
-                  key={idx}
-                  className={`${styles.dotContainerItem} ${
-                    idx === currentIndex ? styles.active : ""
-                  }`}
-                  onClick={() => goToSlide(idx)}
-                >
-                  &#9865;
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+    <div className='max-w-[1400px] h-[780px] w-full m-auto py-16 px-4 relative group'>
+      <div
+        style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
+        className='w-full h-full rounded-2xl bg-center bg-cover duration-500'
+      ></div>
+      {/* Left Arrow */}
+      <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
+        <BsChevronCompactLeft onClick={prevSlide} size={30} />
       </div>
-      <Link to="/Home">
-        <button className={styles.button}>Catalogo</button>
-      </Link>
-      <div className={styles.imgCont}>
-        <img src="img/mercedes.jpg" alt="" />
-        <p className={styles.texto}>
-          TENEMOS TODO PARA OFRECERTE, DESDE LAS PICKUPS MAS POTENTES PARA EL
-          TRABAJO, COMO SEDANES COMODOS Y ELEGANTES, HASTA LAS SUVS MAS
-          ESPACIOSAS PARA LA VIDA FAMILIAR.
-        </p>
+      {/* Right Arrow */}
+      <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
+        <BsChevronCompactRight onClick={nextSlide} size={30} />
+      </div>
+      <div className='flex top-4 justify-center py-2'>
+        {slides.map((slide, slideIndex) => (
+          <div
+            key={slideIndex}
+            onClick={() => goToSlide(slideIndex)}
+            className='text-2xl cursor-pointer'
+          >
+            <RxDotFilled />
+          </div>
+        ))}
       </div>
     </div>
   );
