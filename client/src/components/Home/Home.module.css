@@ -5,11 +5,16 @@
   position: absolute;
 }
 .AppTitle {
-  color: white;
+  color: rgb(47, 44, 44);
   flex-direction: column;
   font-family: Lato, Arial, Helvetica, sans-serif;
   font-size: 80px;
   text-align: center;
+}
+.AppTitle:hover {
+  color: #000000;
+  text-shadow: 0 0 5px #05f1ca, 0 0 25px #ad0505, 0 0 50px #05f1ca,
+    0 0 100px #05f1ca;
 }
 .SubTitle {
   color: white;
