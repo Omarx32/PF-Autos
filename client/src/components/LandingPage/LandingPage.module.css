@@ -11,3 +11,19 @@
 .backgroundImage {
   background-color: black;
 }
+
+.homeButton {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.homeButton:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
