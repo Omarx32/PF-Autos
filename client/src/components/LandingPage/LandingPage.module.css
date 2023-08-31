@@ -8,12 +8,9 @@
     height: 200px;
   }
 }
-.backgroundImage {
-  background-color: black;
-}
 
 .homeButton {
-  background-color: #ffffff;
+  background-color: #f17474;
   color: #000000;
   padding: 10px 20px;
   border: none;
@@ -21,9 +18,23 @@
   font-size: 16px;
   text-decoration: none;
   cursor: pointer;
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
 .homeButton:hover {
-  background-color: #000000;
+  background-color: #e90a0a;
   color: #ffffff;
+}
+.background {
+  background-color: #000000;
+  height: 1400px;
+}
+
+.AppTitle {
+  color: white;
+  font-weight: 600;
+  padding-left: 500px;
+  font-size: 65px;
+  margin-bottom: -40px;
 }
