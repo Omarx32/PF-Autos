@@ -1,5 +1,7 @@
+
 import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 
@@ -14,6 +16,7 @@ function App() {
         <Route exact path="/Form" element={<Form />}></Route>
       </Routes>
     </BrowserRouter>
+
   );
 }
 

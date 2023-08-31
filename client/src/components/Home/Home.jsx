@@ -2,7 +2,8 @@ import React from "react";
 
 import styles from "../Home/Home.module.css";
 import Footer from "../Footer/Footer";
-
+import Cards from "../Cards/Cards";
+import cars from "../../data";
 export default function Home() {
   return (
     <div>
@@ -17,7 +18,12 @@ export default function Home() {
             Form
           </a>
         </div>
-        <Footer />
+        <div className="App">
+          <div>
+            <Cards cars={cars}></Cards>
+          </div>
+          <Footer />
+        </div>
       </div>
     </div>
   );
