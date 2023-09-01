@@ -1,13 +1,26 @@
-import Card from "../Card/Card";
-import "../Cards/styles.css";
-const Cards = ({ cars }) => {
-  return (
-    <div className="cards">
-      {cars.map(({ name, image }) => {
-        return <Card title={name} image={image}></Card>;
-      })}
-    </div>
-  );
-};
+import { useSelector } from "react-redux"
+import Card from "./Card/Card"
+import './styles.css'
 
-export default Cards;
+const cardsContainer = () => {
+ const cars = useSelector((state)=> state.cars)
+
+
+
+    return(
+        <div className='cards'>
+            {cars?.map ((car)=>(
+                <Card
+                key={car.id}
+                id={car.id}
+                image={car.image}
+                name={car.name}
+                
+                />
+            ))}
+            
+        </div>
+    )
+}
+
+export default cardsContainer
