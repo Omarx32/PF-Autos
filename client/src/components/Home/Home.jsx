@@ -1,8 +1,9 @@
 import React from "react";
 import Navbar from "../NavBar/Navbar";
 import styles from "../Home/Home.module.css";
-import Footer from "../Footer/Footer";
+// import Footer from "../Footer/Footer";
 import Cards from "../Cards/Cards";
+
 import cars from "../../data";
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <div className={styles.background}>
         <h1 className={styles.AppTitle}>IGNITE MOTORS</h1>
         <Navbar></Navbar>
+        <Cards cars={cars}></Cards>
       </div>
       <h2 className={styles.SubTitle}>Todas Las Categorias</h2>
       <div classname={styles.enlaces}>
@@ -20,12 +22,9 @@ export default function Home() {
           Form
         </a>
       </div>
-      <div className="App">
-        <div>
-          <Cards cars={cars}></Cards>
-        </div>
-        <Footer />
-      </div>
+
+      <div></div>
+      {/* <Footer /> */}
     </div>
   );
 }

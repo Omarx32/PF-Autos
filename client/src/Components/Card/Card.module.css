@@ -1,0 +1,44 @@
+.card {
+  width: 450px;
+  height: 354px;
+  border-radius: 20px;
+  background: #290303;
+  position: relative;
+  padding: 1.8rem;
+  border: 1px solid #c3c6ce;
+  margin-bottom: 20px;
+  margin: 10px;
+}
+
+.card h1 {
+  text-overflow: ellipsis; /* activa ellipsis */
+  white-space: nowrap; /* mantiene texto en una sola linea */
+  overflow: hidden;
+  color: black;
+}
+
+.card img {
+  width: 300%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-details {
+  color: black;
+  height: 100%;
+}
+
+.Button {
+  display: block;
+  margin-top: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: rgb(4, 4, 4);
+  color: rgb(250, 250, 250);
+  &:hover {
+    background-color: rgba(36, 36, 42, 0.6);
+  }
+}

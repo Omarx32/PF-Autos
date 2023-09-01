@@ -1,22 +1,13 @@
-import Card from "../Card/Card"
-import './styles.css'
-const Cards = ({cars}) => {
-    return(
-        <div className='cards'>
-            {
-                cars.map(({title,image}) => {
-                    return (
-                        <Card
-                            title={title}
-                            image={image}
-                        >
+import Card from "../Card/Card";
+import "../Cards/styles.css";
+const Cards = ({ cars }) => {
+  return (
+    <div className="cards">
+      {cars.map(({ name, image }) => {
+        return <Card title={name} image={image}></Card>;
+      })}
+    </div>
+  );
+};
 
-                        </Card>
-                    )
-                })
-            }
-        </div>
-    )
-}
-
-export default Cards
+export default Cards;
