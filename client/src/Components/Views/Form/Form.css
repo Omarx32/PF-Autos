@@ -1,22 +1,87 @@
-
-.form-cont form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    min-height: 100vh;
-}
-.title-form{
-    margin: 0;
-    color: rgb(0, 0, 0);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-style: italic;
-    text-align: center;
-    position: center;
-    font-size: 50px;    
+.form-cont form {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #d8d8d8;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.form-error{
-    color: red;
+.title-form {
+  margin: 0;
+  color: rgb(0, 0, 0);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-style: italic;
+  text-align: center;
+  position: center;
+  font-size: 50px;
+}
+
+.form-error {
+  color: red;
+}
+
+.button-container {
+  text-align: center;
+}
+
+.button-form {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button-form:hover {
+  background-color: #0011ff;
+}
+
+.input-form {
+  padding: 3px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.button-home-cont {
+  text-align: right;
+}
+
+.button-home {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+
+}
+
+.button-home:hover {
+  background-color: #0011ff;
+}
+
+.input-form:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px #3498db;
+}
+
+
+.input-form:hover {
+  border-color: #95a5a6;
+}
+
+
+.input-form[type="text"] {
+  color: #333;
+}
+
+.input-form[type="text"]:focus {
+  color: #000;
 }
