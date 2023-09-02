@@ -1,19 +1,19 @@
 const cars = [
   {
     id: 782585,
-    title: "Ford mustang",
+    name: "Ford mustang",
     image: "img/mustang.png",
     imageType: "jpg",
   },
   {
     id: 716426,
-    title: "Ford ecosport",
+    name: "Ford ecosport",
     image: "img/ecosport.png",
     imageType: "jpg",
   },
   {
     id: 715497,
-    title: "Toyota Corolla",
+    name: "Toyota Corolla",
     image: "img/corolla.png",
     imageType: "jpg",
   },
