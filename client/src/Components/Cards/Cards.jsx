@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import Card from "./Card/Card"
 import './styles.css'
 
-const cardsContainer = () => {
+const CardsContainer = () => {
  const cars = useSelector((state)=> state.cars)
 
 
@@ -23,4 +23,4 @@ const cardsContainer = () => {
     )
 }
 
-export default cardsContainer
+export default CardsContainer
