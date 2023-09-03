@@ -1,9 +1,3 @@
-.background {
-  background-color: black;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-}
 .AppTitle {
   color: white;
   flex-direction: column;
@@ -12,19 +6,13 @@
   text-align: center;
 }
 .SubTitle {
+  margin-top: 30px;
   color: white;
   flex-direction: column;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 40px;
   text-align: center;
-}
-a {
-  display: inline-block;
-  margin-left: 30%;
-  margin-right: 17%;
-  text-decoration: none;
-  color: white;
-  justify-content: center;
+  padding-right: 150px;
 }
 
 .page{

@@ -21,7 +21,7 @@ const Navbar = () => {
         </li>
         <li className="nav__item">
           <a href="/Form" className="nav__link">
-            Vender vehiculo
+            VENDER VEHICULO
           </a>
         </li>
       </ul>
