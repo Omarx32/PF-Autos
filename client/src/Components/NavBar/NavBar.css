@@ -1,4 +1,4 @@
-*::before {
+/* *::before {
   margin: 0;
   box-sizing: border-box;
 }
@@ -33,4 +33,46 @@ a {
   align-items: center;
   justify-content: space-around;
   gap: 80px;
+} */
+.nav {
+  background-color: #7b0505; /* Cambia el color de fondo según tus preferencias */
+  color: #fff; /* Cambia el color de texto según tus preferencias */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+}
+
+.nav h2 {
+  margin: 0;
+  font-size: 25px; /* Tamaño de fuente del título */
+}
+
+.nav__brand {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px; /* Tamaño de fuente del logo o marca */
+}
+
+.nav__menu {
+  list-style: none;
+  display: flex;
+  gap: 40px; /* Espacio entre elementos de menú */
+  margin: 0;
+  padding: 0;
+}
+
+.nav__item {
+  margin: 0;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: #fff; /* Cambia el color de los enlaces según tus preferencias */
+  font-size: 18px; /* Tamaño de fuente de los enlaces */
+}
+
+/* Estilo para el enlace activo */
+.nav__link.active {
+  font-weight: bold; /* Puedes cambiar el estilo del enlace activo */
 }

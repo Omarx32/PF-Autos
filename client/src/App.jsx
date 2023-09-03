@@ -10,7 +10,7 @@ import Navbar from "./Components/NavBar/Navbar";
 function App() {
   return (
     <BrowserRouter>
-      <h1 className="">IGNITE MOTORS</h1>
+      <div className="Title">IGNITE MOTORS</div>
       <Navbar />
       <main className="background">
         <Routes>
