@@ -42,7 +42,7 @@ export default function LandingPage() {
 
   return (
     <div className={styles.background}>
-      <div className={styles.AppTitle}>IGNITE MOTORS</div>
+      {/* <div className={styles.AppTitle}>IGNITE MOTORS</div> */}
       <div className="max-w-[1200px] h-[750px] w-full m-auto py-16 px-4 relative group">
         <div
           style={{ backgroundImage: `url(${slides[currentIndex].url})` }}

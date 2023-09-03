@@ -44,15 +44,14 @@ export default function Home() {
     <div className={styles.container}>
       <div>
         <div>
-          <h2 className={styles.SubTitle}>Todas Las Categorias</h2>
+          <h2 className={styles.SubTitle}>Todos los vehiculos</h2>
         </div>
 
         <Cards></Cards>
       </div>
-      <div classname={styles.enlaces}></div>
-      <Page prev={prev} next={next} />
 
       <div></div>
+      {/* <Page prev={prev} next={next} /> */}
     </div>
   );
 }
