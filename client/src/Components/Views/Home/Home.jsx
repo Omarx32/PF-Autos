@@ -6,7 +6,7 @@ import { getCars } from "../../../redux/action/action";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Page from "../../Page";
+import Page from "../Paginado/Page";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -42,22 +42,15 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-
-    
-      
-
       <div>
         <div>
-          <h2 className={styles.SubTitle}>Todos los vehiculos</h2>
+          <h2 className={styles.SubTitle}>Todos los vehículos</h2>
         </div>
-
-
-        <Cards></Cards>
+        <Cards />
       </div>
-  <div className={styles.page}>
-        <Page prev={prev} next={next}/>
-      <div></div>
-     
+      <div className={styles.page}>
+        <Page prev={prev} next={next} />
+      </div>
     </div>
   );
 }

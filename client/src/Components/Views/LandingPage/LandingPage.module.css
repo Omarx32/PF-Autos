@@ -18,8 +18,9 @@
   font-size: 16px;
   text-decoration: none;
   cursor: pointer;
-  padding-left: 20%;
-  padding-right: 20%;
+  display: flex;
+  margin-left: 500px;
+  margin-right: 550px;
 }
 
 .homeButton:hover {

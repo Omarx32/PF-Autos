@@ -1,0 +1,27 @@
+/* Estilos para los botones */
+button {
+  background-color: #007bff; /* Cambia el color de fondo del botón */
+  color: #ffffff; /* Cambia el color del texto del botón */
+  border: none; /* Quita el borde del botón */
+  padding: 10px 20px; /* Ajusta el espaciado dentro del botón */
+  margin: 5px; /* Añade un pequeño margen entre los botones */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  border-radius: 5px; /* Agrega bordes redondeados al botón */
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+/* Estilos para el botón al pasar el cursor sobre él */
+button:hover {
+  background-color: #0056b3; /* Cambia el color de fondo al hacer hover */
+}
+
+/* Estilos adicionales para el botón "Página anterior" */
+button:nth-child(1) {
+  margin-right: 10px; /* Añade margen derecho solo al primer botón */
+}
+
+/* Estilos adicionales para el botón "Página siguiente" */
+button:nth-child(2) {
+  margin-left: 10px; /* Añade margen izquierdo solo al segundo botón */
+}

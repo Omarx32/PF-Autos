@@ -1,13 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
-//import { useDispatch } from "react-redux";
-//import { postVehiculo } from '../../redux/action/action';
-
 import "./Form.css";
 
 const Form = () => {
-  //const dispatch = useDispatch();
-
   const [state, setState] = useState({
     name: "",
     image: "",
@@ -22,17 +18,20 @@ const Form = () => {
   });
 
   const [error, setError] = useState({
-    name: "Campo requerido",
-    image: "Campo requerido",
-    brand: "Campo requerido",
-    description: "Campo requerido",
-    price: "Campo requerido",
-    stock: "Campo requerido",
-    maker: "Campo requerido",
-    model: "Campo requerido",
-    visible: "Campo requerido",
-    category: "Campo requerido",
+    name: "",
+    image: "",
+    brand: "",
+    description: "",
+    price: "",
+    stock: "",
+    maker: "",
+    model: "",
+    visible: "",
+    category: [],
   });
+
+  const [successMessage, setSuccessMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -99,7 +98,6 @@ const Form = () => {
     }
     if (name === "image") {
       if (state.image !== "") {
-        // Expresión regular para validar URL
         const urlPattern =
           /^(http[s]?:\/\/){0,1}(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,5}[.]{0,1}/;
         if (urlPattern.test(state.image)) {
@@ -111,10 +109,67 @@ const Form = () => {
         setError({ ...error, image: "Campo requerido" });
       }
     }
+    if (name === "category") {
+      if (state.category.length === 0) {
+        setError({ ...error, category: "Campo requerido" });
+      } else {
+        setError({ ...error, category: "" });
+      }
+    }
+    if (name === "visible") {
+      if (state.visible === "") {
+        setError({ ...error, visible: "Campo requerido" });
+      } else {
+        setError({ ...error, visible: "" });
+      }
+    }
+    if (name === "maker") {
+      if (state.maker === "") {
+        setError({ ...error, maker: "Campo requerido" });
+      } else {
+        setError({ ...error, maker: "" });
+      }
+    }
+    if (name === "brand") {
+      if (state.brand === "") {
+        setError({ ...error, brand: "Campo requerido" });
+      } else {
+        setError({ ...error, brand: "" });
+      }
+    }
+    if (name === "description") {
+      if (state.description === "") {
+        setError({ ...error, description: "Campo requerido" });
+      } else {
+        setError({ ...error, description: "" });
+      }
+    }
+    if (name === "price") {
+      if (state.price === "") {
+        setError({ ...error, price: "Campo requerido" });
+      } else {
+        setError({ ...error, price: "" });
+      }
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (
+      state.name === "" ||
+      state.image === "" ||
+      state.brand === "" ||
+      state.description === "" ||
+      state.price === "" ||
+      state.stock === "" ||
+      state.maker === "" ||
+      state.model === "" ||
+      state.category.length === 0
+    ) {
+      alert("Debes llenar todos los campos.");
+      return;
+    }
 
     // Realiza la solicitud POST al servidor
     try {
@@ -124,7 +179,25 @@ const Form = () => {
       // Verifica la respuesta del servidor (puedes personalizar esto según tus necesidades)
       if (response.status === 201) {
         console.log("Vehículo creado con éxito");
+        setSuccessMessage("Vehículo creado con éxito");
+        setTimeout(() => {
+          setSuccessMessage(false);
+        }, 5000);
         // Puedes realizar alguna acción adicional aquí, como redireccionar o mostrar un mensaje de éxito.
+        setSubmitted(true);
+        setState({
+          // Reinicia el estado del formulario a un objeto vacío
+          name: "",
+          image: "",
+          brand: "",
+          description: "",
+          price: "",
+          stock: "",
+          maker: "",
+          model: "",
+          visible: "",
+          category: [],
+        });
       } else {
         console.error("Error al crear el vehículo");
       }
@@ -133,105 +206,200 @@ const Form = () => {
     }
   };
 
+  const categories = [
+    "Sedán",
+    "SUV",
+    "Deportivo",
+    "Camioneta",
+    "Camión",
+    "Furgoneta",
+    "Hatchback",
+    "Convertible",
+    "Coupé",
+    "Minivan",
+  ];
+
   return (
-    <div className="form-cont">
-      <div className="style">
-        <form onSubmit={handleSubmit}>
-          <h1 className="title-form">VENDER VEHICULO</h1>
-          <hr></hr>
-          <input
-            name="name"
-            onChange={handleChange}
-            placeholder="NAME"
-            type="text"
-          ></input>
-          <label className="form-error">{error.name}</label>
+    <div className="form-outer-container">
+      <div className="form-cont">
+        <div className="style">
+          <div className="cardForm">
+            <div className="form-container">
+              <form onSubmit={handleSubmit}>
+                <h3 className="title-form">VENDE TU VEHICULO</h3>
+                <hr></hr>
+                <div className="form-group">
+                  <label htmlFor="name">Nombre</label>
+                  <input
+                    name="name"
+                    id="name"
+                    onChange={handleChange}
+                    type="text"
+                    value={submitted ? "" : state.name}
+                  ></input>
+                  {error.name && (
+                    <label className="form-error">{error.name}</label>
+                  )}
+                </div>
 
-          <hr></hr>
-          <input
-            name="image"
-            onChange={handleChange}
-            placeholder="IMAGE"
-            type="text"
-          ></input>
-          <label className="form-error">{error.image}</label>
+                <hr></hr>
+                <div className="form-group">
+                  <label htmlFor="image">Imagen</label>
+                  <input
+                    name="image"
+                    id="image"
+                    onChange={handleChange}
+                    type="text"
+                    value={submitted ? "" : state.image}
+                  ></input>
+                  {error.image && (
+                    <label className="form-error">{error.image}</label>
+                  )}
+                </div>
 
-          <hr></hr>
-          <input
-            name="brand"
-            onChange={handleChange}
-            placeholder="BRAND"
-            type="text"
-          ></input>
-          <label className="form-error">{error.name}</label>
+                <hr></hr>
+                <div className="form-group">
+                  <label htmlFor="brand">Marca</label>
+                  <input
+                    name="brand"
+                    id="brand"
+                    onChange={handleChange}
+                    type="text"
+                    value={submitted ? "" : state.brand}
+                  ></input>
+                  {error.brand && (
+                    <label className="form-error">{error.brand}</label>
+                  )}
+                </div>
 
-          <hr></hr>
-          <input
-            name="description"
-            onChange={handleChange}
-            placeholder="DESCRIPTION"
-            type="text"
-          ></input>
-          <label className="form-error">{error.name}</label>
+                <hr></hr>
+                <div className="form-group">
+                  <label htmlFor="description">Descripcion</label>
+                  <textarea
+                    name="description"
+                    id="description"
+                    onChange={handleChange}
+                    type="text"
+                    value={submitted ? "" : state.description}
+                  ></textarea>
+                  {error.description && (
+                    <label className="form-error">{error.description}</label>
+                  )}
+                </div>
 
-          <hr></hr>
-          <input
-            name="price"
-            onChange={handleChange}
-            placeholder="PRICE"
-            type="text"
-          ></input>
-          <label className="form-error">{error.name}</label>
+                <hr></hr>
+                <div className="form-group">
+                  <label htmlFor="price">Precio</label>
+                  <input
+                    name="price"
+                    id="price"
+                    onChange={handleChange}
+                    type="text"
+                    value={submitted ? "" : state.price}
+                  ></input>
+                  {error.price && (
+                    <label className="form-error">{error.price}</label>
+                  )}
+                </div>
 
-          <hr></hr>
-          <input
-            name="stock"
-            onChange={handleChange}
-            placeholder="STOCK"
-            type="text"
-          ></input>
-          <label className="form-error">{error.stock}</label>
+                <hr></hr>
+                <div className="form-group">
+                  <label htmlFor="stock">Stock</label>
+                  <input
+                    name="stock"
+                    id="stock"
+                    onChange={handleChange}
+                    type="text"
+                    value={submitted ? "" : state.stock}
+                  ></input>
+                  {error.stock && (
+                    <label className="form-error">{error.stock}</label>
+                  )}
+                </div>
 
-          <hr></hr>
-          <input
-            name="maker"
-            onChange={handleChange}
-            placeholder="MAKER"
-            type="text"
-          ></input>
-          <label className="form-error">{error.name}</label>
+                <hr></hr>
+                <div className="form-group">
+                  <label htmlFor="maker">Maker</label>
+                  <input
+                    name="maker"
+                    id="maker"
+                    onChange={handleChange}
+                    type="text"
+                    value={submitted ? "" : state.maker}
+                  ></input>
+                  {error.maker && (
+                    <label className="form-error">{error.maker}</label>
+                  )}
+                </div>
 
-          <hr></hr>
-          <input
-            name="model"
-            onChange={handleChange}
-            placeholder="MODEL"
-            type="text"
-          ></input>
-          <label className="form-error">{error.model}</label>
+                <hr></hr>
+                <div className="form-group">
+                  <label htmlFor="model">Modelo</label>
+                  <input
+                    name="model"
+                    id="model"
+                    onChange={handleChange}
+                    type="text"
+                    value={submitted ? "" : state.model}
+                  ></input>
+                  {error.model && (
+                    <label className="form-error">{error.model}</label>
+                  )}
+                </div>
 
-          <hr></hr>
-          <input
-            name="visible"
-            onChange={handleChange}
-            placeholder="VISIBLE"
-            type="text"
-          ></input>
-          <label className="form-error">{error.name}</label>
+                <hr></hr>
+                <div className="form-group">
+                  <label htmlFor="visible">Visible</label>
+                  <input
+                    name="visible"
+                    id="visible"
+                    onChange={handleChange}
+                    type="text"
+                    value={submitted ? "" : state.visible}
+                  ></input>
+                  {error.visible && (
+                    <label className="form-error">{error.visible}</label>
+                  )}
+                </div>
 
-          <hr></hr>
-          <input
-            name="category"
-            onChange={handleChange}
-            placeholder="CATEGORY"
-            type="text"
-          ></input>
-          <label className="form-error">{error.name}</label>
+                <hr></hr>
+                <div className="form-group">
+                  <label htmlFor="category">Categoria</label>
+                  <select
+                    name="category"
+                    id="category"
+                    onChange={handleChange}
+                    value={submitted ? "" : state.category}
+                  >
+                    <option value="" disabled>
+                      Selecciona una categoría
+                    </option>
+                    {categories.map((category) => (
+                      <option key={category} value={category}>
+                        {category}
+                      </option>
+                    ))}
+                  </select>
+                  {error.category && (
+                    <label className="form-error">{error.category}</label>
+                  )}
+                </div>
 
-          <hr></hr>
-          <input type="submit" value={"PUBLICAR VEHICULO"}></input>
-          <hr></hr>
-        </form>
+                <hr></hr>
+                {successMessage && (
+                  <div className="success-message">{successMessage}</div>
+                )}
+                <hr></hr>
+                <div className="button-container">
+                  <input type="submit" value={"PUBLICAR VEHICULO"}></input>
+                  <Link to="/Home">
+                    <button className="return-button">Home</button>
+                  </Link>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

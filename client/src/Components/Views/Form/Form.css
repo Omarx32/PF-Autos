@@ -1,87 +1,178 @@
 .form-cont form {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #d8d8d8;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
 }
 
+/* Estilo para el título del formulario */
 .title-form {
   margin: 0;
   color: rgb(0, 0, 0);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-style: italic;
   text-align: center;
-  position: center;
-  font-size: 50px;
+  font-size: 40px;
 }
 
+/* Estilo para los campos de entrada (inputs) y etiquetas (labels) */
+.form-group {
+  margin: -15px 0; /* Agregar márgenes superior e inferior a los campos de entrada */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar los elementos horizontalmente */
+  text-align: center; /* Centrar el texto horizontalmente */
+}
+
+.form-group label {
+  margin-bottom: 5px; /* Espacio entre el label y el campo de entrada */
+  color: aliceblue;
+}
+
+/* Estilo para el área de texto (description) */
+.form-group textarea,
+.form-group input[type="text"] {
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 100%; /* Establecer el ancho al 100% para que ocupen todo el espacio disponible */
+  font-size: 16px;
+  min-width: 400px; /* Ancho mínimo para los campos de entrada */
+  max-width: 800px; /* Ancho máximo para los campos de entrada (ajusta el valor según tus preferencias) */
+  margin: 2px 0;
+}
+
+/* Estilo para los mensajes de error */
 .form-error {
   color: red;
+  margin-top: 5px;
+  font-size: 12px; /* Agregar un pequeño margen superior para separar el mensaje de error del campo de entrada */
 }
 
-.button-container {
-  text-align: center;
-}
-
-.button-form {
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.button-form:hover {
-  background-color: #0011ff;
-}
-
-.input-form {
-  padding: 3px;
-  border: 1px solid #ccc;
+/* Estilo para el botón */
+input[type="submit"] {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  border: 2px solid rgb(3, 3, 3);
   border-radius: 5px;
-  font-size: 16px;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
-
-.button-home-cont {
-  text-align: right;
-}
-
-.button-home {
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 10px;
   padding: 10px 20px;
+  font-size: 14px;
   cursor: pointer;
+  transition: all 0.3s ease; /* Agregar una transición suave para los cambios */
+  margin-right: -330px;
+  color: white;
+}
+
+/* Estilo para el pseudo-elemento ::before que actúa como la línea animada */
+input[type="submit"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: black;
+  z-index: -1; /* Colocar detrás del botón */
+  transition: width 0.3s ease; /* Animación de la anchura */
+}
+
+/* Estilo para el botón cuando se coloca el cursor encima */
+input[type="submit"]:hover {
+  color: rgb(240, 236, 236); /* Cambiar el color del texto al pasar el cursor */
+  background-color: black; /* Cambiar el fondo al pasar el cursor */
+}
+
+/* Estilo para el pseudo-elemento ::before cuando el cursor está sobre el botón */
+input[type="submit"]:hover::before {
+  width: 100%; /* Ancho al 100% para recorrer todo el botón */
+}
+
+/* Estilo para el área de texto (description) */
+.form-group textarea {
+  padding: 5px; /* Agregar relleno para que el área de texto tenga espacio alrededor del texto */
+  border: 1px solid black; /* Agregar un borde negro */
+  border-radius: 5px; /* Agregar esquinas redondeadas */
+  width: 100%; /* Establecer el ancho al 100% para que ocupe todo el espacio disponible */
+  font-size: 16px; /* Tamaño de fuente para el área de texto */
+}
+
+.form-group label {
+  margin-right: 5px; /* Agregar un margen a la derecha de las etiquetas para separarlas de los campos de entrada */
+}
+
+.success-message {
+  color: rgb(138, 196, 138);
+  font-size: 25px;
+}
+
+.return-button {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 10px 20px;
   font-size: 16px;
-
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 92px;
 }
 
-.button-home:hover {
-  background-color: #0011ff;
+.return-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: rgb(8, 6, 6);
+  z-index: -1; /* Colocar detrás del botón */
+  transition: width 0.3s ease;
 }
 
-.input-form:focus {
-  border-color: #3498db;
-  box-shadow: 0 0 5px #3498db;
+.return-button:hover {
+  color: white;
+  background-color: black;
 }
 
-
-.input-form:hover {
-  border-color: #95a5a6;
+.return-button:hover::before {
+  width: 100%;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Espacio entre los botones */
+  align-items: center; /* Centra verticalmente los botones */
+  margin-top: -8px; /* Espacio superior para separar de otros elementos si es necesario */
+  margin-left: 40px; /* Margen izquierdo para reducir la separación */
+  margin-right: 10px; /* Margen derecho para reducir la separación */
 }
 
-
-.input-form[type="text"] {
-  color: #333;
+.input[type="submit"],
+.return-button {
+  flex: 1; /* Distribuye el espacio de manera uniforme entre los botones */
 }
 
-.input-form[type="text"]:focus {
-  color: #000;
+.cardForm {
+  background-color: rgb(70, 3, 3);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 5px;
+  height: auto;
+  width: 600px; /* Puedes ajustar el ancho según tus preferencias */
+  margin: 0 auto; /* Centrar la tarjeta horizontalmente */
+  transition: box-shadow 0.3s ease; /* Agregar una transición suave para los cambios de sombra */
+}
+
+/* Estilo para el "cardForm" cuando el cursor está sobre él */
+.cardForm:hover {
+  box-shadow: 0 2px 25px 0 rgba(230, 174, 173, 0.4); /* Aplicar una sombra difuminada cuando el cursor está sobre el elemento */
+}
+
+.form-outer-container {
+  background-color: black;
+  min-height: 100vh; /* Ajusta la altura al 100% del viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

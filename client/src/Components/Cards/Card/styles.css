@@ -1,49 +1,40 @@
-/* Estilos para la tarjeta */
 .card {
-  margin-top: 60px;
-  width: 350px;
-  height: 600px; /* Ancho de la tarjeta, puedes ajustarlo según tus necesidades */
-  background-color: #ef0606; /* Color de fondo de la tarjeta */
-  border: 1px solid #ccc; /* Borde de la tarjeta */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra de la tarjeta */
-  border-radius: 8px; /* Borde redondeado de la tarjeta */
-  overflow: hidden; /* Ocultar el contenido que se desborda */
-  transition: transform 0.2s ease-in-out; /* Efecto de transformación suave en hover */
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.2s;
+  width: 250px;
 }
 
-/* Estilos para los detalles de la tarjeta */
-.card-details {
-  padding: 20px; /* Espaciado interior de los detalles */
-  text-align: center; /* Alinear el contenido al centro */
-}
-
-/* Estilo para la imagen de la tarjeta */
-.card-details img {
-  width: fit-content; /* Asegura que la imagen se ajuste dentro de la tarjeta */
-  height: fit-content; /* Evita que la imagen se estire */
-  border-radius: 4px; /* Borde redondeado de la imagen */
-}
-
-/* Estilos para el título de la tarjeta */
-.title {
-  font-size: 18px; /* Tamaño de fuente del título */
-  margin-top: 8px; /* Espacio superior del título */
-}
-
-/* Estilo para el enlace de detalle */
-.card-details a {
-  text-decoration: none; /* Elimina la decoración de enlace */
-  color: #007bff; /* Color del enlace, puedes personalizarlo */
-  font-weight: bold; /* Estilo de fuente en hover */
-  transition: color 0.2s ease-in-out; /* Efecto de color suave en hover */
-}
-
-/* Estilo de enlace en hover */
-.card-details a:hover {
-  color: #0056b3; /* Cambia el color del enlace en hover */
-}
-
-/* Efecto de escalado en hover */
 .card:hover {
-  transform: scale(1.02); /* Escala la tarjeta en hover */
+  transform: translateY(-5px);
+}
+
+/* Estilos para la imagen */
+.card img {
+  width: auto;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Estilos para el título */
+.title {
+  font-size: 1.25rem;
+  margin-top: 10px;
+  color: #000000;
+}
+
+/* Estilos para el enlace de navegación (utilizando NavLink) */
+.card-details a {
+  text-decoration: none;
+  color: #007bff;
+  transition: color 0.3s;
+}
+
+.card-details a:hover {
+  color: #0056b3;
 }

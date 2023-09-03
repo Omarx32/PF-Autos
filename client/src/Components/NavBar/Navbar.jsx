@@ -4,7 +4,6 @@ import "../NavBar/NavBar.css";
 const Navbar = () => {
   return (
     <nav className="nav">
-      <h2>Nuestros Vehiculos</h2>
       <a href="#" className="nav__brand">
         {" "}
       </a>

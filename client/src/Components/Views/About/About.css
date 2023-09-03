@@ -1,0 +1,71 @@
+.about-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.programmers-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.programmer-card {
+  width: 250px;
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(233, 227, 227, 0.3);
+  background-color: rgb(90, 5, 5);
+}
+
+.programmer-card img {
+  width: 200px;
+  border-radius: 50%;
+}
+
+.programmer-card h2 {
+  margin-top: 10px;
+  color: white;
+}
+
+.social-media-links {
+  margin-top: 15px;
+}
+
+.social-media-links a {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+/* Estilos para los enlaces en hover */
+.social-media-links a:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para el encabezado h1 */
+h1 {
+  font-size: 24px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.Boton {
+  background-color: #f17474;
+  color: #000000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  margin-left: 790px;
+  margin-right: 850px;
+}
