@@ -49,7 +49,7 @@ export default function Home() {
           Form
         </a>
 
-      <div>
+      <div className={styles.page}>
         <Page prev={prev} next={next}/>
       </div>
 

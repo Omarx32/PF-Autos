@@ -26,3 +26,9 @@ a {
   color: white;
   justify-content: center;
 }
+
+.page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
