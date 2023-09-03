@@ -14,3 +14,9 @@
   text-align: center;
   padding-right: 150px;
 }
+
+.page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

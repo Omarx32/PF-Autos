@@ -42,16 +42,22 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
+
+    
+      
+
       <div>
         <div>
           <h2 className={styles.SubTitle}>Todos los vehiculos</h2>
         </div>
 
+
         <Cards></Cards>
       </div>
-
+  <div className={styles.page}>
+        <Page prev={prev} next={next}/>
       <div></div>
-      {/* <Page prev={prev} next={next} /> */}
+     
     </div>
   );
 }
