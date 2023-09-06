@@ -1,15 +1,17 @@
-import { Link } from "react-router-dom";
 import "../NavBar/NavBar.css";
 
 const Navbar = () => {
   return (
     <nav className="nav">
+      <div className="divLogo">
+        Ignite Motors
+      </div>
       <a href="#" className="nav__brand">
         {" "}
       </a>
       <ul className="nav__menu">
         <li className="nav__item">
-          <a href="#" className="nav__link">
+          <a href="/home" className="nav__link">
             VEHICULOS
           </a>
         </li>

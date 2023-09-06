@@ -1,0 +1,53 @@
+.AppTitle {
+  color: white;
+  flex-direction: column;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  font-size: 80px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.SubTitle {
+  text-align: center;
+  margin-top: 30px;
+  color: white;
+  flex-direction: column;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 40px;
+  text-align: center;
+ 
+}
+
+.page{
+
+ display: flex;
+ justify-content: center;
+ align-items: flex-end;
+}
+.container_filters{
+  width: 190%;
+  margin-top: 1.3rem;
+  border-radius: 25px;
+  display: flex;
+  
+}
+
+.container_filters select{
+  padding: 0.5rem 0.9rem;
+  border: none;
+  box-shadow: 5px 5px 5px 0.5px rgba(252,0,0,0.4);
+  background-color: black;
+  color: red;
+
+  cursor: pointer;
+}
+.container_filters select:first-child{
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+.container_filters select:last-child{
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}

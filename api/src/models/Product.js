@@ -13,10 +13,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    image: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
     brand: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -37,18 +33,24 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    image:{
+      type: DataTypes.ARRAY(DataTypes.STRING)
+    },
     model: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    visible: {
-      type: DataTypes.BOOLEAN,
+    color:{
+      type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: true,
     },
-    visits: {
+    kilometraje:{
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      allowNull: false,
+    },
+    direccion:{
+      type: DataTypes.STRING,
+      allowNull: false,
     }
   }, {
     timestamps: false,

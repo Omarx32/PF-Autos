@@ -16,8 +16,8 @@
 
 /* Estilos para la imagen */
 .card img {
-  width: auto;
-  height: auto;
+  width: 225px;
+  height: 200px;
   border-radius: 5px;
 }
 

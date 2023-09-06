@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "eudomart00",
+    "database": "automovil",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "eudomart00",
+    "database": "automovil",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "eudomart00",
+    "database": "automovil",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
