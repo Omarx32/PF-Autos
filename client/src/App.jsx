@@ -7,6 +7,8 @@ import Detail from "./Views/Detail/Detail";
 import Form from "./Views/Form/Form";
 import Navbar from "./Components/NavBar/Navbar";
 import About from "./Views/About/About";
+import FormUser from "./Views/FormUser/FormUser";
+
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +21,7 @@ function App() {
           <Route exact path="/Form" element={<Form />}></Route>
           <Route exact path="/Detail/:idCar" element={<Detail />}></Route>
           <Route exact path="/About" element={<About />}></Route>
+          <Route exact path="/registro" element={<FormUser />}></Route>
         </Routes>
       </main>
       <Footer />

@@ -8,12 +8,14 @@ const router = Router();
 const productRoutes = require('./productRoutes');
 const categoryRoutes = require('./categoryRoutes');
 const productCreate = require('./productCreateRoute');
+const usersRoutes = require('./usersRoutes')
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
 router.use('/product', productRoutes);
 router.use('/create', productCreate );
-router.use('/category', categoryRoutes)
+router.use('/category', categoryRoutes);
+router.use('/users', usersRoutes)
 
 
 

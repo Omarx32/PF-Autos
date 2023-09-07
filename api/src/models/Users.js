@@ -1,8 +1,6 @@
-const { DataTypes } = require("sequelize");
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+const { DataTypes, ValidationError } = require("sequelize");
+
 module.exports = (sequelize) => {
-  // defino el modelo
   sequelize.define(
     "Users",
     {
@@ -18,21 +16,21 @@ module.exports = (sequelize) => {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true, // Asegura que el correo electrónico sea único
       },
-      province: {
-        type: DataTypes.STRING,
-        allowNull: true,
+      password: {
+        type: DataTypes.STRING, // Utiliza el tipo de datos STRING para almacenar contraseñas
+        allowNull: false,
+        validate: {
+          isPasswordValid(value) {
+            if (!/(?=.*[A-Za-z])(?=.*\d).{8,}/.test(value)) {
+              throw new ValidationError("La contraseña debe tener al menos 8 caracteres y contener letras y números.");
+            }
+          },
+        },
       },
-      city: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      address: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      zipCode: {
-        type: DataTypes.INTEGER,
+      location: {
+        type: DataTypes.STRING, // Cambia el tipo de datos según el formato de ubicación que desees almacenar
         allowNull: true,
       },
       role: {
@@ -51,3 +49,4 @@ module.exports = (sequelize) => {
     }
   );
 };
+
