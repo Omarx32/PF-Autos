@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 import { Link } from "react-router-dom";
@@ -39,7 +39,15 @@ export default function LandingPage() {
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
   };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000); // Cambia de diapositiva cada 2 segundos
 
+    return () => {
+      clearInterval(interval);
+    };
+  }, [currentIndex]);
   return (
     <div className={styles.background}>
       {/* <div className={styles.AppTitle}>IGNITE MOTORS</div> */}

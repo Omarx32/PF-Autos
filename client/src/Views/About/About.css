@@ -11,18 +11,21 @@
 }
 
 .programmer-card {
-  width: 250px;
-  margin: 20px;
-  padding: 10px;
+  width: 30vh;
+  height: 50vh;
+  margin: 2vh;
+  padding: 1vh;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 20px;
   box-shadow: 0 0 5px rgba(233, 227, 227, 0.3);
   background-color: rgb(90, 5, 5);
 }
 
-.programmer-card img {
-  width: 200px;
+.fotito {
+  width: auto;
+  height: auto;
   border-radius: 50%;
+  padding-bottom: 1vh;
 }
 
 .programmer-card h2 {
@@ -50,10 +53,12 @@
 }
 
 /* Estilos para el encabezado h1 */
-h1 {
-  font-size: 24px;
+.header-sec {
+  font-size: 45px;
   margin-bottom: 40px;
   color: white;
+  text-align: center;
+  padding-top: 40px;
 }
 
 .Boton {
@@ -65,7 +70,9 @@ h1 {
   font-size: 16px;
   text-decoration: none;
   cursor: pointer;
-  display: flex;
-  margin-left: 790px;
-  margin-right: 850px;
+  width: fit-content;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 3vh;
+  margin-top: 8vh;
 }
