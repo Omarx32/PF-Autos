@@ -63,11 +63,15 @@ const About = () => {
 
   return (
     <div>
-      <h1>Desarrolladores</h1>
+      <h2 className="header-sec">Desarrolladores</h2>
       <div className="programmers-list">
         {programmers.map((programmer, index) => (
           <div key={index} className="programmer-card">
-            <img src={programmer.image} alt={programmer.name} />
+            <img
+              className="fotito"
+              src={programmer.image}
+              alt={programmer.name}
+            />
             <h2>{programmer.name}</h2>
             <div className="social-media-links">
               <a href={programmer.socialMedia.github} target="_blank">

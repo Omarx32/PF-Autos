@@ -3,9 +3,7 @@ import "../NavBar/NavBar.css";
 const Navbar = () => {
   return (
     <nav className="nav">
-      <div className="divLogo">
-        Ignite Motors
-      </div>
+      <div className="divLogo">IGNITE MOTORS</div>
       <a href="#" className="nav__brand">
         {" "}
       </a>
@@ -16,7 +14,7 @@ const Navbar = () => {
           </a>
         </li>
         <li className="nav__item">
-          <a href="#" className="nav__link">
+          <a href="/About" className="nav__link">
             NOSOTROS
           </a>
         </li>

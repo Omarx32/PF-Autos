@@ -7,6 +7,7 @@ import "../Footer/Footer.css";
 function Footer() {
   return (
     <Navbar className="bg-body-tertiary">
+      <div className="divLogos">IGNITE MOTORS</div>
       <Container>
         <Navbar.Brand href="/About">Desarrolladores</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
