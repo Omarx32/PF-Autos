@@ -1,17 +1,20 @@
 .bg-body-tertiary {
-  background-color: red; /* Cambia el color de fondo del Navbar */
+  background-color: rgb(255, 0, 0); /* Cambia el color de fondo del Navbar */
 }
 
 /* Estilos para el Navbar.Brand (el logotipo o el nombre del sitio) */
 .navbar-brand {
-  color: #020202; /* Color del texto del Navbar.Brand */
-  font-size: 24px; /* Tamaño de fuente del Navbar.Brand */
+  color: #ffffff; /* Color del texto del Navbar.Brand */
+  font-size: 25px; /* Tamaño de fuente del Navbar.Brand */
+  margin-right: 15px;
+  padding-right: 80px;
 }
 
 /* Estilos para los enlaces en el Navbar */
 .nav-link {
-  color: #555; /* Color del texto de los enlaces del Navbar */
+  color: #f5f3f3; /* Color del texto de los enlaces del Navbar */
   font-size: 16px; /* Tamaño de fuente de los enlaces del Navbar */
+  padding-right: 60px;
 }
 
 /* Estilos para el enlace activo en el Navbar */
@@ -23,6 +26,7 @@
 .dropdown-menu {
   background-color: #f7f7f7; /* Color de fondo del menú desplegable */
   border: none; /* Quita el borde del menú desplegable */
+  display: flex;
 }
 
 /* Estilos para los elementos del menú desplegable */
@@ -39,4 +43,11 @@
 /* Estilos para el separador en el menú desplegable */
 .dropdown-divider {
   border-top: 1px solid #ccc; /* Línea divisoria entre elementos */
+}
+.divLogos {
+  font-size: 30px; /* Tamaño de fuente del logo o marca */
+  color: #fff;
+  display: flex;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 50%;
 }
