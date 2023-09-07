@@ -1,3 +1,4 @@
+import React from 'react';
 import "../NavBar/NavBar.css";
 
 const Navbar = () => {
@@ -25,9 +26,15 @@ const Navbar = () => {
             VENDER VEHICULO
           </a>
         </li>
+        <li className="nav__item">
+          <a href="/registro" className="nav__link">
+            REGISTRATE
+          </a>
+        </li>
       </ul>
     </nav>
   );
 };
 
 export default Navbar;
+
