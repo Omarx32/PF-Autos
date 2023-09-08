@@ -38,18 +38,18 @@ const Detail = () => {
       </div>
       <div className={style.info}>
         <h2>{name}</h2>
-        <p>Brand: {brand}</p>
+        <p>Marca: {brand}</p>
         <p>{description}</p>
-        <p>Price: {price}</p>
+        <p>Precio: {price}</p>
         <p>Stock: {stock}</p>
-        <p>Year: {model}</p>
+        <p>Año: {model}</p>
         <p>Color: {color}</p>
         <p>Direccion: {direccion}</p>
-        <p>Kilometraje{kilometraje}</p>
-        <button className={style.button}>Buy</button>
+        <p>Kilometraje: {kilometraje}</p>
+        <button className={style.button}>Comprar</button>
       </div>
       <div className={style.btnOut}>
-        <NavLink to="/home">
+        <NavLink to="/Home">
           <button>x</button>
         </NavLink>
       </div>
