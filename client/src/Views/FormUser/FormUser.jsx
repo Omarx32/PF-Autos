@@ -91,89 +91,94 @@ const FormUser = () => {
 
   return (
     <div>
-      <h2>Registrarse</h2>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.formGroup}>
-          <label>Nombre Completo:</label>
-          <input
-            type="text"
-            name="fullName"
-            value={formData.fullName}
-            onChange={handleChange}
-            required
-          />
-          {errors.fullName && (
-            <span className={styles.error}>{errors.fullName}</span>
-          )}
-        </div>
-        <div className={styles.formGroup}>
-          <label>Correo Electrónico:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          {errors.email && <span className={styles.error}>{errors.email}</span>}
-        </div>
-        <div className={styles.formGroup}>
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            minLength="8"
-            required
-          />
-          {errors.password && (
-            <span className={styles.error}>{errors.password}</span>
-          )}
-        </div>
-        <div className={styles.formGroup}>
-          <label>Rol:</label>
-          <select
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            required
-          >
-            <option value="Usuario">Usuario</option>
-            <option value="Admin">Admin</option>
-          </select>
-          {errors.role && <span className={styles.error}>{errors.role}</span>}
-        </div>
-        <div className={styles.formGroup}>
-          <label>Estado:</label>
-          <select
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-            required
-          >
-            <option value="Activo">Activo</option>
-            <option value="Baneado">Baneado</option>
-          </select>
-          {errors.status && (
-            <span className={styles.error}>{errors.status}</span>
-          )}
-        </div>
-        <button type="submit">Registrarse</button>
-        <GoogleLogin
-          clientID="235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com"
-          buttonText="Iniciar sesión con Google"
-          onSuccess={handleGoogleSuccess}
-          onFailure={handleGoogleFailure}
-          cookiePolicy={"single_host_origin"}
-        />
-      </form>
-
-      {/* <img
+      <h2 className={styles.titulo}>Registrarse</h2>
+      <div className={styles.formContainer}>
+        <img
           className={styles.fotofoto}
-          src="img/mercedes.jpg"
+          src="https://images.unsplash.com/photo-1635095582563-86f7a024d97e?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTAzOTd8MHwxfHNlYXJjaHw0Mjd8fHZvbGtzd2FnZW58ZW58MHx8fHwxNjQ5MzgxNjQ5&ixlib=rb-1.2.1&q=85"
           alt="Imagen de Mercedes"
-        /> */}
+        />
+        <div className={styles.textoSobreImagen}>Tu nuevo auto te espera</div>
+        <form className={styles.formulario} onSubmit={handleSubmit}>
+          <div className={styles.formGroup}>
+            <label>Nombre Completo:</label>
+            <input
+              type="text"
+              name="fullName"
+              value={formData.fullName}
+              onChange={handleChange}
+              required
+            />
+            {errors.fullName && (
+              <span className={styles.error}>{errors.fullName}</span>
+            )}
+          </div>
+          <div className={styles.formGroup}>
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            {errors.email && (
+              <span className={styles.error}>{errors.email}</span>
+            )}
+          </div>
+          <div className={styles.formGroup}>
+            <label>Contraseña:</label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              minLength="8"
+              required
+            />
+            {errors.password && (
+              <span className={styles.error}>{errors.password}</span>
+            )}
+          </div>
+          <div className={styles.formGroup}>
+            <label>Rol:</label>
+            <select
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+              required
+            >
+              <option value="Usuario">Usuario</option>
+              <option value="Admin">Admin</option>
+            </select>
+            {errors.role && <span className={styles.error}>{errors.role}</span>}
+          </div>
+          <div className={styles.formGroup}>
+            <label>Estado:</label>
+            <select
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              required
+            >
+              <option value="Activo">Activo</option>
+              <option value="Baneado">Baneado</option>
+            </select>
+            {errors.status && (
+              <span className={styles.error}>{errors.status}</span>
+            )}
+          </div>
+          <button type="submit">Registrarse</button>
+          <GoogleLogin
+            className={styles.googleloginButton}
+            clientID="235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com"
+            buttonText="Iniciar sesión con Google"
+            onSuccess={handleGoogleSuccess}
+            onFailure={handleGoogleFailure}
+            cookiePolicy={"single_host_origin"}
+          />
+        </form>
+      </div>
     </div>
   );
 };
