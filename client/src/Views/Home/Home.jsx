@@ -48,7 +48,7 @@ export default function Home() {
           </select>
         </div>
         <div>
-          <h2 className={styles.SubTitle}>NUESTROS VEHICULOS</h2>
+          <h2 className={styles.SubTitle}>Disculpe profe no llegamos</h2>
         </div>
         <Cards currentPage={currentPage} />
       </div>

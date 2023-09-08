@@ -14,27 +14,27 @@ const About = () => {
       },
     },
     {
-      name: "Programador 2",
-      image: "URL_IMAGEN_2",
+      name: "Fabian Salcedo",
+      image: "https://avatars.githubusercontent.com/u/117929534?v=4",
       socialMedia: {
-        github: "LINK_GITHUB_2",
+        github: "https://github.com/Fabian2023",
         linkedin: "LINK_LINKEDIN_2",
       },
     },
     {
-      name: "Programador 3",
-      image: "URL_IMAGEN_3",
+      name: "Santiago Ramirez",
+      image: "https://avatars.githubusercontent.com/u/128662221?v=4",
       socialMedia: {
-        github: "LINK_GITHUB_3",
+        github: "https://github.com/SantiagoRC31",
         linkedin: "LINK_LINKEDIN_3",
       },
     },
     {
-      name: "Programador 4",
+      name: "Lorenzo Santos",
       image: "URL_IMAGEN_4",
       socialMedia: {
-        github: "LINK_GITHUB_4",
-        linkedin: "LINK_LINKEDIN_4",
+        github: "https://github.com/AbareKiller100",
+        linkedin: "https://www.linkedin.com/in/lorenzo-santos-34a109267/",
       },
     },
     {

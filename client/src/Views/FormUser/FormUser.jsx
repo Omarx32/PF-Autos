@@ -3,34 +3,29 @@ import axios from "axios";
 import styles from "./Form.module.css";
 import { validateField } from "./validationUser";
 import { GoogleLogin } from "react-google-login";
-import{gapi} from"gapi-script" 
-
-
-
+import { gapi } from "gapi-script";
 
 const FormUser = () => {
+  const clientID =
+    "235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com";
 
-
-    const clientID = "235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com"
-
-    useEffect(() => {
-        const start = () => {
-          gapi.auth2.init({
-            clientId: clientID,
-          });
-        };
-        gapi.load("client:auth2", start);
-      }, []);
-    
-      const [formData, setFormData] = useState({
-        fullName: "",
-        email: "",
-        password: "",
-        role: "Usuario",
-        status: "Activo",
+  useEffect(() => {
+    const start = () => {
+      gapi.auth2.init({
+        clientId: clientID,
       });
-      const [errors, setErrors] = useState({});
+    };
+    gapi.load("client:auth2", start);
+  }, []);
 
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    role: "Usuario",
+    status: "Activo",
+  });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -83,20 +78,19 @@ const FormUser = () => {
     console.log("Autenticación exitosa con Google:", response.profileObj);
     alert("Autenticación con Google exitosa");
   };
-  
 
   const handleGoogleFailure = (error) => {
-    if (error.error === 'popup_closed_by_user') {
-      alert('La ventana de autenticación de Google fue cerrada por el usuario. Por favor inténtalo de nuevo.');
+    if (error.error === "popup_closed_by_user") {
+      alert(
+        "La ventana de autenticación de Google fue cerrada por el usuario. Por favor inténtalo de nuevo."
+      );
     } else {
       console.error("Error en la autenticación con Google:", error);
     }
   };
-  
 
   return (
     <div>
-
       <h2>Registrarse</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
@@ -121,9 +115,7 @@ const FormUser = () => {
             onChange={handleChange}
             required
           />
-          {errors.email && (
-            <span className={styles.error}>{errors.email}</span>
-          )}
+          {errors.email && <span className={styles.error}>{errors.email}</span>}
         </div>
         <div className={styles.formGroup}>
           <label>Contraseña:</label>
@@ -150,9 +142,7 @@ const FormUser = () => {
             <option value="Usuario">Usuario</option>
             <option value="Admin">Admin</option>
           </select>
-          {errors.role && (
-            <span className={styles.error}>{errors.role}</span>
-          )}
+          {errors.role && <span className={styles.error}>{errors.role}</span>}
         </div>
         <div className={styles.formGroup}>
           <label>Estado:</label>
@@ -171,7 +161,7 @@ const FormUser = () => {
         </div>
         <button type="submit">Registrarse</button>
         <GoogleLogin
-          clientID = "235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com"
+          clientID="235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com"
           buttonText="Iniciar sesión con Google"
           onSuccess={handleGoogleSuccess}
           onFailure={handleGoogleFailure}
@@ -179,13 +169,11 @@ const FormUser = () => {
         />
       </form>
 
-     
-        <img
+      {/* <img
           className={styles.fotofoto}
           src="img/mercedes.jpg"
           alt="Imagen de Mercedes"
-        />
-
+        /> */}
     </div>
   );
 };
