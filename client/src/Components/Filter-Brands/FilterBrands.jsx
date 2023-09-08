@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux"
 import { getBrands } from "../../redux/action/action";
 
-const FilterBrands = ({handleBrands, filterBrands}) => {
+const FilterBrands = ({handleBrands, filterCarsByBrand}) => {
     const dispatch=useDispatch();
 
     useEffect(()=>{
@@ -11,7 +11,7 @@ const FilterBrands = ({handleBrands, filterBrands}) => {
 
     const brands=useSelector((state)=> state.brands)
   return (
-    <form onSubmit={filterBrands}>
+    <form onSubmit={filterCarsByBrand}>
         <select onChange={handleBrands}>
              <option value="">default</option>
             {
