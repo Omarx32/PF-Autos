@@ -2,7 +2,8 @@ import React from "react";
 import styles from "./Home.module.css";
 import Page from "../Paginado/Page";
 import Cards from "../../Components/Cards/Cards";
-import { OrderByName, OrderByPrice, getCars } from "../../redux/action/action";
+import FilterBrands from "../../Components/Filter-Brands/FilterBrands";
+import { OrderByName, OrderByPrice, getCars, filterBrands } from "../../redux/action/action";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,6 +14,9 @@ export default function Home() {
   useEffect(() => {
     dispatch(getCars());
   }, []);
+  const vehiculos= useSelector((state)=> state.allVehiculos)
+
+  const brands= useSelector((state)=> state.brands);
 
   const [order, setOrder] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,8 +35,25 @@ export default function Home() {
     setCurrentPage(newPage);
   };
 
+  const [stateFilterBrands, setStateFilterBrands]=useState("");
+
+  const handleBrands=(event)=>{
+    setStateFilterBrands(event.target.value);
+  }
+
+  const filterCarsByBrand=(event)=>{
+    event.preventDefault();
+    dispatch(filterBrands(stateFilterBrands));
+    setStateFilterBrands("");
+  }
+
   return (
     <div className={styles.container}>
+
+      <div>
+        <FilterBrands handleBrands={handleBrands} filterCarsByBrand={filterCarsByBrand}/>
+      </div>
+
       <div>
         {/* <select ></select> */}
         <div className={`${styles.filtros}`}>
