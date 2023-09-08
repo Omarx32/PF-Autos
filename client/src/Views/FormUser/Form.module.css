@@ -53,7 +53,7 @@ button:hover {
   margin-top: 20px;
 
   padding: 20px; /* Espacio alrededor del formulario */
-  border-radius: 3rem; /* Bordes redondeados */
+  border-radius: 1rem; /* Bordes redondeados */
   max-width: 600px; /* Ancho máximo del contenedor */
   display: grid;
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
@@ -64,8 +64,8 @@ button:hover {
   margin-top: 15px;
   border: none;
   border-radius: 10px;
-  width: 400px;
-  height: 625px;
+  width: 350px;
+  height: 527px;
 
   display: inline-flex;
 }
@@ -79,4 +79,41 @@ button:hover {
   @media (max-width: 570px) {
     flex-direction: column;
   }
+}
+.textoSobreImagen {
+  width: 300px;
+  font-size: 15px;
+  position: absolute;
+  top: 75%; /* Alinea el texto verticalmente al centro */
+  left: 39%; /* Alinea el texto horizontalmente al centro */
+  transform: translate(-50%, -50%); /* Centra el texto completamente */
+  background: rgba(0, 0, 0, 0.095); /* Fondo semi-transparente para el texto */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1; /* Asegura que el texto esté en la parte superior */
+  text-align: center; /* Alinea el texto al centro */
+}
+.titulo {
+  font-size: 45px;
+  margin-bottom: 40px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding-top: 40px;
+}
+/* Estilos personalizados para el botón de Google Login */
+.googleLoginButton {
+  background-color: #4285f4; /* Cambia el color de fondo */
+  color: rgb(241, 9, 9); /* Cambia el color del texto */
+  border: none; /* Elimina el borde */
+  border-radius: 4px; /* Agrega bordes redondeados si es necesario */
+  padding: 10px 20px; /* Ajusta el espaciado interno */
+  font-size: 16px; /* Cambia el tamaño de la fuente */
+  font-weight: bold; /* Aplica negrita a la fuente */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  /* Agrega otros estilos según tus preferencias */
+}
+
+.googleLoginButton:hover {
+  background-color: #357ae8; /* Cambia el color de fondo al pasar el mouse */
 }
