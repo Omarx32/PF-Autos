@@ -1,28 +1,8 @@
-/* Estilos para el contenedor principal del formulario */
-.formulino {
-  margin-top: 1vh;
-  padding: 5vh; /* Espacio alrededor del formulario */
-  border-radius: 5vh; /* Bordes redondeados */
-  max-width: 65vh; /* Ancho máximo del contenedor */
-  display: grid;
-  margin-left: 60vh;
-  background-color: #c70505; /* Color de fondo */
-  box-shadow: 0vh 0vh 1vh rgba(0, 0, 0, 0.1); /* Sombra */
-}
-
-/* Estilos para los elementos de formulario */
-.formulino form div {
-  margin-bottom: 10px;
-}
-
-.formulino label {
-  display: block;
-  margin-bottom: 1.5vh;
-  font-weight: bold;
-}
-
-.formulino input[type="text"],
-.formulino select {
+.form-cont form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
