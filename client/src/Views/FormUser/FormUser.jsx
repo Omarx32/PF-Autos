@@ -10,6 +10,7 @@ import{gapi} from"gapi-script"
 
 const FormUser = () => {
 
+
     const clientID = "235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com"
 
     useEffect(() => {
@@ -29,6 +30,7 @@ const FormUser = () => {
         status: "Activo",
       });
       const [errors, setErrors] = useState({});
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -94,6 +96,7 @@ const FormUser = () => {
 
   return (
     <div>
+
       <h2>Registrarse</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
@@ -175,6 +178,14 @@ const FormUser = () => {
           cookiePolicy={"single_host_origin"}
         />
       </form>
+
+     
+        <img
+          className={styles.fotofoto}
+          src="img/mercedes.jpg"
+          alt="Imagen de Mercedes"
+        />
+
     </div>
   );
 };

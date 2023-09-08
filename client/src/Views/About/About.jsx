@@ -1,6 +1,8 @@
 import React from "react";
 import "../About/About.css";
 import { Link } from "react-router-dom";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+
 const About = () => {
   const programmers = [
     {
@@ -75,10 +77,10 @@ const About = () => {
             <h2>{programmer.name}</h2>
             <div className="social-media-links">
               <a href={programmer.socialMedia.github} target="_blank">
-                GitHub
+                <FaGithub />
               </a>
               <a href={programmer.socialMedia.linkedin} target="_blank">
-                LinkedIn
+                <FaLinkedin />
               </a>
             </div>
           </div>

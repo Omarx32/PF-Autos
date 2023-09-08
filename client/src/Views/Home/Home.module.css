@@ -13,28 +13,28 @@
   justify-content: center;
   align-items: flex-end;
 }
-.container_filters {
-  width: 100%;
+.filtros {
+  width: 30%;
   margin-top: 1.3rem;
   border-radius: 25px;
   display: flex;
 }
 
-.container_filters select {
+.filtros select {
   padding: 0.5rem 0.9rem;
   border: none;
-  box-shadow: 5px 5px 5px 0.5px rgba(252, 0, 0, 0.4);
+  box-shadow: 5px 5px 5px 0.5px rgba(236, 233, 233, 0.4);
   background-color: rgb(249, 247, 247);
-  color: red;
-
+  color: rgb(0, 0, 0);
+  margin: 1vh;
   cursor: pointer;
 }
-.container_filters select:first-child {
+.filtros select:first-child {
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
 }
 
-.container_filters select:last-child {
+.filtros select:last-child {
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
 }

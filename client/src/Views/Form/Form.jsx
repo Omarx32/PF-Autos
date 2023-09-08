@@ -100,120 +100,127 @@ const Form = () => {
   return (
     <div>
       <div>
-        <form onSubmit={submitHandler}>
-          <div>
-            <label htmlFor="">Name:</label>
-            <input
-              type="text"
-              value={postCarForm.name}
-              name="name"
-              onChange={changeHandler}
-            />
-          </div>
-          <div>
-            <label htmlFor="">Brand:</label>
-            <input
-              type="text"
-              value={postCarForm.brand}
-              name="brand"
-              onChange={changeHandler}
-            />
-          </div>
-          <div>
-            <label htmlFor="">Description:</label>
-            <input
-              type="text"
-              value={postCarForm.description}
-              name="description"
-              onChange={changeHandler}
-            />
-          </div>
-          <div>
-            <label htmlFor="">Price:</label>
-            <input
-              type="text"
-              value={postCarForm.price}
-              name="price"
-              onChange={changeHandler}
-            />
-          </div>
-          <div>
-            <label htmlFor="">Stock:</label>
-            <input
-              type="text"
-              value={postCarForm.stock}
-              name="stock"
-              onChange={changeHandler}
-            />
-          </div>
-          <div>
-            <label htmlFor="">Maker:</label>
-            <input
-              type="text"
-              value={postCarForm.maker}
-              name="maker"
-              onChange={changeHandler}
-            />
-          </div>
-          <div>
-            <label htmlFor="">Model:</label>
-            <input
-              type="text"
-              value={postCarForm.model}
-              name="model"
-              onChange={changeHandler}
-            />
-          </div>
-          <div>
-            <label htmlFor="">Color:</label>
-            <input
-              type="text"
-              value={postCarForm.color}
-              name="color"
-              onChange={changeHandler}
-            />
-          </div>
-          <div>
-            <label htmlFor="">Kilometraje:</label>
-            <input
-              type="text"
-              value={postCarForm.kilometraje}
-              name="kilometraje"
-              onChange={changeHandler}
-            />
-          </div>
-          <div>
-            <label htmlFor="">Direccion:</label>
-            <input
-              type="text"
-              value={postCarForm.direccion}
-              name="direccion"
-              onChange={changeHandler}
-            />
-          </div>
-          <div>
-            <label htmlFor="Categorys">Categorys:</label>
-            <select>
-              <option disable defaultValue="-">
-                -
-              </option>
-              {category &&
-                category.map((cat) => (
-                  <option key={cat.id} value={cat.name}>
-                    {cat.name}
-                  </option>
-                ))}
-            </select>
-          </div>
-          <div>
-            <label htmlFor="image">Image URL:</label>
-            <input type="text" name="image" onChange={changeHandler} />
-            <button onClick={() => addImage(postCarForm.imageUrl)}>
-              Add Image
-            </button>
-          </div>
-          <input type="submit" value="Create" />
-        </form>
+        <div className="formulino">
+          <form onSubmit={submitHandler}>
+            <div>
+              <label htmlFor="">Nombre:</label>
+              <input
+                type="text"
+                value={postCarForm.name}
+                name="name"
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label htmlFor="">Marca:</label>
+              <input
+                type="text"
+                value={postCarForm.brand}
+                name="brand"
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label htmlFor="">Descricion:</label>
+              <input
+                type="text"
+                value={postCarForm.description}
+                name="description"
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label htmlFor="">Precio:</label>
+              <input
+                type="text"
+                value={postCarForm.price}
+                name="price"
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label htmlFor="">Stock:</label>
+              <input
+                type="text"
+                value={postCarForm.stock}
+                name="stock"
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label htmlFor="">Fabricante:</label>
+              <input
+                type="text"
+                value={postCarForm.maker}
+                name="maker"
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label htmlFor="">Año:</label>
+              <input
+                type="text"
+                value={postCarForm.model}
+                name="model"
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label htmlFor="">Color:</label>
+              <input
+                type="text"
+                value={postCarForm.color}
+                name="color"
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label htmlFor="">Kilometraje:</label>
+              <input
+                type="text"
+                value={postCarForm.kilometraje}
+                name="kilometraje"
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label htmlFor="">Direccion:</label>
+              <input
+                type="text"
+                value={postCarForm.direccion}
+                name="direccion"
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label htmlFor="Categorys">
+                Categoria (ejemplo: sedan, suv, etc):
+              </label>
+              <select>
+                <option disable defaultValue="-">
+                  -
+                </option>
+                {category &&
+                  category.map((cat) => (
+                    <option key={cat.id} value={cat.name}>
+                      {cat.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="image">Imagen URL:</label>
+              <input type="text" name="image" onChange={changeHandler} />
+              <button
+                className="botoncito"
+                onClick={() => addImage(postCarForm.imageUrl)}
+              >
+                Añadir Imagen
+              </button>
+            </div>
+            <input type="submit" value="Create" />
+          </form>
+        </div>
       </div>
     </div>
   );
