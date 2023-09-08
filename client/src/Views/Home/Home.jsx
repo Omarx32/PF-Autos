@@ -35,7 +35,7 @@ export default function Home() {
     <div className={styles.container}>
       <div>
         {/* <select ></select> */}
-        <div className={`${styles.container_filters}`}>
+        <div className={`${styles.filtros}`}>
           <select onChange={handleOrderByName}>
             <option value="Default">Alfabetico </option>
             <option value="A-Z">A - Z</option>

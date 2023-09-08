@@ -16,14 +16,25 @@ const Detail = () => {
     return <div>...Loading</div>;
   }
 
-  const { id, name, image, brand, description, price, stock, model, color, direccion, kilometraje } =
-    carsDetail;
+  const {
+    id,
+    name,
+    image,
+    brand,
+    description,
+    price,
+    stock,
+    model,
+    color,
+    direccion,
+    kilometraje,
+  } = carsDetail;
 
-    console.log(carsDetail);
+  console.log(carsDetail);
   return (
     <div className={style.container}>
-      <div className={style.img}>
-      <img src={image} alt="" />
+      <div className={style.autos}>
+        <img src={image} alt="" />
       </div>
       <div className={style.info}>
         <h2>{name}</h2>
@@ -36,15 +47,12 @@ const Detail = () => {
         <p>Direccion: {direccion}</p>
         <p>Kilometraje{kilometraje}</p>
         <button className={style.button}>Buy</button>
-
-      
       </div>
       <div className={style.btnOut}>
-        
-          <NavLink to="/home">
-            <button>x</button>
-          </NavLink>
-        </div>
+        <NavLink to="/home">
+          <button>x</button>
+        </NavLink>
+      </div>
     </div>
   );
 };

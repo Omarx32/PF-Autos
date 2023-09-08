@@ -11,7 +11,7 @@ const FormUser = () => {
     role: "Usuario",
     status: "Activo",
   });
-  const [errors, setErrors] = useState({}); 
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -60,84 +60,95 @@ const FormUser = () => {
 
   return (
     <div>
-      <h2>Registrarse</h2>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.formGroup}>
-          <label>Nombre Completo:</label>
-          <input
-            type="text"
-            name="fullName"
-            value={formData.fullName}
-            onChange={handleChange}
-            required
-          />
-          {errors.fullName && (
-            <span className={styles.error}>{errors.fullName}</span>
-          )}
-        </div>
+      <div className={styles.fondo} />
+      <div className={styles.formContainer}>
+        <img
+          className={styles.fotofoto}
+          src="img/mercedes.jpg"
+          alt="Imagen de Mercedes"
+        />
+        <div className={styles.formulario}>
+          <h2 className={styles.cuenta}>Crea una cuenta</h2>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <div className={styles.formGroup}>
+              <label>Nombre Completo:</label>
+              <input
+                type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
+                required
+              />
+              {errors.fullName && (
+                <span className={styles.error}>{errors.fullName}</span>
+              )}
+            </div>
 
-        <div className={styles.formGroup}>
-          <label>Correo Electrónico:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          {errors.email && (
-            <span className={styles.error}>{errors.email}</span>
-          )}
-        </div>
+            <div className={styles.formGroup}>
+              <label>Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+              {errors.email && (
+                <span className={styles.error}>{errors.email}</span>
+              )}
+            </div>
 
-        <div className={styles.formGroup}>
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            minLength="8"
-            required
-          />
-          {errors.password && (
-            <span className={styles.error}>{errors.password}</span>
-          )}
-        </div>
-        <div className={styles.formGroup}>
-          <label>Rol:</label>
-          <select
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            required
-          >
-            <option value="Usuario">Usuario</option>
-            <option value="Admin">Admin</option>
-          </select>
-          {errors.role && (
-            <span className={styles.error}>{errors.role}</span>
-          )}
-        </div>
+            <div className={styles.formGroup}>
+              <label>Contraseña:</label>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                minLength="8"
+                required
+              />
+              {errors.password && (
+                <span className={styles.error}>{errors.password}</span>
+              )}
+            </div>
 
-        <div className={styles.formGroup}>
-          <label>Estado:</label>
-          <select
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-            required
-          >
-            <option value="Activo">Activo</option>
-            <option value="Baneado">Baneado</option>
-          </select>
-          {errors.status && (
-            <span className={styles.error}>{errors.status}</span>
-          )}
-        </div>
+            <div className={styles.formGroup}>
+              <label>Rol:</label>
+              <select
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                required
+              >
+                <option value="Usuario">Usuario</option>
+                <option value="Admin">Admin</option>
+              </select>
+              {errors.role && (
+                <span className={styles.error}>{errors.role}</span>
+              )}
+            </div>
 
-        <button type="submit">Registrarse</button>
-      </form>
+            <div className={styles.formGroup}>
+              <label>Estado:</label>
+              <select
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                required
+              >
+                <option value="Activo">Activo</option>
+                <option value="Baneado">Baneado</option>
+              </select>
+              {errors.status && (
+                <span className={styles.error}>{errors.status}</span>
+              )}
+            </div>
+
+            <button type="submit">Registrarse</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
