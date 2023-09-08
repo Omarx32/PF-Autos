@@ -15,12 +15,12 @@
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 1.8vh;
   text-decoration: none;
   cursor: pointer;
-  display: flex;
-  margin-left: 500px;
-  margin-right: 550px;
+  width: fit-content;
+  margin: 0 auto;
+  display: block;
 }
 
 .homeButton:hover {

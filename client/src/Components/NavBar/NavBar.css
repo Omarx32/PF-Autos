@@ -51,7 +51,8 @@ a {
 .nav__brand {
   text-decoration: none;
   font-weight: bold;
-  font-size: 20px; /* Tamaño de fuente del logo o marca */
+  font-size: 30px; /* Tamaño de fuente del logo o marca */
+  color: #fff;
 }
 
 .nav__menu {
@@ -76,8 +77,9 @@ a {
 .nav__link.active {
   font-weight: bold; /* Puedes cambiar el estilo del enlace activo */
 }
-.divLogo{
- color: black;
+.divLogo {
+  font-size: 30px; /* Tamaño de fuente del logo o marca */
+  color: #fff;
 
- font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
