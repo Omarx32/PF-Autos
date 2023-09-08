@@ -98,103 +98,142 @@ const Form = () => {
   };
 
   return (
-    <div>
-      <div>
-        <div className="formulino">
-          <form onSubmit={submitHandler}>
-            <div>
-              <label htmlFor="">Nombre:</label>
+    <div className="form1">
+          <form onSubmit={submitHandler} className="form">
+          <p className="title">Registrarse </p>
+          <p className="message">Regístrese ahora y obtenga acceso completo a nuestra aplicación. </p>
+
+          <div className="flex">
+              <label htmlFor="">
               <input
-                type="text"
-                value={postCarForm.name}
-                name="name"
-                onChange={changeHandler}
-              />
-            </div>
-            <div>
-              <label htmlFor="">Marca:</label>
-              <input
+                    type="text"
+                    value={postCarForm.name}
+                    name="name"
+                    onChange={changeHandler}
+                    className="input"
+                    
+                  />
+                  <span>Nombre</span>
+              </label>
+                 
+
+                  <label htmlFor="">
+                  <input
                 type="text"
                 value={postCarForm.brand}
                 name="brand"
                 onChange={changeHandler}
+                className="input"
+                placeholder=""
               />
-            </div>
-            <div>
-              <label htmlFor="">Descricion:</label>
+              <span>Marca</span>
+          
+                  </label>
+             
+          </div>
+
+
+            
+              <label htmlFor="">
               <input
                 type="text"
                 value={postCarForm.description}
                 name="description"
                 onChange={changeHandler}
+                className="input"
               />
-            </div>
-            <div>
-              <label htmlFor="">Precio:</label>
+              <span>Descricion</span>
+              </label>
+              
+
+            
+              <label htmlFor="">
               <input
                 type="text"
                 value={postCarForm.price}
                 name="price"
                 onChange={changeHandler}
+                className="input"
               />
-            </div>
-            <div>
-              <label htmlFor="">Stock:</label>
+            <span>Precio</span>
+              </label>
+              
+            
+              <label htmlFor="">
               <input
                 type="text"
                 value={postCarForm.stock}
                 name="stock"
                 onChange={changeHandler}
+                className="input"
               />
-            </div>
-            <div>
-              <label htmlFor="">Fabricante:</label>
+            <span>Stock</span>
+              </label>
+             
+            
+              <label htmlFor="">
               <input
                 type="text"
                 value={postCarForm.maker}
                 name="maker"
                 onChange={changeHandler}
+                className="input"
               />
-            </div>
-            <div>
-              <label htmlFor="">Año:</label>
+            <span>Fabricante</span>
+              </label>
+              
+
+              <label htmlFor="">
               <input
                 type="text"
                 value={postCarForm.model}
                 name="model"
                 onChange={changeHandler}
+                className="input"
               />
-            </div>
-            <div>
-              <label htmlFor="">Color:</label>
+            <span>Año</span>
+              </label>
+              
+
+              <label htmlFor="">
               <input
                 type="text"
                 value={postCarForm.color}
                 name="color"
                 onChange={changeHandler}
+                className="input"
               />
-            </div>
-            <div>
-              <label htmlFor="">Kilometraje:</label>
+              <span>Color</span>
+              </label>
+              
+           
+              <label htmlFor="">
               <input
                 type="text"
                 value={postCarForm.kilometraje}
                 name="kilometraje"
                 onChange={changeHandler}
+                className="input"
               />
-            </div>
-            <div>
-              <label htmlFor="">Direccion:</label>
+              <span>Kilometraje</span>
+              </label>
+             
+            
+              <label htmlFor="">
               <input
                 type="text"
                 value={postCarForm.direccion}
                 name="direccion"
                 onChange={changeHandler}
+                className="input"
               />
-            </div>
-            <div>
+              <span>Direccion</span>
+              </label>
+              
+            
               <label htmlFor="Categorys">
                 Categoria (ejemplo: sedan, suv, etc):
+
               </label>
               <select>
                 <option disable defaultValue="-">
@@ -207,21 +246,22 @@ const Form = () => {
                     </option>
                   ))}
               </select>
-            </div>
-            <div>
-              <label htmlFor="image">Imagen URL:</label>
-              <input type="text" name="image" onChange={changeHandler} />
+            
+              <label htmlFor="image">
+              <input type="text" name="image" onChange={changeHandler}  className="input"/>
+              <span>Imagen URL</span>
+              </label>
+              
               <button
-                className="botoncito"
+                className="input"
                 onClick={() => addImage(postCarForm.imageUrl)}
               >
                 Añadir Imagen
               </button>
-            </div>
-            <input type="submit" value="Create" />
+            
+            <input type="submit" value="Create" className="submit"/>
+            <p className="signin">¿Ya tienes una cuenta? <a href="#">Iniciar sesión</a> </p>
           </form>
-        </div>
-      </div>
     </div>
   );
 };

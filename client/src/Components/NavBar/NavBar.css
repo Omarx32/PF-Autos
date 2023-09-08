@@ -35,7 +35,7 @@ a {
   gap: 80px;
 } */
 .nav {
-  background: linear-gradient(to bottom, #ff0000, #ff5733);
+  background: linear-gradient(to bottom, #910606d4, #e2502fe7);
 
   color: #fff; /* Cambia el color de texto según tus preferencias */
   display: flex;
