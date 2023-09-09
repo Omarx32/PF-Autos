@@ -1,4 +1,4 @@
-const {Product, Brand}= require("../db")
+const {Product, Brand}= require("../../db")
 
 const getBrands=async ()=>{
     try{
