@@ -1,4 +1,4 @@
-const { Product, Category} = require('../../db.js');
+const { Product, Category} = require('../../db');
 
 
 const getProductByName = async (name) => {

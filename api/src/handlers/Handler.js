@@ -1,5 +1,5 @@
-const createProduct= require("../controllers/createProduct")
-const filterCars=require("../controllers/filterCars")
+const createProduct= require("../controllers/Product/createProduct")
+const filterCars=require("../controllers/Categorys/filterCars")
 const filterBrands= require("../controllers/Brands/filterBrands")
 
 const createHandler= async (req, res)=>{
