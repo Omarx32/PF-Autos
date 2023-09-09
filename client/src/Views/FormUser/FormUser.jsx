@@ -79,15 +79,48 @@ const FormUser = () => {
     }
   };
 
-  const handleGoogleSuccess = (response) => {
+  const handleGoogleSuccess = async (response) => {
     console.log("Autenticación exitosa con Google:", response.profileObj);
-    alert("Autenticación con Google exitosa");
+    const { familyName, givenName, googleId, imageUrl, name, email } = response.profileObj;
+  
+    try {
+      const locationResponseGoogle = await axios.get("http://ip-api.com/json");
+      const location = locationResponseGoogle.data.city;
+      console.log('location google;',location);
+  
+      if (familyName && givenName && googleId && imageUrl && name && email && location) {
+        const formDataForServer = {
+          familyName,
+          givenName,
+          googleId,
+          imageUrl,
+          name,
+          email,
+          location // Añadimos la ubicación al objeto de datos para enviar al servidor
+        };
+  
+        try {
+          const serverResponse = await axios.post("http://localhost:3001/users/user/google", formDataForServer);
+          console.log("Datos del formulario enviados con éxito:", serverResponse.data);
+          alert(`¡Bienvenido, ${givenName}!`);
+        } catch (error) {
+          console.error("Error al enviar los datos del formulario google:", error);
+        }
+      } else {
+        console.error("Los datos de perfil de Google están incompletos.");
+      }
+    } catch (error) {
+      console.error("Error al obtener la ubicación del usuario:", error);
+    }
   };
+  
   
 
   const handleGoogleFailure = (error) => {
-    if (error.error === 'popup_closed_by_user') {
-      alert('La ventana de autenticación de Google fue cerrada por el usuario. Por favor inténtalo de nuevo.');
+    if (error.error === "popup_closed_by_user") {
+      alert(
+        "La ventana de autenticación de Google fue cerrada por el usuario. Por favor inténtalo de nuevo."
+      );
     } else {
       console.error("Error en la autenticación con Google:", error);
     }
