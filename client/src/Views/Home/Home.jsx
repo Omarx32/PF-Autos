@@ -14,6 +14,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(getCars());
   }, []);
+  const vehiculos= useSelector((state)=> state.allVehiculos)
 
   const [order, setOrder] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -46,6 +47,11 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
+
+      <div>
+        <FilterBrands handleBrands={handleBrands} filterCarsByBrand={filterCarsByBrand}/>
+      </div>
+
       <div>
 
         <div>
@@ -55,14 +61,14 @@ export default function Home() {
         {/* <select ></select> */}
         <div className={`${styles.filtros}`}>
           <select onChange={handleOrderByName}>
-            <option value="Default">Alfabetico </option>
+            <option value="Default">Ordenar por </option>
             <option value="A-Z">A - Z</option>
             <option value="Z-A">Z - A</option>
           </select>
           <select onChange={handleOrderByPrice}>
-            <option value="Default"> Por precio </option>
-            <option value="max_price">Mayor</option>
-            <option value="min_price">Menor</option>
+            <option value="Default"> Ordenar por </option>
+            <option value="max_price">Mayor precio</option>
+            <option value="min_price">Menor precio</option>
           </select>
         </div>
         <div>
