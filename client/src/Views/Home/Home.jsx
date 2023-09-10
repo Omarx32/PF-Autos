@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Home.module.css";
 import Page from "../Paginado/Page";
 import Cards from "../../Components/Cards/Cards";
-import FilterBrands from "../../Components/Filter-Brands/FilterBrands";
+import FilterBrands from "../../Components/Filter/FilterBrands";
 import { OrderByName, OrderByPrice, getCars, filterBrands } from "../../redux/action/action";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -53,6 +53,11 @@ export default function Home() {
       </div>
 
       <div>
+
+        <div>
+          <FilterBrands handleBrands={handleBrands} filterCarsByBrand={filterCarsByBrand}/>
+        </div>
+
         {/* <select ></select> */}
         <div className={`${styles.filtros}`}>
           <select onChange={handleOrderByName}>

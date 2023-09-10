@@ -3,6 +3,8 @@ const { Router } = require("express");
 // Ejemplo: const authRouter = require('./auth.js');
 
 const router = Router();
+
+
 const paymentRoutes = require("../routes/payment.routes");
 const productRoutes = require("./productRoutes");
 const categoryRoutes = require("./categoryRoutes");
@@ -22,5 +24,6 @@ router.use("/brand", brandHandler);
 router.use("/filt", filterCatRoutes);
 router.use("/filt/brand", filterBrandsRouter);
 router.use("/payment", paymentRoutes);
+
 
 module.exports = router;
