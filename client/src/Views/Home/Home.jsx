@@ -16,8 +16,6 @@ export default function Home() {
   }, []);
   const vehiculos= useSelector((state)=> state.allVehiculos)
 
-  const brands= useSelector((state)=> state.brands);
-
   const [order, setOrder] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 

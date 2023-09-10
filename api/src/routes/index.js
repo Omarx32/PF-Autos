@@ -22,4 +22,5 @@ router.use("/brand", brandHandler);
 router.use("/filt", filterCatRoutes);
 router.use("/filt/brand", filterBrandsRouter);
 router.use("/payment", paymentRoutes);
+
 module.exports = router;

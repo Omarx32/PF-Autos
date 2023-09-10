@@ -1,4 +1,5 @@
 const { Product, Brand, Category } = require("../../db");
+
 const diacriticless = require("diacriticless");
 
 const filterBrands = async (brandcar) => {
