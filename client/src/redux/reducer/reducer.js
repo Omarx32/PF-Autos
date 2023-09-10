@@ -1,5 +1,5 @@
 import {all} from "axios";
-import { GET_CARS, GET_CATEGORYS, GET_DETAIL, ON_SEARCH, ORDER_BY_NAME, ORDER_BY_PRICE } from "../action/typeAction";
+import { FILTER_BRANDS, GET_BRANDS, GET_CARS, GET_CATEGORYS, GET_DETAIL, ON_SEARCH, ORDER_BY_NAME, ORDER_BY_PRICE } from "../action/typeAction";
 let initialState = {
     allVehiculos: [],
     allCars: [],
@@ -7,6 +7,7 @@ let initialState = {
     carsDetail: {},
     onSearch: {},
     category: [],
+    brands:[]
 }
 
 function rootReducer(state = initialState, action) {
@@ -80,6 +81,15 @@ function rootReducer(state = initialState, action) {
         case GET_CATEGORYS:
             return {
                 ...state, category: action.payload
+            }
+
+        case GET_BRANDS:
+            return {
+                ...state, brands: action.payload
+            }
+        case FILTER_BRANDS:
+            return {
+                ...state, allVehiculos: action.payload
             }
         default:
             return{ ...state}

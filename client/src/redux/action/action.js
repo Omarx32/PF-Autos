@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_CARS, GET_CATEGORYS, GET_DETAIL, ON_SEARCH, ORDER_BY_NAME, ORDER_BY_PRICE, POST_PRODUCT } from './typeAction';
+import { GET_CARS, GET_CATEGORYS, GET_BRANDS, GET_DETAIL, ON_SEARCH, ORDER_BY_NAME, ORDER_BY_PRICE, FILTER_BRANDS, POST_PRODUCT } from './typeAction';
 
 export const getCars = () => {
   return async function (dispatch) {
@@ -67,10 +67,36 @@ export const getCategorys = ()=>{
       console.log(error.message);
     }
   }
+}
+
+export const getBrands=()=>{
+  return async (dispatch)=>{
+    try {
+      const response=await axios.get('http://localhost:3001/brand')
+      const brands= response.data;
+      console.log(" Marcas:", brands)
+      return dispatch({type: GET_BRANDS, payload: brands})
+    } catch (error) {
+      console.error(error.message);
     }
+  }
+}
+
 export const postProduct = (createProduct)=>{
   return async function (dispatch){
     const response = await axios.post(`http://localhost:3001/create/product`, createProduct)
     return dispatch ({type: POST_PRODUCT})
+  }
+}
+
+export const filterBrands=(brand)=>{
+  return async (dispatch)=>{
+    try {
+      const response = await axios.get(`http://localhost:3001/filt/brands?brandcar=${brand}`)
+      const cars= response.data;
+      return dispatch({type: FILTER_BRANDS, payload: cars});
+    } catch (error) {
+        console.error(error.message);
+    }
   }
 }

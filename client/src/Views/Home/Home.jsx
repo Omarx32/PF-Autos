@@ -2,7 +2,8 @@ import React from "react";
 import styles from "./Home.module.css";
 import Page from "../Paginado/Page";
 import Cards from "../../Components/Cards/Cards";
-import { OrderByName, OrderByPrice, getCars } from "../../redux/action/action";
+import FilterBrands from "../../Components/Filter/FilterBrands";
+import { OrderByName, OrderByPrice, getCars, filterBrands } from "../../redux/action/action";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -31,9 +32,26 @@ export default function Home() {
     setCurrentPage(newPage);
   };
 
+  const [stateFilterBrands, setStateFilterBrands]=useState("");
+
+  const handleBrands=(event)=>{
+    setStateFilterBrands(event.target.value);
+  }
+
+  const filterCarsByBrand=(event)=>{
+    event.preventDefault();
+    dispatch(filterBrands(stateFilterBrands));
+    setStateFilterBrands("");
+  }
+
   return (
     <div className={styles.container}>
       <div>
+
+        <div>
+          <FilterBrands handleBrands={handleBrands} filterCarsByBrand={filterCarsByBrand}/>
+        </div>
+
         {/* <select ></select> */}
         <div className={`${styles.container_filters}`}>
           <select onChange={handleOrderByName}>
