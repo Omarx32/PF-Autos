@@ -1,13 +1,13 @@
 .bg-body-tertiary {
-  background-color: rgb(255, 0, 0); /* Cambia el color de fondo del Navbar */
+  background: linear-gradient(to bottom, #ff0000, #ff5733);
 }
 
 /* Estilos para el Navbar.Brand (el logotipo o el nombre del sitio) */
 .navbar-brand {
   color: #ffffff; /* Color del texto del Navbar.Brand */
   font-size: 25px; /* Tamaño de fuente del Navbar.Brand */
-  margin-right: 15px;
-  padding-right: 80px;
+  margin-right: 40px;
+  padding-right: 20px;
 }
 
 /* Estilos para los enlaces en el Navbar */
@@ -49,5 +49,6 @@
   color: #fff;
   display: flex;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  border-radius: 50%;
+
+  width: 25%;
 }

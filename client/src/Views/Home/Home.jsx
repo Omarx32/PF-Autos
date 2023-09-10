@@ -53,7 +53,7 @@ export default function Home() {
         </div>
 
         {/* <select ></select> */}
-        <div className={`${styles.container_filters}`}>
+        <div className={`${styles.filtros}`}>
           <select onChange={handleOrderByName}>
             <option value="Default">Alfabetico </option>
             <option value="A-Z">A - Z</option>
@@ -66,7 +66,7 @@ export default function Home() {
           </select>
         </div>
         <div>
-          <h2 className={styles.SubTitle}>NUESTROS VEHICULOS</h2>
+          <h2 className={styles.SubTitle}>Todos los Vehiculos</h2>
         </div>
         <Cards currentPage={currentPage} />
       </div>
