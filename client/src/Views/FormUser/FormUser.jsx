@@ -6,8 +6,7 @@ import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 
 const FormUser = () => {
-  const clientID =
-    "235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com";
+  const clientID = "235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com";
 
   useEffect(() => {
     const start = () => {
@@ -53,7 +52,9 @@ const FormUser = () => {
             .post("http://localhost:3001/users/user", formDataWithLocation)
             .then((response) => {
               console.log("Usuario registrado con éxito:", response.data);
+              localStorage.setItem('fullName', formData.fullName)
               alert("Usuario creado con éxito");
+              window.location.href = "/Home";
               setFormData({
                 fullName: "",
                 email: "",
@@ -61,6 +62,7 @@ const FormUser = () => {
                 role: "Usuario",
                 status: "Activo",
               });
+  
             })
             .catch((error) => {
               console.error("Error al registrar el usuario:", error);
@@ -98,6 +100,9 @@ const FormUser = () => {
           const serverResponse = await axios.post("http://localhost:3001/users/user/google", formDataForServer);
           console.log("Datos del formulario enviados con éxito:", serverResponse.data);
           alert(`¡Bienvenido, ${givenName}!`);
+          localStorage.setItem('fullName', givenName)
+          window.location.href = "/Home"
+          
         } catch (error) {
           console.error("Error al enviar los datos del formulario google:", error);
         }

@@ -7,7 +7,7 @@
 
     // Ruta para crear un usuario
     router.post('/user', users.createUser);
-    router.post("/user/google",usersGoogle. createUSersGoogle)
+    router.post("/user/google",usersGoogle.createUSersGoogle)
 
     // Otras rutas relacionadas con usuarios, como actualizar, eliminar, obtener, etc.
     // router.put('/user/:id', UserController.updateUser);
