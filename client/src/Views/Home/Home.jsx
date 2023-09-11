@@ -2,17 +2,30 @@ import React from "react";
 import styles from "./Home.module.css";
 import Page from "../Paginado/Page";
 import Cards from "../../Components/Cards/Cards";
-import { OrderByName, OrderByPrice, getCars } from "../../redux/action/action";
+import {
+  OrderByName,
+  OrderByPrice,
+  getCars,
+  filterBrands,
+  getBrands,
+  getCategorys,
+  filterCategory,
+} from "../../redux/action/action";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
   const dispatch = useDispatch();
-
+  const brands = useSelector((state) => state.brands);
   const cars = useSelector((state) => state.cars);
+  const category = useSelector((state) => state.category);
+
   useEffect(() => {
     dispatch(getCars());
+    dispatch(getBrands());
+    dispatch(getCategorys());
   }, []);
+  const vehiculos = useSelector((state) => state.allVehiculos);
 
   const [order, setOrder] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,24 +44,55 @@ export default function Home() {
     setCurrentPage(newPage);
   };
 
+  const handleBrands = (e) => {
+    e.preventDefault();
+    dispatch(filterBrands(e.target.value));
+    setOrder(`Ordenado${e.target.value}`);
+  };
+
+  const handleCategorys = (e) => {
+    e.preventDefault();
+    dispatch(filterCategory(e.target.value));
+    setOrder(`Ordenado${e.target.value}`);
+  };
+
   return (
     <div className={styles.container}>
       <div>
+        <div></div>
+
         {/* <select ></select> */}
-        <div className={`${styles.container_filters}`}>
+        <div className={`${styles.filtros}`}>
           <select onChange={handleOrderByName}>
-            <option value="Default">Alfabetico </option>
+            <option value="Default">Ordenar por </option>
             <option value="A-Z">A - Z</option>
             <option value="Z-A">Z - A</option>
           </select>
           <select onChange={handleOrderByPrice}>
-            <option value="Default"> Por precio </option>
-            <option value="max_price">Mayor</option>
-            <option value="min_price">Menor</option>
+            <option value="Default"> Ordenar por </option>
+            <option value="max_price">Mayor precio</option>
+            <option value="min_price">Menor precio</option>
+          </select>
+          <select onChange={handleBrands}>
+            <option value="default">Filtrar por Marca</option>
+            {brands?.map((brand) => (
+              <option key={brand.id} value={brand.name}>
+                {brand.name}
+              </option>
+            ))}
+          </select>
+          <select onChange={handleCategorys}>
+            <option value="default">default</option>
+            {category?.map((category) => (
+              <option key={category.id} value={category.name}>
+                {category.name}
+              </option>
+            ))}
           </select>
         </div>
+
         <div>
-          <h2 className={styles.SubTitle}>NUESTROS VEHICULOS</h2>
+          <h2 className={styles.SubTitle}>Todos los Vehiculos</h2>
         </div>
         <Cards currentPage={currentPage} />
       </div>
