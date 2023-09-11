@@ -1,0 +1,86 @@
+/* *::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5;
+}
+body {
+  font-size: 800px;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 8vh;
+  background: rgb(73, 0, 0);
+}
+
+.nav__brand {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.nav__menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 80px;
+} */
+.nav {
+  background: linear-gradient(to bottom, #ff0000, #ff5733);
+
+  color: #fff; /* Cambia el color de texto según tus preferencias */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vh 2vh;
+}
+
+.nav h2 {
+  margin: 0;
+  font-size: 2.5vh; /* Tamaño de fuente del título */
+}
+
+.nav__brand {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 3vh; /* Tamaño de fuente del logo o marca */
+  color: #fff;
+}
+
+.nav__menu {
+  list-style: none;
+  display: flex;
+  gap: 4vh; /* Espacio entre elementos de menú */
+  margin: 0;
+  padding: 0;
+}
+
+.nav__item {
+  margin: 0;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: #fff; /* Cambia el color de los enlaces según tus preferencias */
+  font-size: 1.8vh; /* Tamaño de fuente de los enlaces */
+}
+
+/* Estilo para el enlace activo */
+.nav__link.active {
+  font-weight: bold; /* Puedes cambiar el estilo del enlace activo */
+}
+.divLogo {
+  font-size: 3vh; /* Tamaño de fuente del logo o marca */
+  color: #fff;
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

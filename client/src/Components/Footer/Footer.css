@@ -1,0 +1,54 @@
+.bg-body-tertiary {
+  background: linear-gradient(to bottom, #ff0000, #ff5733);
+}
+
+/* Estilos para el Navbar.Brand (el logotipo o el nombre del sitio) */
+.navbar-brand {
+  color: #ffffff; /* Color del texto del Navbar.Brand */
+  font-size: 25px; /* Tamaño de fuente del Navbar.Brand */
+  margin-right: 40px;
+  padding-right: 20px;
+}
+
+/* Estilos para los enlaces en el Navbar */
+.nav-link {
+  color: #f5f3f3; /* Color del texto de los enlaces del Navbar */
+  font-size: 16px; /* Tamaño de fuente de los enlaces del Navbar */
+  padding-right: 60px;
+}
+
+/* Estilos para el enlace activo en el Navbar */
+.nav-link.active {
+  font-weight: bold; /* Negrita para el enlace activo */
+}
+
+/* Estilos para el menú desplegable en el Navbar */
+.dropdown-menu {
+  background-color: #f7f7f7; /* Color de fondo del menú desplegable */
+  border: none; /* Quita el borde del menú desplegable */
+  display: flex;
+}
+
+/* Estilos para los elementos del menú desplegable */
+.dropdown-item {
+  color: #333; /* Color del texto de los elementos del menú desplegable */
+}
+
+/* Estilos para los elementos del menú desplegable al hacer hover */
+.dropdown-item:hover {
+  background-color: #ddd; /* Color de fondo al hacer hover en los elementos */
+  color: #555; /* Color del texto al hacer hover en los elementos */
+}
+
+/* Estilos para el separador en el menú desplegable */
+.dropdown-divider {
+  border-top: 1px solid #ccc; /* Línea divisoria entre elementos */
+}
+.divLogos {
+  font-size: 30px; /* Tamaño de fuente del logo o marca */
+  color: #fff;
+  display: flex;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  width: 25%;
+}

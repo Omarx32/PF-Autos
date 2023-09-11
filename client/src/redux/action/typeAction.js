@@ -1,0 +1,12 @@
+export const GET_CARS = "GET_CARS"
+export const GET_DETAIL = "GET_DETAIL"
+export const ORDER_BY_NAME = "ORDER_BY_NAME"
+export const ORDER_BY_PRICE = "ORDER_BY_PRICE"
+export const ON_SEARCH = "ON_SEARCH"
+export const POST_PRODUCT = "POST_PRODUCT"
+export const GET_CATEGORYS = "GET_CATEGORYS"
+export const GET_BRANDS="GET_BRANDS"
+export const FILTER_BRANDS="FILTER_BRANDS"
+export const UPLOAD_IMAGE ='UPLOAD_IMAGE'
+export const UPLOAD_IMAGE_SUCCESS = 'UPLOAD_IMAGE_SUCCESS'
+export const UPLOAD_IMAGE_ERROR = 'UPLOAD_IMAGE_ERROR'
