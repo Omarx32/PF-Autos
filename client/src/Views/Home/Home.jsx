@@ -2,19 +2,30 @@ import React from "react";
 import styles from "./Home.module.css";
 import Page from "../Paginado/Page";
 import Cards from "../../Components/Cards/Cards";
-import FilterBrands from "../../Components/Filter/FilterBrands";
-import { OrderByName, OrderByPrice, getCars, filterBrands } from "../../redux/action/action";
+import {
+  OrderByName,
+  OrderByPrice,
+  getCars,
+  filterBrands,
+  getBrands,
+  getCategorys,
+  filterCategory,
+} from "../../redux/action/action";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
   const dispatch = useDispatch();
-
+  const brands = useSelector((state) => state.brands);
   const cars = useSelector((state) => state.cars);
+  const category = useSelector((state) => state.category);
+
   useEffect(() => {
     dispatch(getCars());
+    dispatch(getBrands());
+    dispatch(getCategorys());
   }, []);
-  const vehiculos= useSelector((state)=> state.allVehiculos)
+  const vehiculos = useSelector((state) => state.allVehiculos);
 
   const [order, setOrder] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,30 +44,22 @@ export default function Home() {
     setCurrentPage(newPage);
   };
 
-  const [stateFilterBrands, setStateFilterBrands]=useState("");
+  const handleBrands = (e) => {
+    e.preventDefault();
+    dispatch(filterBrands(e.target.value));
+    setOrder(`Ordenado${e.target.value}`);
+  };
 
-  const handleBrands=(event)=>{
-    setStateFilterBrands(event.target.value);
-  }
-
-  const filterCarsByBrand=(event)=>{
-    event.preventDefault();
-    dispatch(filterBrands(stateFilterBrands));
-    setStateFilterBrands("");
-  }
+  const handleCategorys = (e) => {
+    e.preventDefault();
+    dispatch(filterCategory(e.target.value));
+    setOrder(`Ordenado${e.target.value}`);
+  };
 
   return (
     <div className={styles.container}>
-
       <div>
-        <FilterBrands handleBrands={handleBrands} filterCarsByBrand={filterCarsByBrand}/>
-      </div>
-
-      <div>
-
-        <div>
-          <FilterBrands handleBrands={handleBrands} filterCarsByBrand={filterCarsByBrand}/>
-        </div>
+        <div></div>
 
         {/* <select ></select> */}
         <div className={`${styles.filtros}`}>
@@ -70,7 +73,24 @@ export default function Home() {
             <option value="max_price">Mayor precio</option>
             <option value="min_price">Menor precio</option>
           </select>
+          <select onChange={handleBrands}>
+            <option value="default">Filtrar por Marca</option>
+            {brands?.map((brand) => (
+              <option key={brand.id} value={brand.name}>
+                {brand.name}
+              </option>
+            ))}
+          </select>
+          <select onChange={handleCategorys}>
+            <option value="default">default</option>
+            {category?.map((category) => (
+              <option key={category.id} value={category.name}>
+                {category.name}
+              </option>
+            ))}
+          </select>
         </div>
+
         <div>
           <h2 className={styles.SubTitle}>Todos los Vehiculos</h2>
         </div>
