@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 const CardsContainer = ({ currentPage }) => {
   const cars = useSelector((state) => state.cars);
   const [cardsPerPage, setCardsPerPage] = useState(8);
- 
+
   const lastIndex = currentPage * cardsPerPage;
   const firstIndex = lastIndex - cardsPerPage;
   const searchResults = useSelector((state) => state.onSearch);
@@ -15,13 +15,12 @@ const CardsContainer = ({ currentPage }) => {
     searchResults && searchResults.length > 0 ? searchResults : cars;
 
   const carsToRender = displayedCars.slice(firstIndex, lastIndex);
-  console.log(firstIndex);
+
   useEffect(() => {
     if (searchResults.length === 0) {
-     
     }
   }, [searchResults]);
- console.log(cars);
+
   return (
     <div>
       <div className="cards">
@@ -29,9 +28,7 @@ const CardsContainer = ({ currentPage }) => {
           <Card key={car.id} id={car.id} image={car.image} name={car.name} />
         ))}
       </div>
-      <div>
-
-      </div>
+      <div></div>
     </div>
   );
 };

@@ -1,15 +1,13 @@
-const {Category} =require("../../db") 
+const { Category } = require("../../db");
 
-const getCategorys= async (req, res)=>{
-    try {
-        const category = await Category.findAll()
-        
-        return category;
-    } catch (error) {
+const getCategorys = async (req, res) => {
+  try {
+    const category = await Category.findAll();
 
-        throw new Error('Theres a Error')
-    }
-}
+    return category;
+  } catch (error) {
+    throw new Error("Theres a Error");
+  }
+};
 
-
-module.exports = getCategorys
+module.exports = getCategorys;
