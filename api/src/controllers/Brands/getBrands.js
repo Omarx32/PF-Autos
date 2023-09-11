@@ -1,3 +1,4 @@
+
 const { Product, Brand } = require("../../db");
 
 const getBrands = async () => {
@@ -24,3 +25,4 @@ const getBrands = async () => {
 };
 
 module.exports = getBrands;
+
