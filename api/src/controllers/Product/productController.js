@@ -1,4 +1,6 @@
+
 const { Product, Category } = require("../../db");
+
 
 const getProductByName = async (name) => {
   const productName = await Product.findAll({

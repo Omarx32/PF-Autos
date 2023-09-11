@@ -1,8 +1,8 @@
-const express = require('express');
-const brandHandler=require("../handlers/brandHandler")
+// const express = require('express');
+// const brandHandler=require("../handlers/brandHandler")
 
-const router = express.Router();
+// const router = express.Router();
 
-router.get('/', brandHandler);
+// router.get('/', brandHandler);
 
-module.exports = router;
+// module.exports = router;

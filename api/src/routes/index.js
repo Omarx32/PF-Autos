@@ -1,11 +1,6 @@
-const { Router } = require("express");
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
-
-const router = Router();
 
 
-const paymentRoutes = require("../routes/payment.routes");
+const mpRoutes = require("./MpRoutes");
 const productRoutes = require("./productRoutes");
 const categoryRoutes = require("./categoryRoutes");
 const productCreate = require("./productCreateRoute");
@@ -23,7 +18,9 @@ router.use("/users", usersRoutes);
 router.use("/brand", brandHandler);
 router.use("/filt", filterCatRoutes);
 router.use("/filt/brand", filterBrandsRouter);
-router.use("/payment", paymentRoutes);
+router.get("/mp", mpRoutes, (req, res) => {
+  res.send("El servidor de Mercado Pago funciona! :)");
+});
 
 
 module.exports = router;

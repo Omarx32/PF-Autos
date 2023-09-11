@@ -36,7 +36,7 @@ export const getDetail = (idCar) => {
       );
 
       const detail = response.data;
-
+      console.log("555", detail);
       dispatch({ type: GET_DETAIL, payload: detail });
     } catch (error) {
       console.error("Error");
