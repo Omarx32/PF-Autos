@@ -43,14 +43,10 @@ const { Product, Category, Reviews, Users, Cart, Brand, Pay } =
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-Product.belongsToMany(Category, {
-  through: "Product_Category",
-  timestamps: false,
-});
 Category.belongsToMany(Product, {
   through: "Product_Category",
-  timestamps: false,
 });
+Product.belongsTo(Category);
 
 Product.belongsToMany(Cart, { through: "Product_Carts" });
 Cart.belongsToMany(Product, { through: "Product_Carts" });
@@ -64,7 +60,7 @@ Reviews.belongsTo(Product);
 Users.hasMany(Cart);
 Cart.belongsTo(Users);
 
-Brand.hasMany(Product);
+Brand.belongsToMany(Product, { through: "Product_Brands" });
 Product.belongsTo(Brand);
 
 Users.hasMany(Pay, { foreignKey: "userId" });

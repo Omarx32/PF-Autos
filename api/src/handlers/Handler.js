@@ -1,8 +1,6 @@
-
 const createProduct = require("../controllers/Product/createProduct");
 const filterCars = require("../controllers/Categorys/filterCars");
 const filterBrands = require("../controllers/Brands/filterBrands");
-
 
 const createHandler = async (req, res) => {
   try {
@@ -56,9 +54,7 @@ const filterBrandHandler = async (req, res) => {
   try {
     const { brandcar } = req.query;
     const response = await filterBrands(brandcar);
-    if (response.error) {
-      return res.status(400).json(response);
-    }
+
     res.status(200).json(response);
   } catch (error) {
     res.status(400).json({ error: error.message });
