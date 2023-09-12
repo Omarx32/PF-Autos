@@ -122,3 +122,16 @@ export const filterCategory = (payload) => {
   };
 };
 
+export const addFav=(car)=>{
+  return {
+      type:ADD_FAV,
+      payload: car
+  }
+};
+
+export const removeFav=(id)=>{
+  return {
+      type:REMOVE_FAV,
+      payload:id
+  }
+};

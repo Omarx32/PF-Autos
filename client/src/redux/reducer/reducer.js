@@ -20,6 +20,7 @@ let initialState = {
   onSearch: {},
   category: [],
   brands: [],
+  favorites:[] 
 };
 
 function rootReducer(state = initialState, action) {
@@ -125,6 +126,17 @@ function rootReducer(state = initialState, action) {
         ...state,
         brands: action.payload,
       };
+
+    case ADD_FAV:
+    return {
+      ...state, 
+      favorites:[...state.favorites, action.payload]
+    };
+    case REMOVE_FAV:
+    const arrFav= state.favorites.filter((fav)=> fav.id !== action.payload);
+    return {
+      ...state, favorites:arrFav
+    }
 
     default:
       return { ...state };
