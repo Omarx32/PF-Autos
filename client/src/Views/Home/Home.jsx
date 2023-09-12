@@ -76,8 +76,8 @@ export default function Home() {
           <select onChange={handleBrands}>
             <option value="default">Filtrar por Marca</option>
             {brands?.map((brand) => (
-              <option key={brand.id} value={brand.name}>
-                {brand.name}
+              <option key={brand.id && brand.id} value={brand.name && brand.name}>
+                {brand.name && brand.name}
               </option>
             ))}
           </select>

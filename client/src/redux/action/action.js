@@ -11,6 +11,8 @@ import {
   FILTER_BRANDS,
   POST_PRODUCT,
   FILTER_CATEGORY,
+  ADD_FAV,
+  REMOVE_FAV,
 } from "./typeAction";
 
 export const getCars = () => {
@@ -120,3 +122,4 @@ export const filterCategory = (payload) => {
     payload,
   };
 };
+

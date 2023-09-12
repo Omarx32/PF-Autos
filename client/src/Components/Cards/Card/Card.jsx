@@ -1,17 +1,16 @@
 import './styles.css'
+import { useState } from 'react';
 import {NavLink} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { removeFav, addFav } from '../../../redux/action/action';
 
-
-const Card  = (props) => {
-;
+const Card  = ({id, image, name}) => {
     return (
         <div className='card'>
             <div className='card-details'>
-            <NavLink to={`/detail/${props.id}`}> <img src={props.image} alt={props.name}></img> </NavLink>  
-            <h1 className='title'>{props.name}</h1>
-              
-            </div>
-            
+                <NavLink to={`/detail/${id}`}> <img src={image} alt={name}></img> </NavLink>  
+                <h1 className='title'>{name}</h1>
+            </div>       
         </div>
     )
 }

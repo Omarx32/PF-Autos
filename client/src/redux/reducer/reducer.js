@@ -1,5 +1,6 @@
 import { all } from "axios";
 import {
+  ADD_FAV,
   FILTER_BRANDS,
   FILTER_CATEGORY,
   GET_BRANDS,
@@ -9,6 +10,7 @@ import {
   ON_SEARCH,
   ORDER_BY_NAME,
   ORDER_BY_PRICE,
+  REMOVE_FAV,
 } from "../action/typeAction";
 let initialState = {
   allVehiculos: [],

@@ -1,5 +1,7 @@
 import React from 'react';
 import "../NavBar/NavBar.css";
+import { Link } from 'react-router-dom';
+import Favorites from '../favorites';
 
 const Navbar = () => {
   return (
@@ -28,6 +30,9 @@ const Navbar = () => {
           <a href="/registro" className="nav__link">
             REGISTRATE
           </a>
+        </li>
+        <li className="nav__item">
+          <Link to="/Favorites">FAVORITOS</Link>
         </li>
       </ul>
     </nav>

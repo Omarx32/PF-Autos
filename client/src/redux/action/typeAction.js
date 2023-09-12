@@ -8,3 +8,5 @@ export const GET_CATEGORYS = "GET_CATEGORYS";
 export const GET_BRANDS = "GET_BRANDS";
 export const FILTER_BRANDS = "FILTER_BRANDS";
 export const FILTER_CATEGORY = "FILTER_CATEGORY";
+export const ADD_FAV="ADD_FAV"
+export const REMOVE_FAV="REMOVE_FAV"

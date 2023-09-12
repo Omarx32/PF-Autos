@@ -8,6 +8,7 @@ import Form from "./Views/Form/Form";
 import Navbar from "./Components/NavBar/Navbar";
 import About from "./Views/About/About";
 import FormUser from "./Views/FormUser/FormUser";
+import Favorites from "./Components/favorites";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/Detail/:idCar" element={<Detail />}></Route>
           <Route exact path="/About" element={<About />}></Route>
           <Route exact path="/registro" element={<FormUser />}></Route>
+          <Route exact path="/Favorites" element={<Favorites/>}></Route>
         </Routes>
       </main>
       <Footer />

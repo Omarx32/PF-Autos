@@ -40,3 +40,87 @@
 //     "vite": "^2.6.4"
 //   }
 // }
+
+// ACTION
+export const addFav=(car)=>{
+    return {
+        type:ADD_FAV,
+        payload: car
+    }
+  };
+  
+  export const removeFav=(id)=>{
+    return {
+        type:REMOVE_FAV,
+        payload:id
+    }
+  };
+
+//   REDUCER
+
+// favorites:[] 
+
+// case ADD_FAV:
+//     return {
+//       ...state, 
+//       favorites:[...state.favorites, action.payload]
+//     };
+//   case REMOVE_FAV:
+//     const arrFav= state.favorites.filter((fav)=> fav.id !== action.payload);
+//     return {
+//       ...state, favorites:arrFav
+//     }
+
+// CARD
+const dispatch=useDispatch()
+
+const favorites= useSelector((state)=> state.favorites)
+
+const [isFav, setIsFav]=useState(false);
+
+const handleFavorite=()=>{
+    if(isFav===true){
+        setIsFav(false);
+        dispatch(removeFav(id));
+    } else{
+        setIsFav(true);
+        dispatch(addFav({id, image, name, addFav, removeFav}))
+    }
+}
+
+useEffect(() => {
+    for (let i = 0; i < favorites.length; i++) {
+        if(favorites[i].id===id){
+            setIsFav(true);
+        }
+    }
+ }, [favorites]);
+
+ <button>{isFav ? "❤️" : "🤍"}</button>
+
+//  FAVORITES
+
+import React from 'react'
+import { useSelector } from 'react-redux'
+import Card from './Cards/Card/Card'
+
+const Favorites = () => {
+    const favorites= useSelector((state)=> state.favorites)
+
+  return (
+    <div>
+        {
+            favorites.map((fav)=>{
+                return <Card
+                        key={fav.id}
+                        id={fav.id}
+                        image={fav.image}
+                        name={fav.name}
+                        />
+            })
+        }
+        </div>
+  )
+}
+
+export default Favorites;
