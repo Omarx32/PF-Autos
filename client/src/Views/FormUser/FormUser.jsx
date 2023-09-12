@@ -6,8 +6,7 @@ import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 
 const FormUser = () => {
-  const clientID =
-    "235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com";
+  const clientID = "235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com";
 
   useEffect(() => {
     const start = () => {
@@ -53,7 +52,9 @@ const FormUser = () => {
             .post("http://localhost:3001/users/user", formDataWithLocation)
             .then((response) => {
               console.log("Usuario registrado con éxito:", response.data);
+              localStorage.setItem('fullName', formData.fullName)
               alert("Usuario creado con éxito");
+              window.location.href = "/Home";
               setFormData({
                 fullName: "",
                 email: "",
@@ -61,6 +62,7 @@ const FormUser = () => {
                 role: "Usuario",
                 status: "Activo",
               });
+  
             })
             .catch((error) => {
               console.error("Error al registrar el usuario:", error);
@@ -74,10 +76,45 @@ const FormUser = () => {
     }
   };
 
-  const handleGoogleSuccess = (response) => {
+  const handleGoogleSuccess = async (response) => {
     console.log("Autenticación exitosa con Google:", response.profileObj);
-    alert("Autenticación con Google exitosa");
+    const { familyName, givenName, googleId, imageUrl, name, email } = response.profileObj;
+  
+    try {
+      const locationResponseGoogle = await axios.get("http://ip-api.com/json");
+      const location = locationResponseGoogle.data.city;
+      console.log('location google;',location);
+  
+      if (familyName && givenName && googleId && imageUrl && name && email && location) {
+        const formDataForServer = {
+          familyName,
+          givenName,
+          googleId,
+          imageUrl,
+          name,
+          email,
+          location // Añadimos la ubicación al objeto de datos para enviar al servidor
+        };
+  
+        try {
+          const serverResponse = await axios.post("http://localhost:3001/users/user/google", formDataForServer);
+          console.log("Datos del formulario enviados con éxito:", serverResponse.data);
+          alert(`¡Bienvenido, ${givenName}!`);
+          localStorage.setItem('fullName', givenName)
+          window.location.href = "/Home"
+          
+        } catch (error) {
+          console.error("Error al enviar los datos del formulario google:", error);
+        }
+      } else {
+        console.error("Los datos de perfil de Google están incompletos.");
+      }
+    } catch (error) {
+      console.error("Error al obtener la ubicación del usuario:", error);
+    }
   };
+  
+  
 
   const handleGoogleFailure = (error) => {
     if (error.error === "popup_closed_by_user") {

@@ -45,15 +45,30 @@ function rootReducer(state = initialState, action) {
           cars: state.allCars,
         };
       }
-      filtro = state.allCars.filter(
-        (car) =>
-          car.Categories && // Verifica si 'Categories' está definido
-          car.Categories.Product_Category && // Verifica si 'Product_Category' está definido
-          car.Categories.Product_Category.CategoryName && // Verifica si 'CategoryName' está definido
-          car.Categories.Product_Category.CategoryName.includes(action.payload)
+      filtro = state.allCars.filter((car) => {
+      console.log("Car",car);
+      car.name.includes(action.payload)
+      }
       );
-      console.log("estado", state.allCars);
       return { ...state, cars: filtro };
+      
+      case FILTER_BRANDS:
+        let filter = [];
+        if (action.payload === "default") {
+          return {
+            ...state,
+            cars: state.allCars,
+          };
+        }
+        filter = state.allCars.filter((car) =>
+        car.brand.toLowerCase().includes(action.payload.toLowerCase())
+        );
+        
+        return {
+          ...state,
+          cars: filter
+        };
+        
 
     case ORDER_BY_NAME:
       if (action.payload === "Default") {
@@ -63,46 +78,10 @@ function rootReducer(state = initialState, action) {
         };
       }
 
-    case FILTER_BRANDS:
-      let filter = [];
-      if (action.payload === "default") {
-        return {
-          ...state,
-          cars: state.allCars,
-        };
-      }
-      filter = state.allCars.filter((car) =>
-        car.brand.includes(action.payload)
-      );
+      const sortedName = action.payload === "A-Z"
+        ? state.cars.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
+        : state.cars.sort((a, b) => b.name.toLowerCase().localeCompare(a.name.toLowerCase()));
 
-      return { ...state, cars: filter };
-    case ORDER_BY_NAME:
-      if (action.payload === "Default") {
-        return {
-          ...state,
-          cars: state.allCars,
-        };
-      }
-
-      const sortedName =
-        action.payload === "A-Z"
-          ? state.cars.sort((a, b) => {
-              if (a.name > b.name) {
-                return 1;
-              }
-              if (b.name > a.name) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.cars.sort((a, b) => {
-              if (a.name > b.name) {
-                return -1;
-              }
-              if (b.name > a.name) {
-                return 1;
-              }
-            });
       return {
         ...state,
         cars: sortedName,
@@ -119,11 +98,11 @@ function rootReducer(state = initialState, action) {
       const sortedPrice =
         action.payload === "min_price"
           ? [...state.cars].sort(
-              (a, b) => parseInt(a.price) - parseInt(b.price)
-            )
+            (a, b) => parseInt(a.price) - parseInt(b.price)
+          )
           : [...state.cars].sort(
-              (a, b) => parseInt(b.price) - parseInt(a.price)
-            );
+            (a, b) => parseInt(b.price) - parseInt(a.price)
+          );
       console.log(sortedPrice);
 
       return {
