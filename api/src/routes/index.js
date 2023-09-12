@@ -1,4 +1,5 @@
-
+const express = require("express");
+const router = express.Router();
 
 const mpRoutes = require("./MpRoutes");
 const productRoutes = require("./productRoutes");
