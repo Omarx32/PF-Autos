@@ -10,6 +10,7 @@ import About from "./Views/About/About";
 import FormUser from "./Views/FormUser/FormUser";
 import Favorites from "./Components/favorites";
 import Admin from "./Views/Admin/Admin";
+import FormLogin from "./Views/FormLogin/FormLogin"
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/registro" element={<FormUser />}></Route>
           <Route exact path="/Favorites" element={<Favorites/>}></Route>
           <Route exact path="/Admin" element={<Admin/>}></Route>
+          <Route exact path="/login" element={<FormLogin/>}></Route>
         </Routes>
       </main>
       <Footer />

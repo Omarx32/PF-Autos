@@ -1,13 +1,8 @@
 import './styles.css'
-import { useState, useEffect } from 'react';
+import { useState,useEffect } from 'react';
 import {NavLink} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFav, addFav } from '../../../redux/action/action';
-import "./styles.css";
-import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { removeFav, addFav } from "../../../redux/action/action";
 
 const Card = ({ id, image, name }) => {
   const dispatch = useDispatch();
