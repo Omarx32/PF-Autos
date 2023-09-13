@@ -34,11 +34,12 @@ server.use((req, res, next) => {
 server.use("/", routes);
 
 // Combina las rutas de MercadoPago
-server.use("/mercadopago", mercadopagoRoutes);
+// server.use("/mercadopago", mercadopagoRoutes);
 
 // Configura MercadoPago
 mercadopago.configure({
-  access_token: "your_access_token",
+  access_token:
+    "TEST-2664276290314152-091023-a8dbce86749b18cb2960e492a1d25bea-1476921582",
 });
 
 module.exports = server;
