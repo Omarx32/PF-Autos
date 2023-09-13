@@ -1,6 +1,7 @@
     const express = require('express');
     const users = require('../controllers/Users/users'); // Asegúrate de importar el controlador correcto
     const usersGoogle = require("../controllers/Users/usersGoogle")
+    const userAdmin = require("../controllers/UserAdmin/userAdmin")
 
 
     const router = express.Router();
@@ -8,6 +9,7 @@
     // Ruta para crear un usuario
     router.post('/user', users.createUser);
     router.post("/user/google",usersGoogle.createUSersGoogle)
+    router.post("/admin", userAdmin.userAdmins);
 
     // Otras rutas relacionadas con usuarios, como actualizar, eliminar, obtener, etc.
     // router.put('/user/:id', UserController.updateUser);
