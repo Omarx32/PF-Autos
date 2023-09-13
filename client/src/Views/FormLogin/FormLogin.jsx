@@ -4,14 +4,15 @@ const FormLogin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [role, setRole] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!username || !password) {
-      setError('Por favor, completa todos los campos.');
-      return;
-    }
+    if (!username || !password || !role) {
+        setError('Por favor, completa todos los campos.');
+        return;
+      }
 
     try {
       const response = await fetch('http://localhost:3001/users/admin', {
@@ -27,6 +28,7 @@ const FormLogin = () => {
       if (response.ok) {
         // Inicio de sesión exitoso
         alert(data.message );
+        localStorage.setItem('fullName', username);
         window.location.href = '/Home';
       } else {
         // Credenciales incorrectas
@@ -60,6 +62,19 @@ const FormLogin = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+        </div>
+        <div>
+          <label htmlFor="role">Rol:</label>
+          <select
+            id="role"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            required
+          >
+            <option value="">Selecciona un rol</option>
+            <option value="admin">Admin</option>
+            <option value="usuario">Usuario</option>
+          </select>
         </div>
         <button type="submit">Iniciar Sesión</button>
       </form>

@@ -99,9 +99,10 @@ const FormUser = () => {
         try {
           const serverResponse = await axios.post("http://localhost:3001/users/user/google", formDataForServer);
           console.log("Datos del formulario enviados con éxito:", serverResponse.data);
-          alert(`¡Bienvenido, ${givenName}!`);
-          localStorage.setItem('fullName', givenName)
-          window.location.href = "/Home"
+          const fullName = `${givenName} ${familyName}`;
+          alert(`¡Bienvenido, ${fullName}! 🚘`);
+          localStorage.setItem('fullName', fullName);
+          window.location.href = "/Home";
           
         } catch (error) {
           console.error("Error al enviar los datos del formulario google:", error);
