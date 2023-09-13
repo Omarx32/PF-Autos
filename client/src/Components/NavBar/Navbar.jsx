@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../NavBar/NavBar.css";
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Favorites from '../Favorites/Favorites';
 
 const Navbar = () => {
@@ -65,9 +65,9 @@ const Navbar = () => {
             INICIAR SESION
           </a>
         </li>
-        {/* <li className="nav__item">
+        <li className="nav__item">
           <Link to="/Favorites">FAVORITOS</Link>
-        </li> */}
+        </li>
       </ul>
     </nav>
   );
