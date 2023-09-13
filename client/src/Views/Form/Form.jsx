@@ -1,10 +1,23 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+
 import "./Form.css";
+import {
+  postProduct,
+  getCategorys,
+  getBrands,
+} from "../../redux/action/action";
+import validation from "./validation";
 
 const Form = () => {
-  const [state, setState] = useState({
+  const dispatch = useDispatch();
+  const category = useSelector((state) => state.category);
+  const brand = useSelector((state) => state.brands);
+
+  const [products, setProducts] = useState([]); // Agregamos un estado para almacenar los productos
+
+  const [postCarForm, setPostCarForm] = useState({
     name: "",
     image: [],
     brand: "",
@@ -19,377 +32,280 @@ const Form = () => {
     category: [],
   });
 
-  const [error, setError] = useState({
-    name: "",
-    image: "",
-    brand: "",
-    description: "",
-    price: "",
-    stock: "",
-    maker: "",
-    model: "",
-    color: "",
-    kilometraje: "",
-    direccion: "",
-    category: "",
-  });
+  const [errors, setErrors] = useState({});
 
-  const [successMessage, setSuccessMessage] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  useEffect(() => {
+    dispatch(getCategorys());
+    dispatch(getBrands());
+  }, []);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    if (name === "category" || name === "image") {
-      setState({
-        ...state,
-        [name]: [value],
-      });
-    } else {
-      setState({
-        ...state,
-        [name]: value,
-      });
-    }
-
-    setError({
-      ...error,
-      [name]: "", // Limpiar el mensaje de error cuando el campo se llena
-    });
-
-    validate(
-      {
-        ...state,
-        [name]: value,
-      },
-      name
+  const changeHandler = (event) => {
+    const property = event.target.name;
+    const value = event.target.value;
+    setErrors(
+      validation({
+        ...postCarForm,
+        [property]: value,
+      })
     );
+    setPostCarForm({
+      ...postCarForm,
+      [property]: value,
+    });
   };
 
-  const validate = (state, name) => {
-    if (name === "name" && state.name.trim() === "") {
-      setError({ ...error, name: "Campo requerido" });
-    }
-    if (name === "stock" && state.stock.trim() === "") {
-      setError({ ...error, stock: "Campo requerido" });
-    }
-    if (name === "model" && state.model.trim() === "") {
-      setError({ ...error, model: "Campo requerido" });
-    }
-    if (name === "image" && state.image.length === 0) {
-      setError({ ...error, image: "Campo requerido" });
-    }
-    if (name === "category" && state.category.length === 0) {
-      setError({ ...error, category: "Campo requerido" });
-    }
-    if (name === "visible") {
-      // Validación de la visibilidad (agrega la lógica según corresponda)
-    }
-    if (name === "maker" && state.maker.trim() === "") {
-      setError({ ...error, maker: "Campo requerido" });
-    }
-    if (name === "brand" && state.brand.trim() === "") {
-      setError({ ...error, brand: "Campo requerido" });
-    }
-    if (name === "description" && state.description.trim() === "") {
-      setError({ ...error, description: "Campo requerido" });
-    }
-    if (name === "price" && state.price.trim() === "") {
-      setError({ ...error, price: "Campo requerido" });
-    }
-    if (name === "color" && state.color.trim() === "") {
-      setError({ ...error, color: "Campo requerido" });
-    }
-    if (name === "kilometraje" && state.kilometraje.trim() === "") {
-      setError({ ...error, kilometraje: "Campo requerido" });
-    }
-    if (name === "direccion" && state.direccion.trim() === "") {
-      setError({ ...error, direccion: "Campo requerido" });
-    }
+  const selectBrandHandler = (event) => {
+    const brandValue = event.target.value;
+    setPostCarForm({
+      ...postCarForm,
+      brand: brandValue,
+    });
   };
 
-  const handleSubmit = async (e) => {
+  const selectCategoryHandler = (event) => {
+    const categoryValue = event.target.value;
+    setPostCarForm({
+      ...postCarForm,
+      category: [categoryValue],
+    });
+  };
+
+  const submitHandler = (e) => {
     e.preventDefault();
 
-    // Validar que todos los campos estén completos
-    const requiredFields = [
-      "name",
-      "image",
-      "brand",
-      "description",
-      "price",
-      "stock",
-      "maker",
-      "model",
-      "color",
-      "kilometraje",
-      "direccion",
-      "category",
-    ];
+    if (
+      !errors.name ||
+      !errors.brand ||
+      !errors.description ||
+      !errors.price ||
+      !errors.stock ||
+      !errors.maker ||
+      !errors.model ||
+      !errors.color ||
+      !errors.kilometraje ||
+      !errors.direccion ||
+      postCarForm.category.length === 0
+    ) {
+      // Crear un objeto de producto
+      const newProduct = {
+        name: postCarForm.name,
+        image: file.length > 0 ? file[0] : '',
+        brand: postCarForm.brand,
+        description: postCarForm.description,
+        price: postCarForm.price,
+        stock: postCarForm.stock,
+        maker: postCarForm.maker,
+        model: postCarForm.model,
+        color: postCarForm.color,
+        kilometraje: postCarForm.kilometraje,
+        direccion: postCarForm.direccion,
+        category: postCarForm.category,
+      };
+      
+      // Agregar el nuevo producto al estado de productos
+      setProducts([...products, newProduct]);
 
-    const missingFields = requiredFields.filter(
-      (field) => state[field] === "" || state[field].length === 0
-    );
+      // Limpiar el formulario
+      setPostCarForm({
+        name: "",
+        image: image,
+        brand: "",
+        description: "",
+        price: "",
+        stock: "",
+        maker: "",
+        model: "",
+        color: "",
+        kilometraje: "",
+        direccion: "",
+        category: [],
+      });
+      console.log("dispatch:",postCarForm);
 
-    if (missingFields.length > 0) {
-      alert("Debes llenar todos campos");
-      return;
-    }
-
-    // Realizar la solicitud POST al servidor
-    try {
-      const response = await axios.post(
-        "http://localhost:3001/create/product",
-        state
-      );
-      console.log("Respuesta del servidor:", response.data);
-
-      // Verificar la respuesta del servidor (puedes personalizar esto según tus necesidades)
-      if (response.status === 201) {
-        console.log("Vehículo creado con éxito");
-        setSuccessMessage("Vehículo creado con éxito");
-        setTimeout(() => {
-          setSuccessMessage(false);
-        }, 5000);
-        // Puedes realizar alguna acción adicional aquí, como redireccionar o mostrar un mensaje de éxito.
-        setSubmitted(true);
-        setState({
-          // Reiniciar el estado del formulario a un objeto vacío
-          name: "",
-          image: [],
-          brand: "",
-          description: "",
-          price: "",
-          stock: "",
-          maker: "",
-          model: "",
-          color: "",
-          kilometraje: "",
-          direccion: "",
-          category: [],
-        });
-      } else {
-        console.error("Error al crear el vehículo");
-      }
-    } catch (error) {
-      console.error("Error al crear el vehículo", error);
+      dispatch(postProduct(postCarForm))
+      
+      alert("Tu producto ha sido creado exitosamente");
+    } else {
+      alert("Algo salió mal. Por favor, inténtalo de nuevo.");
     }
   };
+const [file, setFile] = useState([]);
+const [image, setImage] = useState([]);
 
-  const categories = [
-    "Sedán",
-    "SUV",
-    "Deportivo",
-    "Camioneta",
-    "Camión",
-    "Furgoneta",
-    "Hatchback",
-    "Convertible",
-    "Coupé",
-    "Minivan",
-  ];
+const previewFiles = (files) => {
+  const imagePreviews = [];
+  const readers = [];
+
+  for (let i = 0; i < files.length; i++) {
+    const reader = new FileReader();
+    readers.push(reader);
+
+    reader.readAsDataURL(files[i]);
+
+    reader.onloadend = () => {
+      imagePreviews.push(reader.result);
+
+      // Verificar si hemos previsualizado todas las imágenes
+      if (imagePreviews.length === files.length) {
+        setImage(imagePreviews);
+      }
+    };
+    
+  }
+};
+
+const handleChange = (e) =>{
+  const file = e.target.files;
+  const fileList = [];
+   
+  for (let i = 0; i < file.length; i++) {
+    fileList.push(file[i]);
+  }
+
+  console.log(fileList);
+  setFile(fileList);
+  previewFiles(fileList);
+}
 
   return (
-    <div className="form-outer-container">
-      <div className="form-cont">
-        <div className="style">
-          <div className="cardForm">
-            <div className="form-container">
-              <form onSubmit={handleSubmit}>
-                <h3 className="title-form">VENDE TU VEHICULO</h3>
-                <hr></hr>
-
-                <div className="form-group">
-                  <label htmlFor="name">Nombre</label>
-                  <input
-                    name="name"
-                    id="name"
-                    onChange={handleChange}
-                    type="text"
-                    value={submitted ? "" : state.name}
-                  />
-                  {error.name && (
-                    <label className="form-error">{error.name}</label>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="image">Imagen</label>
-                  <input
-                    name="image"
-                    id="image"
-                    onChange={handleChange}
-                    type="text"
-                    value={submitted ? "" : state.image}
-                  />
-                  {error.image && (
-                    <label className="form-error">{error.image}</label>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="brand">Marca</label>
-                  <input
-                    name="brand"
-                    id="brand"
-                    onChange={handleChange}
-                    type="text"
-                    value={submitted ? "" : state.brand}
-                  />
-                  {error.brand && (
-                    <label className="form-error">{error.brand}</label>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="description">Descripción</label>
-                  <textarea
-                    name="description"
-                    id="description"
-                    onChange={handleChange}
-                    type="text"
-                    value={submitted ? "" : state.description}
-                  />
-                  {error.description && (
-                    <label className="form-error">{error.description}</label>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="price">Precio</label>
-                  <input
-                    name="price"
-                    id="price"
-                    onChange={handleChange}
-                    type="text"
-                    value={submitted ? "" : state.price}
-                  />
-                  {error.price && (
-                    <label className="form-error">{error.price}</label>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="stock">Stock</label>
-                  <input
-                    name="stock"
-                    id="stock"
-                    onChange={handleChange}
-                    type="text"
-                    value={submitted ? "" : state.stock}
-                  />
-                  {error.stock && (
-                    <label className="form-error">{error.stock}</label>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="maker">Maker</label>
-                  <input
-                    name="maker"
-                    id="maker"
-                    onChange={handleChange}
-                    type="text"
-                    value={submitted ? "" : state.maker}
-                  />
-                  {error.maker && (
-                    <label className="form-error">{error.maker}</label>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="model">Modelo</label>
-                  <input
-                    name="model"
-                    id="model"
-                    onChange={handleChange}
-                    type="text"
-                    value={submitted ? "" : state.model}
-                  />
-                  {error.model && (
-                    <label className="form-error">{error.model}</label>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="color">Color</label>
-                  <input
-                    name="color"
-                    id="color"
-                    onChange={handleChange}
-                    type="text"
-                    value={submitted ? "" : state.color}
-                  />
-                  {error.color && (
-                    <label className="form-error">{error.color}</label>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="kilometraje">Kilometraje</label>
-                  <input
-                    name="kilometraje"
-                    id="kilometraje"
-                    onChange={handleChange}
-                    type="text"
-                    value={submitted ? "" : state.kilometraje}
-                  />
-                  {error.kilometraje && (
-                    <label className="form-error">{error.kilometraje}</label>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="direccion">Dirección</label>
-                  <input
-                    name="direccion"
-                    id="direccion"
-                    onChange={handleChange}
-                    type="text"
-                    value={submitted ? "" : state.direccion}
-                  />
-                  {error.direccion && (
-                    <label className="form-error">{error.direccion}</label>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="category">Categoría</label>
-                  <select
-                    name="category"
-                    id="category"
-                    onChange={handleChange}
-                    value={submitted ? "" : state.category}
-                  >
-                    <option value="" disabled>
-                      Selecciona una categoría
-                    </option>
-                    {categories.map((category) => (
-                      <option key={category} value={category}>
-                        {category}
-                      </option>
-                    ))}
-                  </select>
-                  {error.category && (
-                    <label className="form-error">{error.category}</label>
-                  )}
-                </div>
-
-                {successMessage && (
-                  <div className="success-message">{successMessage}</div>
-                )}
-
-                <div className="button-container">
-                  <input type="submit" value={"PUBLICAR VEHICULO"} />
-                  <Link to="/Home">
-                    <button className="return-button">Home</button>
-                  </Link>
-                </div>
-              </form>
-            </div>
-          </div>
+    <div>
+  <div>
+    <form onSubmit={submitHandler} className="form-container">
+      <div>
+        <div>
+          <label htmlFor="name">Nombre:</label>
+          <input
+            type="text"
+            value={postCarForm.name}
+            name="name"
+            onChange={changeHandler}
+          />
+        </div>
+        <div>
+          <label htmlFor="brand">Marca:</label>
+          <select
+            name="brand"
+            value={postCarForm.brand}
+            onChange={selectBrandHandler}
+          >
+            <option value="">-</option>
+            {brand?.map((brand) => (
+              <option value={brand.name} key={brand.id}>
+                {brand.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="description">Descripción:</label>
+          <input
+            type="text"
+            value={postCarForm.description}
+            name="description"
+            onChange={changeHandler}
+          />
+        </div>
+        <div>
+          <label htmlFor="price">Precio:</label>
+          <input
+            type="text"
+            value={postCarForm.price}
+            name="price"
+            onChange={changeHandler}
+          />
+        </div>
+        <div>
+          <label htmlFor="stock">Existencias:</label>
+          <input
+            type="text"
+            value={postCarForm.stock}
+            name="stock"
+            onChange={changeHandler}
+          />
+        </div>
+        <div>
+          <label htmlFor="maker">Fabricante:</label>
+          <input
+            type="text"
+            value={postCarForm.maker}
+            name="maker"
+            onChange={changeHandler}
+          />
         </div>
       </div>
-    </div>
+      <div>
+        <div>
+          <label htmlFor="model">Modelo:</label>
+          <input
+            type="text"
+            value={postCarForm.model}
+            name="model"
+            onChange={changeHandler}
+          />
+        </div>
+        <div>
+          <label htmlFor="color">Color:</label>
+          <input
+            type="text"
+            value={postCarForm.color}
+            name="color"
+            onChange={changeHandler}
+          />
+        </div>
+        <div>
+          <label htmlFor="kilometraje">Kilometraje:</label>
+          <input
+            type="text"
+            value={postCarForm.kilometraje}
+            name="kilometraje"
+            onChange={changeHandler}
+          />
+        </div>
+        <div>
+          <label htmlFor="direccion">Dirección:</label>
+          <input
+            type="text"
+            value={postCarForm.direccion}
+            name="direccion"
+            onChange={changeHandler}
+          />
+        </div>
+        <div>
+          <label htmlFor="category">Categoría:</label>
+          <select
+            name="category"
+            value={postCarForm.category}
+            onChange={selectCategoryHandler}
+          >
+            <option value="">-</option>
+            {category &&
+              category.map((cat) => (
+                <option key={cat.id} value={cat.name}>
+                  {cat.name}
+                </option>
+              ))}
+          </select>
+        </div>
+        <div>
+        <label htmlFor="fileInput">Upload your image Here</label>
+        <input type="file" multiple onChange={handleChange} />
+  {image.map((image, index) => (
+    <img
+      key={index}
+      src={image}
+      alt={`Preview ${index}`}
+      style={{ width: "100px", height: "100px", margin: "5px" }}
+    />
+  ))}
+        <button>Upload</button>
+       
+        </div>
+      </div>
+      <input type="submit" value="Crear" />
+    </form>
+  </div>
+</div>
+
   );
 };
 

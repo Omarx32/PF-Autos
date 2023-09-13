@@ -1,4 +1,6 @@
 const { getAll, getById, updateProduct, getProductByName } = require("../controllers/Product/productController")
+const { createProduct } = require("../controllers/Product/createProduct");
+const cleanArray = require("../cloudinary/cleanArray");
 
 const getProducts = async (req, res) => {
     const { name } = req.query;
@@ -20,8 +22,20 @@ const getId = async (req, res) => {
     }
 }
 
+const createHandler = async (req, res) => {
+    try {
+        const response = await createProduct(req, res)
+        console.log(response)
+        const form = cleanArray([response])
+      
+        res.status(200).json(form)
+    } catch (error) {
+        res.status(404).json({ message: "Failed to create" })
+    }
+}
 
 module.exports = {
     getProducts,
-    getId
+    getId,
+    createHandler
 }

@@ -32,7 +32,7 @@ const Detail = () => {
     kilometraje,
   } = carsDetail;
 
-  console.log(carsDetail);
+  console.log("algo", carsDetail);
   var [preferenceId, setPreferenceId] = useState(null);
 
   initMercadoPago("TEST-0e901727-9400-4f99-8e37-20e241e7f075");
@@ -40,26 +40,28 @@ const Detail = () => {
   const createPreference = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/createpreference",
+        "http://localhost:3001/mp/createpreference",
         {
-          price: { price },
+          id,
+          title: name,
+          price: 450000,
           quantity: 1,
-          currency_id: "ARS",
         }
       );
-
-      const { id } = response.data;
-      return id;
+      console.log(response);
+      const init_point = response.data.response.body.init_point;
+      console.log("init point mp", init_point);
+      return init_point;
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleBuy = async () => {
-    const id = await createPreference();
-    if (id) {
-      setPreferenceId(id);
-    }
+    console.log("llego a handler");
+    const init_point = await createPreference();
+    console.log("termina handler");
+    window.location.href = init_point;
   };
 
   return (
@@ -77,10 +79,9 @@ const Detail = () => {
         <p>Color: {color}</p>
         <p>Direccion: {direccion}</p>
         <p>Kilometraje: {kilometraje}</p>
-        <button onClick={handleBuy} className={style.button}>
+        <button onClick={handleBuy} className={style.button} Target="_blank">
           Comprar
         </button>
-        {preferenceId && <Wallet initialization={{ preferenceId }} />}
       </div>
       <div className={style.btnOut}>
         <NavLink to="/Home">
