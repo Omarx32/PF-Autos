@@ -1,0 +1,72 @@
+.admin-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
+  
+  .users-section, .posts-section {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  /* Estilo para los títulos de las publicaciones */
+  h3 {
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  /* Estilo para el contenido de las publicaciones */
+  p {
+    font-size: 14px;
+  }
+
+  .sales-section {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .sales-section h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .sales-section p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .sales-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sales-section li {
+    margin-bottom: 5px;
+  }
+  
+  .sales-section span {
+    font-size: 14px;
+    font-weight: bold;
+  }
