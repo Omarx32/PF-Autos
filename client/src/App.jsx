@@ -8,7 +8,7 @@ import Form from "./Views/Form/Form";
 import Navbar from "./Components/NavBar/Navbar";
 import About from "./Views/About/About";
 import FormUser from "./Views/FormUser/FormUser";
-import Favorites from "./Components/favorites";
+import Favorites from "./Components/Favorites/Favorites";
 import FormLogin from "./Views/FormLogin/FormLogin"
 
 function App() {
