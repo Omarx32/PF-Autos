@@ -19,9 +19,6 @@ router.use("/users", usersRoutes);
 router.use("/brand", brandHandler);
 router.use("/filt", filterCatRoutes);
 router.use("/filt/brand", filterBrandsRouter);
-router.get("/mp", mpRoutes, (req, res) => {
-  res.send("El servidor de Mercado Pago funciona! :)");
-});
-
+router.use("/mp", mpRoutes);
 
 module.exports = router;
