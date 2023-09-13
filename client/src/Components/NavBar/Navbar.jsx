@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../NavBar/NavBar.css";
 // import { Link } from 'react-router-dom'
-import Favorites from '../favorites';
+import Favorites from '../Favorites/Favorites';
 
 const Navbar = () => {
   const navigate = useNavigate();
