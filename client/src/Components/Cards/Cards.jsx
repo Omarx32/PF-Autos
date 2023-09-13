@@ -25,7 +25,7 @@ const CardsContainer = ({ currentPage }) => {
     <div>
       <div className="cards">
         {carsToRender?.map((car) => (
-          <Card key={car.id} id={car.id} image={car.image} name={car.name} />
+          <Card key={car.id} id={car.id} image={car.image[0]} name={car.name} />
         ))}
       </div>
       <div></div>
