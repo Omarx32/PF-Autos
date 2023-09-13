@@ -9,6 +9,7 @@ import Navbar from "./Components/NavBar/Navbar";
 import About from "./Views/About/About";
 import FormUser from "./Views/FormUser/FormUser";
 import Favorites from "./Components/favorites";
+import FormLogin from "./Views/FormLogin/FormLogin"
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/About" element={<About />}></Route>
           <Route exact path="/registro" element={<FormUser />}></Route>
           <Route exact path="/Favorites" element={<Favorites/>}></Route>
+          <Route exact path="/login" element={<FormLogin/>}></Route>
         </Routes>
       </main>
       <Footer />

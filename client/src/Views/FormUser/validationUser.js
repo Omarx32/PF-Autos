@@ -2,7 +2,7 @@ export const validateField = (name, value, setErrors, errors) => {
     const newErrors = { ...errors };
   
     if (name === "fullName") {
-      const validNameRegex = /^[A-Za-z\s]*$/;
+      const validNameRegex = /^[A-Za-záéíóúÁÉÍÓÚ\s]*$/;
       if (!validNameRegex.test(value)) {
         newErrors[name] = "Nombre no válido (solo letras y espacios)";
       } else {
