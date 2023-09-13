@@ -47,10 +47,9 @@ function rootReducer(state = initialState, action) {
         };
       }
       filtro = state.allCars.filter((car) => {
-      console.log("Car",car);
-      car.name.includes(action.payload)
-      }
-      );
+      console.log("Car",car.Category);
+      return car.Category.name.toLowerCase().includes(action.payload.toLowerCase())
+      });
       return { ...state, cars: filtro };
       
       case FILTER_BRANDS:
