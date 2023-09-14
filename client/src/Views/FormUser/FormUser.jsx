@@ -6,7 +6,8 @@ import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 
 const FormUser = () => {
-  const clientID = "235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com";
+  const clientID =
+    "235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com";
 
   useEffect(() => {
     const start = () => {
@@ -52,7 +53,7 @@ const FormUser = () => {
             .post("http://localhost:3001/users/user", formDataWithLocation)
             .then((response) => {
               console.log("Usuario registrado con éxito:", response.data);
-              localStorage.setItem('fullName', formData.fullName)
+              localStorage.setItem("fullName", formData.fullName);
               alert("Usuario creado con éxito");
               window.location.href = "/Home";
               setFormData({
@@ -62,7 +63,6 @@ const FormUser = () => {
                 role: "Usuario",
                 status: "Activo",
               });
-  
             })
             .catch((error) => {
               console.error("Error al registrar el usuario:", error);
@@ -78,14 +78,23 @@ const FormUser = () => {
 
   const handleGoogleSuccess = async (response) => {
     console.log("Autenticación exitosa con Google:", response.profileObj);
-    const { familyName, givenName, googleId, imageUrl, name, email } = response.profileObj;
-  
+    const { familyName, givenName, googleId, imageUrl, name, email } =
+      response.profileObj;
+
     try {
       const locationResponseGoogle = await axios.get("http://ip-api.com/json");
       const location = locationResponseGoogle.data.city;
-      console.log('location google;',location);
-  
-      if (familyName && givenName && googleId && imageUrl && name && email && location) {
+      console.log("location google;", location);
+
+      if (
+        familyName &&
+        givenName &&
+        googleId &&
+        imageUrl &&
+        name &&
+        email &&
+        location
+      ) {
         const formDataForServer = {
           familyName,
           givenName,
@@ -93,19 +102,27 @@ const FormUser = () => {
           imageUrl,
           name,
           email,
-          location // Añadimos la ubicación al objeto de datos para enviar al servidor
+          location, // Añadimos la ubicación al objeto de datos para enviar al servidor
         };
-  
+
         try {
-          const serverResponse = await axios.post("http://localhost:3001/users/user/google", formDataForServer);
-          console.log("Datos del formulario enviados con éxito:", serverResponse.data);
+          const serverResponse = await axios.post(
+            "http://localhost:3001/users/user/google",
+            formDataForServer
+          );
+          console.log(
+            "Datos del formulario enviados con éxito:",
+            serverResponse.data
+          );
           const fullName = `${givenName} ${familyName}`;
           alert(`¡Bienvenido, ${fullName}! 🚘`);
-          localStorage.setItem('fullName', fullName);
+          localStorage.setItem("fullName", fullName);
           window.location.href = "/Home";
-          
         } catch (error) {
-          console.error("Error al enviar los datos del formulario google:", error);
+          console.error(
+            "Error al enviar los datos del formulario google:",
+            error
+          );
         }
       } else {
         console.error("Los datos de perfil de Google están incompletos.");
@@ -114,8 +131,6 @@ const FormUser = () => {
       console.error("Error al obtener la ubicación del usuario:", error);
     }
   };
-  
-  
 
   const handleGoogleFailure = (error) => {
     if (error.error === "popup_closed_by_user") {
@@ -131,11 +146,7 @@ const FormUser = () => {
     <div>
       <h2 className={styles.titulo}>Registrarse</h2>
       <div className={styles.formContainer}>
-        <img
-          className={styles.fotofoto}
-          src="https://images.unsplash.com/photo-1635095582563-86f7a024d97e?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyOTAzOTd8MHwxfHNlYXJjaHw0Mjd8fHZvbGtzd2FnZW58ZW58MHx8fHwxNjQ5MzgxNjQ5&ixlib=rb-1.2.1&q=85"
-          alt="Imagen de Mercedes"
-        />
+        <img className={styles.fotofoto} src="img/fl.jpg" alt="" />
         <div className={styles.textoSobreImagen}>Tu nuevo auto te espera</div>
         <form className={styles.formulario} onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
@@ -206,9 +217,11 @@ const FormUser = () => {
               <span className={styles.error}>{errors.status}</span>
             )}
           </div>
-          <button type="submit">Registrarse</button>
+          <button className={styles.regis} type="submit">
+            Registrarse
+          </button>
           <GoogleLogin
-            className={styles.googleloginButton}
+            className={styles.regiscongugul}
             clientID="235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com"
             buttonText="Iniciar sesión con Google"
             onSuccess={handleGoogleSuccess}

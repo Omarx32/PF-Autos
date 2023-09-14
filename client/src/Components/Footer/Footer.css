@@ -4,16 +4,16 @@
 
 /* Estilos para el Navbar.Brand (el logotipo o el nombre del sitio) */
 .navbar-brand {
-  color: #ffffff; /* Color del texto del Navbar.Brand */
-  font-size: 25px; /* Tamaño de fuente del Navbar.Brand */
+  color: #ffffff;
+  font-size: 25px;
   margin-right: 40px;
   padding-right: 20px;
 }
 
 /* Estilos para los enlaces en el Navbar */
 .nav-link {
-  color: #f5f3f3; /* Color del texto de los enlaces del Navbar */
-  font-size: 16px; /* Tamaño de fuente de los enlaces del Navbar */
+  color: #f5f3f3;
+  font-size: 16px;
   padding-right: 60px;
 }
 
@@ -49,6 +49,10 @@
   color: #fff;
   display: flex;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-
   width: 25%;
+}
+
+/* Overwrites bootstrap 20 margin bottom */
+.navbar {
+  margin-bottom: 20px;
 }

@@ -9,6 +9,7 @@ import {
   GET_DETAIL,
   ON_SEARCH,
   ORDER_BY_NAME,
+  ORDER_BY_NAME_FAV,
   ORDER_BY_PRICE,
   REMOVE_FAV,
 } from "../action/typeAction";
@@ -85,6 +86,23 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         cars: sortedName,
+      };
+
+      case ORDER_BY_NAME_FAV:
+      if (action.payload === "Default") {
+        return {
+          ...state,
+          favorites: state.favorites
+        };
+      }
+
+      const sortedNameFav = action.payload === "A-Z"
+        ? state.favorites.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
+        : state.favorites.sort((a, b) => b.name.toLowerCase().localeCompare(a.name.toLowerCase()));
+
+      return {
+        ...state,
+        favorites: sortedNameFav,
       };
 
     case ORDER_BY_PRICE:

@@ -1,20 +1,22 @@
-const { Product } = require("../../db");
+
+const { Product} = require("../../db");
 
 const ProductsAdmin = async (req, res) => {
-  const id = req.params.id;
-  const { isPublished } = req.body; // Puedes enviar esta información en el cuerpo de la solicitud
-  try {
-    const product = await Product.findByPk(id);
-    if (!product) {
-      return res.status(404).json({ message: 'Publicación no encontrada' });
+    const productId = req.params.id;
+    const { isPublished } = req.body; // Puedes enviar esta información en el cuerpo de la solicitud
+    try {
+      const product = await Product.findById(productId);
+      if (!product) {
+        return res.status(404).json({ message: 'Publicación no encontrada' });
+      }
+      product.isPublished = isPublished; // Actualizar el estado de la publicación
+      await product.save();
+      return res.json({ message: 'Estado de publicación actualizado con éxito' });
+    } catch (error) {
+      console.error('Error al actualizar el estado de publicación:', error);
+      return res.status(500).json({ message: 'Error al actualizar el estado de publicación' });
     }
-    product.isPublished = isPublished; // Actualizar el estado de la publicación
-    await product.save();
-    return res.json({ message: 'Estado de publicación actualizado con éxito' });
-  } catch (error) {
-    console.error('Error al actualizar el estado de publicación:', error);
-    return res.status(500).json({ message: 'Error al actualizar el estado de publicación' });
-  }
-};
+  };
 
-module.exports = { ProductsAdmin };
+module.exports ={ProductsAdmin} 
+

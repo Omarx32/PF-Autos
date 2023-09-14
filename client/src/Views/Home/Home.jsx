@@ -59,8 +59,6 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div>
-        <div></div>
-
         {/* <select ></select> */}
         <div className={`${styles.filtros}`}>
           <select onChange={handleOrderByName}>
@@ -85,7 +83,7 @@ export default function Home() {
             ))}
           </select>
           <select onChange={handleCategorys}>
-            <option value="default">default</option>
+            <option value="default">Filtrar por tipo</option>
             {category?.map((category) => (
               <option key={category.id} value={category.name}>
                 {category.name}

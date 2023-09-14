@@ -13,6 +13,7 @@ import {
   FILTER_CATEGORY,
   ADD_FAV,
   REMOVE_FAV,
+  ORDER_BY_NAME_FAV,
 } from "./typeAction";
 
 export const getCars = () => {
@@ -62,6 +63,13 @@ export const onSearch = (name) => {
 export const OrderByName = (payload) => {
   return {
     type: ORDER_BY_NAME,
+    payload,
+  };
+};
+
+export const OrderByNameFavs = (payload) => {
+  return {
+    type: ORDER_BY_NAME_FAV,
     payload,
   };
 };
