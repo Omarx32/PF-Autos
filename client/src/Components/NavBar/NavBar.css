@@ -84,3 +84,17 @@ a {
 
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.nav__welcome {
+  margin-right: 20px;
+  font-size: 17px; /* Ajusta el valor según el espacio deseado */
+}
+
+.nav__logout { 
+  font-size: 17px; 
+  transition: text-shadow 0.3s ease; 
+} 
+ 
+.nav__logout:hover { 
+  text-shadow: 0 0 3px rgb(245, 245, 242); /* Puedes ajustar el color y la intensidad del resaltado aquí */ 
+}  
