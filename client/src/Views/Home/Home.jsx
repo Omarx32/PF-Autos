@@ -85,7 +85,7 @@ export default function Home() {
             ))}
           </select>
           <select onChange={handleCategorys}>
-            <option value="default">default</option>
+            <option value="default">Filtrar por tipo</option>
             {category?.map((category) => (
               <option key={category.id} value={category.name}>
                 {category.name}
