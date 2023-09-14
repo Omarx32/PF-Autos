@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../NavBar/NavBar.css";
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Favorites from '../Favorites/Favorites';
 
 const Navbar = () => {
@@ -47,30 +46,28 @@ const Navbar = () => {
             VENDER VEHICULO
           </a>
         </li>
-        {fullName ? (
-          <li className="nav__item">
-            <span className="nav__welcome">Bienvenido {fullName} 🚗</span>
-            <button className="nav__logout" onClick={handleLogout}>
-              Cerrar sesión
-            </button>
-          </li>
-        ) : (
-          <>
-            <li className="nav__item">
-              <a href="/registro" className="nav__link">
-                REGISTRATE
-              </a>
-            </li>
-            <li className="nav__item">
-              <a href="/Login" className="nav__link">
-                INICIAR SESION
-              </a>
-            </li>
-          </>
-        )}
-        {/* <li className="nav__item">
+        <li className="nav__item">
+          {fullName ? (
+            <>
+              <span className="nav__welcome">¡Bienvenido, {fullName}!</span>
+              <button className="nav__logout" onClick={handleLogout}>
+                Cerrar sesión
+              </button>
+            </>
+          ) : (
+            <a href="/registro" className="nav__link">
+              REGISTRATE
+            </a>
+          )}
+        </li>
+        <li className="nav__item">
+          <a href="/Login" className="nav__link">
+            INICIAR SESION
+          </a>
+        </li>
+        <li className="nav__item">
           <Link to="/Favorites">FAVORITOS</Link>
-        </li> */}
+        </li>
       </ul>
     </nav>
   );

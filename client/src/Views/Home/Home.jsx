@@ -59,8 +59,6 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div>
-        <div></div>
-
         {/* <select ></select> */}
         <div className={`${styles.filtros}`}>
           <select onChange={handleOrderByName}>
