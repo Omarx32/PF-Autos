@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getCars } from "../../redux/action/action";
-
+import axios from 'axios';
 
 import "./Admin.css"
 
@@ -9,66 +9,90 @@ const Admin = () => {
     const cars = useSelector((state) => state.cars);
     const dispatch = useDispatch();
 
-
-
     useEffect(() => {
         dispatch(getCars());
     }, []);
 
-    const handleTogglePublish = async (productId, isPublished) => {
+    const [usersData, setUsersData] = useState([]); // Declarar usersData en el estado
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await axios.get('http://localhost:3001/users/getUsers');
+                const usersData = response.data; // Suponiendo que los datos se encuentran en la propiedad "data" de la respuesta
+                console.log("users", usersData);
+                // Actualiza el estado con los datos de usuarios
+                setUsersData(usersData);
+            } catch (error) {
+                console.error('Error al obtener los usuarios:', error);
+            }
+        };
+
+        fetchUsers();
+    }, []);
+
+    const handleTogglePublish = async (id, isPublished) => {
         try {
-            await axios.put(`http://localhost:3001/product/update/${productId}`, {
-                isPublished: !isPublished, // Cambiar el estado opuesto
+            await axios.put(`http://localhost:3001/product/productAdmin/${id}`, {
+                isPublished: !isPublished,
             });
-            // Recargar la lista de vehículos después de la actualización
-            dispatch(getCars()); // Asegúrate de que esta acción obtenga los vehículos actualizados
+            dispatch(getCars());
         } catch (error) {
             console.error('Error al actualizar el estado de publicación:', error);
-
         }
     };
 
 
-
-
-
-    // Supongamos que tienes estos datos iniciales
-    const initialUsers = [
-        { id: 1, name: 'Usuario 1' },
-        { id: 2, name: 'Usuario 2' },
-        // Agrega más usuarios si es necesario
-    ];
+    const handleBanUser = async (id, isBanned) => {
+        try {
+            await axios.put(`http://localhost:3001/users/adminUser/${id}`, {
+                isBanned: !isBanned,
+            });
+            // Actualiza la lista de usuarios después de banear/desbanear
+            const updatedUsers = usersData.map((user) => {
+                if (user.id === id) {
+                    return { ...user, isBanned: !isBanned };
+                }
+                return user;
+            });
+            setUsersData(updatedUsers);
+        } catch (error) {
+            console.error('Error al banear/desbanear el usuario:', error);
+        }
+    };
 
     const initialSales = [
         { id: 1, product: 'Producto 1', amount: 1500 },
         { id: 2, product: 'Producto 2', amount: 2200 },
         { id: 3, product: 'Producto 3', amount: 800 },
-        // Agrega más ventas ficticias si es necesario
     ];
-
-    const [users, setUsers] = useState(initialUsers);
     const [car, setCars] = useState([]);
     const [sales, setSales] = useState(initialSales);
 
-
     const totalSales = sales.reduce((total, sale) => total + sale.amount, 0);
+
     return (
         <div className="admin-container">
             <div className="users-section">
-                <h2>Usuarios</h2>
-                <ul>
-                    {users.map((user) => (
-                        <li key={user.id}>{user.name}</li>
-                    ))}
-                </ul>
+                {usersData.map((user) => (
+                    <div key={user.id}>
+                        <h3>{user.fullName}</h3>
+                        <p>{user.id}</p>
+                        <button onClick={() => handleBanUser(user.id, user.isBanned)}>
+                            {user.isBanned ? 'Desbanear' : 'Banear'}
+                        </button>
+                    </div>
+                ))}
             </div>
             <div className='posts-section'>
                 {cars.map((car) => (
                     <div key={car.id}>
                         <h3>{car.name}</h3>
                         <p>{car.id}</p>
-                        {/* Agrega aquí más campos del objeto car si es necesario */}
-                        <button onClick={() => handleTogglePublish(car.id, car.isPublished)}>
+                        <button onClick={() => {
+                            console.log("productId:", car.id); // Agrega esta línea
+                            handleTogglePublish(car.id, car.isPublished);
+                        }}>
                             {car.isPublished ? 'Despublicar' : 'Publicar'}
                         </button>
                     </div>
@@ -89,4 +113,4 @@ const Admin = () => {
     );
 }
 
-export default Admin;    
+export default Admin;   

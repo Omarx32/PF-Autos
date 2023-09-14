@@ -1,3 +1,4 @@
+
 const { Product} = require("../../db");
 
 const ProductsAdmin = async (req, res) => {
@@ -18,3 +19,4 @@ const ProductsAdmin = async (req, res) => {
   };
 
 module.exports ={ProductsAdmin} 
+
