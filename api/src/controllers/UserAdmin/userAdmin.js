@@ -3,7 +3,7 @@ const { PassAdmins } = require("../../db");
 const userAdmins = async (req, res) => {
   try {
     const { username, password } = req.body; // Obtén las credenciales enviadas desde el front-end
-
+    console.log("Credenciales recibidas:", username, password);
     const adminExiste = await PassAdmins.findOne({ where: { es_administrador: true } });
     if (!adminExiste) {
       await PassAdmins.create({

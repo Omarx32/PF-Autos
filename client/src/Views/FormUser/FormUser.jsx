@@ -63,7 +63,11 @@ const FormUser = () => {
               });
             })
             .catch((error) => {
-              console.error("Error al registrar el usuario:", error);
+              if (error.response && error.response.data && error.response.data.mensaje) {
+                setErrors({ ...errors, email: error.response.data.mensaje });
+              } else {
+                console.error("Error al registrar el usuario:", error);
+              }
             });
         })
         .catch((error) => {

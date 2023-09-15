@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../NavBar/NavBar.css";
@@ -42,32 +43,39 @@ const Navbar = () => {
           </a>
         </li>
         <li className="nav__item">
-          <a href="/Form" className="nav__link">
-            VENDER VEHICULO
-          </a>
+          <Link to="/Favorites" className="nav__link">
+            FAVORITOS
+          </Link>
         </li>
         <li className="nav__item">
-          {fullName ? (
-            <>
-              <span className="nav__welcome">¡Bienvenido, {fullName}!</span>
+          <Link to="/Form" className="nav__link">
+            VENDER VEHICULO
+          </Link>
+        </li>
+        {fullName ? (
+          <>
+            <li className="nav__item">
+              <span className="nav__welcome">Bienvenido {fullName}</span>
               <button className="nav__logout" onClick={handleLogout}>
                 Cerrar sesión
               </button>
-            </>
-          ) : (
-            <a href="/registro" className="nav__link">
-              REGISTRATE
-            </a>
-          )}
-        </li>
-        <li className="nav__item">
-          <a href="/Login" className="nav__link">
-            INICIAR SESION
-          </a>
-        </li>
-        <li className="nav__item">
-          <Link to="/Favorites">FAVORITOS</Link>
-        </li>
+            </li>
+          </>
+        ) : (
+          <>
+            <li className="nav__item">
+              <a href="/registro" className="nav__link">
+                REGISTRATE
+              </a>
+            </li>
+            <li className="nav__item">
+              <a href="/Login" className="nav__link">
+                INICIAR SESION
+              </a>
+            </li>
+          </>
+        )}
+        
       </ul>
     </nav>
   );
