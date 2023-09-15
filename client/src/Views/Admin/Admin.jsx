@@ -46,7 +46,7 @@ const Admin = () => {
     const handleBanUser = async (id, isBanned) => {
         try {
             await axios.put(`http://localhost:3001/users/adminUser/${id}`, {
-                status: !isBanned,
+                isBanned: !isBanned,
             });
             // Actualiza la lista de usuarios después de banear/desbanear
             const updatedUsers = usersData.map((user) => {
@@ -76,9 +76,12 @@ const Admin = () => {
             <div className="users-section">
                 {usersData.map((user) => (
                     <div key={user.id}>
-                        <h3>{user.fullName}</h3>
+                        <h3>{user.fullName || user.givenName}</h3>
                         <p>{user.id}</p>
-                        <button onClick={() => handleBanUser(user.id, user.isBanned)}>
+                        <button onClick={() => {
+                            console.log("userId:", user.id); // Agrega esta línea
+                            handleBanUser(user.id, user.isBanned)
+                        }}>
                             {user.isBanned ? 'Desbanear' : 'Banear'}
                         </button>
                     </div>
