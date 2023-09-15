@@ -170,7 +170,9 @@ const Form = () => {
         <form onSubmit={submitHandler} className="form-container">
           <div>
             <div>
-              <label htmlFor="name">Nombre del vehículo:</label>
+              <label className="almendra" htmlFor="name">
+                Nombre del vehículo:
+              </label>
               <input
                 type="text"
                 value={postCarForm.name}
@@ -179,7 +181,9 @@ const Form = () => {
               />
             </div>
             <div>
-              <label htmlFor="brand">Marca:</label>
+              <label className="almendra" htmlFor="brand">
+                Marca:
+              </label>
               <select
                 name="brand"
                 value={postCarForm.brand}
@@ -194,7 +198,9 @@ const Form = () => {
               </select>
             </div>
             <div>
-              <label htmlFor="price">Precio:</label>
+              <label className="almendra" htmlFor="price">
+                Precio:
+              </label>
               <input
                 type="text"
                 value={postCarForm.price}
@@ -203,7 +209,9 @@ const Form = () => {
               />
             </div>
             <div>
-              <label htmlFor="stock">Cantidad:</label>
+              <label className="almendra" htmlFor="stock">
+                Cantidad:
+              </label>
               <input
                 type="text"
                 value={postCarForm.stock}
@@ -212,7 +220,9 @@ const Form = () => {
               />
             </div>
             <div>
-              <label htmlFor="maker">Fabricante:</label>
+              <label className="almendra" htmlFor="maker">
+                Fabricante:
+              </label>
               <input
                 type="text"
                 value={postCarForm.maker}
@@ -223,7 +233,9 @@ const Form = () => {
           </div>
           <div>
             <div>
-              <label htmlFor="model">Año:</label>
+              <label className="almendra" htmlFor="model">
+                Año:
+              </label>
               <input
                 type="text"
                 value={postCarForm.model}
@@ -232,7 +244,9 @@ const Form = () => {
               />
             </div>
             <div>
-              <label htmlFor="color">Color:</label>
+              <label className="almendra" htmlFor="color">
+                Color:
+              </label>
               <input
                 type="text"
                 value={postCarForm.color}
@@ -241,7 +255,9 @@ const Form = () => {
               />
             </div>
             <div>
-              <label htmlFor="kilometraje">Kilometraje:</label>
+              <label className="almendra" htmlFor="kilometraje">
+                Kilometraje:
+              </label>
               <input
                 type="text"
                 value={postCarForm.kilometraje}
@@ -250,7 +266,9 @@ const Form = () => {
               />
             </div>
             <div>
-              <label htmlFor="direccion">Dirección:</label>
+              <label className="almendra" htmlFor="direccion">
+                Dirección:
+              </label>
               <input
                 type="text"
                 value={postCarForm.direccion}
@@ -259,7 +277,9 @@ const Form = () => {
               />
             </div>
             <div>
-              <label htmlFor="category">Tipo: (ej: Sedán)</label>
+              <label className="almendra" htmlFor="category">
+                Tipo: (ej: Sedán)
+              </label>
               <select
                 name="category"
                 value={postCarForm.category}
@@ -274,7 +294,10 @@ const Form = () => {
                   ))}
               </select>
               <div>
-                <label htmlFor="description"> Agrega una descripción:</label>
+                <label className="almendra" htmlFor="description">
+                  {" "}
+                  Agrega una descripción:
+                </label>
                 <input
                   type="text"
                   value={postCarForm.description}
@@ -284,7 +307,9 @@ const Form = () => {
               </div>
             </div>
             <div>
-              <label htmlFor="fileInput">Subir imagen aqui</label>
+              <label className="almendra" htmlFor="fileInput">
+                Subir imagen aqui
+              </label>
               <input type="file" multiple onChange={handleChange} />
               {image.map((image, index) => (
                 <img
