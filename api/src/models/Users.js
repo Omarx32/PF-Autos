@@ -38,10 +38,10 @@ module.exports = (sequelize) => {
         allowNull: true,
         defaultValue: "Usuario",
       },
-      status: {
-        type: DataTypes.ENUM("Activo", "Baneado"),
-        allowNull: true,
-        defaultValue: "Activo",
+      status: { // Agrega el campo isPublished
+        type: DataTypes.BOOLEAN, // Será un booleano
+        allowNull: true, // No puede estar vacío
+        defaultValue: true, // Por defecto, las publicaciones estarán activas
       },
     },
     {
