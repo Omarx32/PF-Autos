@@ -4,6 +4,7 @@ const usersGoogle = require("../controllers/Users/usersGoogle")
 const userAdmin = require("../controllers/UserAdmin/userAdmin")
 const getUsers = require("../controllers/GetUsers/getUsers");
 const estadoUser  = require('../controllers/EstadoUser/EstadoUser');
+const loginUsers = require ("../controllers/LoginUsers/loginUsers")
 
 
 const router = express.Router();
@@ -14,6 +15,7 @@ router.post("/user/google", usersGoogle.createUSersGoogle)
 router.post("/admin", userAdmin.userAdmins);
 router.get("/getUsers", getUsers.getUsers)
 router.put("/adminUser/:id", estadoUser.estadoUser)
+router.post ("/login", loginUsers.loginUser)
 
 
 // Otras rutas relacionadas con usuarios, como actualizar, eliminar, obtener, etc.

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../FormLogin/FormLogin.css";
-import { Link } from "react-router-dom";
+
 const FormLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -15,13 +15,29 @@ const FormLogin = () => {
       return;
     }
 
+    
+    
+
     try {
-      const response = await fetch("http://localhost:3001/users/admin", {
+      let endpoint = "";
+      let requestBody = {};
+      if (role === "admin") {
+        endpoint = "http://localhost:3001/users/admin";
+        requestBody = { username, password };
+      } else if (role === "usuario") {
+        endpoint = "http://localhost:3001/users/login";
+        requestBody = { fullName: username, password };
+      } else {
+        setError("Rol no válido");
+        return;
+      }
+
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify(requestBody),
       });
 
       const data = await response.json();
@@ -30,7 +46,14 @@ const FormLogin = () => {
         // Inicio de sesión exitoso
         alert(data.message);
         localStorage.setItem("fullName", username);
-        window.location.href = "/admin";
+
+
+        if (role === "admin") {
+          window.location.href = "/admin";
+        } else if (role === "usuario") {
+          window.location.href="/Home"; // Redirige al usuario normal a la ruta /Home
+        }
+
       } else {
         // Credenciales incorrectas
         alert(data.message);
@@ -38,7 +61,7 @@ const FormLogin = () => {
     } catch (error) {
       console.error("Error al enviar las credenciales:", error);
     }
-  };
+  }
 
   return (
     <div className="formulinocat">

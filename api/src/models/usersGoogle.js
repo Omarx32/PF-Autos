@@ -1,9 +1,15 @@
 const { DataTypes } = require("sequelize");
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = (sequelize) => {
   sequelize.define(
     "UsersGoogle",
     {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: () => uuidv4(),
+        primaryKey: true,
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -28,9 +34,9 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      location: {  // Agregamos el campo 'location'
-        type: DataTypes.STRING, // O el tipo de dato apropiado para la ubicación
-        allowNull: true, // Puede ser opcional
+      location: {  
+        type: DataTypes.STRING, 
+        allowNull: true, 
       },
     },
     {
@@ -38,3 +44,4 @@ module.exports = (sequelize) => {
     }
   );
 };
+

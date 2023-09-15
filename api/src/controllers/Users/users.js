@@ -1,21 +1,29 @@
-const { Users } = require('../../db.js'); // Asegúrate de importar el modelo correcto
+const { Users } = require('../../db.js');
+
+async function emailAlreadyExists(email) {
+  const user = await Users.findOne({ where: { email } });
+  return user !== null;
+}
 
 async function createUser(req, res) {
-    try {
-        // Obtener los datos del usuario desde el cuerpo de la solicitud
-        const userData = req.body;
+  try {
+    const userData = req.body;
 
-        // Crear el usuario en la base de datos utilizando el modelo
-        const newUser = await Users.create(userData);
+    const isEmailTaken = await emailAlreadyExists(userData.email);
 
-        // Enviar una respuesta exitosa con el nuevo usuario creado
-        res.status(201).json(newUser);
-    } catch (error) {
-        // Enviar una respuesta de error si ocurre algún problema
-        res.status(400).json({ mensaje: 'Error al crear el usuario', error });
+    if (isEmailTaken) {
+      return res.status(400).json({ mensaje: 'Este correo electrónico ya está registrado' });
     }
+
+    const newUser = await Users.create(userData);
+
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(400).json({ mensaje: 'Error al crear el usuario', error });
+  }
 }
 
 module.exports = {
-    createUser
+  createUser,
+  emailAlreadyExists
 };
