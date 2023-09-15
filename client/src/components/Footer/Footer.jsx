@@ -6,9 +6,9 @@ import "../Footer/Footer.css";
 
 function Footer() {
   return (
-    <Navbar className="bg-body-tertiary">
-      <div className="divLogos">IGNITE MOTORS</div>
-      <Container>
+    <Navbar className="futer">
+      <div className="logou">IGNITE MOTORS</div>
+      <Container className="blulabel">
         <Navbar.Brand href="/About">Desarrolladores</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

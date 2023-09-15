@@ -39,10 +39,11 @@ const About = () => {
     },
     {
       name: "Programador 5",
-      image: "URL_IMAGEN_5",
+      image:
+        "https://media.licdn.com/dms/image/D4E35AQEueJ3jGV71EA/profile-framedphoto-shrink_400_400/0/1687377709215?e=1695330000&v=beta&t=BQhhsXMe5O2QPkepaSftlt6TWexUaJpL2JNL0-pRejg",
       socialMedia: {
-        github: "LINK_GITHUB_5",
-        linkedin: "LINK_LINKEDIN_5",
+        github: "https://github.com/Omarx32",
+        linkedin: "https://www.linkedin.com/in/omarx32/",
       },
     },
     {

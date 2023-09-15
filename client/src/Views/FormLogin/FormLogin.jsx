@@ -47,11 +47,13 @@ const FormLogin = () => {
         alert(data.message);
         localStorage.setItem("fullName", username);
 
+
         if (role === "admin") {
           window.location.href = "/admin";
         } else if (role === "usuario") {
           window.location.href="/Home"; // Redirige al usuario normal a la ruta /Home
         }
+
       } else {
         // Credenciales incorrectas
         alert(data.message);

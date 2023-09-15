@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { getDetail } from "../../redux/action/action";
 import { useDispatch, useSelector } from "react-redux";
-import style from "./Detail.module.css";
+import "./Detail.css";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import axios from "axios";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // Importa los estilos del carrusel
+import { Carousel } from "react-responsive-carousel"; // Importa el componente del carrusel
 
 const Detail = () => {
   const { idCar } = useParams();
@@ -44,7 +46,7 @@ const Detail = () => {
         {
           id,
           title: name,
-          price: 450000,
+          price: price,
           quantity: 1,
         }
       );
@@ -65,28 +67,87 @@ const Detail = () => {
   };
 
   return (
-    <div className={style.container}>
-      <div className={style.autos}>
-        <img src={image} alt="" />
-      </div>
-      <div className={style.info}>
-        <h2>{name}</h2>
-        <p>Marca: {brand}</p>
-        <p>{description}</p>
-        <p>Precio: {price}</p>
-        <p>Stock: {stock}</p>
-        <p>Año: {model}</p>
-        <p>Color: {color}</p>
-        <p>Direccion: {direccion}</p>
-        <p>Kilometraje: {kilometraje}</p>
-        <button onClick={handleBuy} className={style.button} Target="_blank">
-          Comprar
-        </button>
-      </div>
-      <div className={style.btnOut}>
+    <div className="nomelacontainer">
+      <div className="btnOut">
         <NavLink to="/Home">
           <button>x</button>
         </NavLink>
+      </div>
+      <div className="row">
+        <div className="col-md-7">
+          <Carousel className="auto">
+            <div>
+              <img
+                src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/QVKIE7QSDVDILNQMAV67YTHB7Y.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                src="https://tn.com.ar/resizer/Q6JFzmyUuUV-pE5Yu6BT2weBO5U=/arc-anglerfish-arc2-prod-artear/public/JXYQG5VUFJAC7GDSL2VVO7NEGI.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                src="https://www.diariomotor.com/imagenes/2016/02/ford-focus-rs-2016-prueba-31-mapdm.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/7WGHH66RBZDQDHKSSHNMIZGI6Q.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/GGYY5HEV2FCZ7GJNCVC7WZZXYM.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/K2VYSYWODLFNIOPCFTA3AORRTI.jpg"
+                alt=""
+              />
+            </div>
+            <div>
+              <img
+                src="https://tn.com.ar/resizer/DJzHJz60jpzT1ZOrToVlLOYZ7SY=/767x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/ZAMXXWHM6FFLRNCJI5FANV2COA.jpg"
+                alt=""
+              />
+            </div>
+          </Carousel>
+        </div>
+        <div className="col-md-5">
+          <div className="project-info-box mt-0">
+            <h5>{name}</h5>
+            <p className="mb-0">{description}</p>
+          </div>
+        </div>
+
+        <div className="info">
+          <p className="pepito">
+            <b>Marca:</b> {brand}
+          </p>
+          <p className="pepito">
+            <b>Año:</b> {model}
+          </p>
+          <p className="pepito">
+            <b>Kilometraje:</b> {kilometraje}
+          </p>
+          <p className="pepito">
+            <b>Direccion:</b> {direccion}
+          </p>
+          <p className="pepito">
+            <b>Precio:</b> {price}
+          </p>
+        </div>
+
+        <button onClick={handleBuy} className="button" target="_blank">
+          Comprar
+        </button>
       </div>
     </div>
   );
