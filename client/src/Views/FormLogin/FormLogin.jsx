@@ -44,12 +44,13 @@ const FormLogin = () => {
         // Inicio de sesión exitoso
         alert(data.message);
         localStorage.setItem("fullName", username);
-  
+
         if (role === "admin") {
           window.location.href = "/admin";
         } else if (role === "usuario") {
           window.location.href = "/Home";
         }
+
       } else {
         // Credenciales incorrectas o usuario baneado
         alert(data.message);

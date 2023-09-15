@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 
 import "./Form.css";
 import {
@@ -14,7 +13,8 @@ const Form = () => {
   const dispatch = useDispatch();
   const category = useSelector((state) => state.category);
   const brand = useSelector((state) => state.brands);
-
+  const [file, setFile] = useState([]);
+  const [image, setImage] = useState([]);
   const [products, setProducts] = useState([]); // Agregamos un estado para almacenar los productos
 
   const [postCarForm, setPostCarForm] = useState({
@@ -89,7 +89,7 @@ const Form = () => {
       // Crear un objeto de producto
       const newProduct = {
         name: postCarForm.name,
-        image: file.length > 0 ? file[0] : "",
+        image: file,
         brand: postCarForm.brand,
         description: postCarForm.description,
         price: postCarForm.price,
@@ -108,7 +108,7 @@ const Form = () => {
       // Limpiar el formulario
       setPostCarForm({
         name: "",
-        image: image,
+        image: [],
         brand: "",
         description: "",
         price: "",
@@ -129,8 +129,6 @@ const Form = () => {
       alert("Algo salió mal. Por favor, inténtalo de nuevo.");
     }
   };
-  const [file, setFile] = useState([]);
-  const [image, setImage] = useState([]);
 
   const previewFiles = (files) => {
     const imagePreviews = [];
