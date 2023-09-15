@@ -46,7 +46,7 @@ const Admin = () => {
     const handleBanUser = async (id, isBanned) => {
         try {
             await axios.put(`http://localhost:3001/users/adminUser/${id}`, {
-                isBanned: !isBanned,
+                status: !isBanned,
             });
             // Actualiza la lista de usuarios después de banear/desbanear
             const updatedUsers = usersData.map((user) => {

@@ -23,7 +23,6 @@ const FormUser = () => {
     email: "",
     password: "",
     role: "Usuario",
-    status: "Activo",
   });
   const [errors, setErrors] = useState({});
 
@@ -61,7 +60,6 @@ const FormUser = () => {
                 email: "",
                 password: "",
                 role: "Usuario",
-                status: "Activo",
               });
             })
             .catch((error) => {
@@ -201,21 +199,6 @@ const FormUser = () => {
               <option value="Admin">Admin</option>
             </select>
             {errors.role && <span className={styles.error}>{errors.role}</span>}
-          </div>
-          <div className={styles.formGroup}>
-            <label>Estado:</label>
-            <select
-              name="status"
-              value={formData.status}
-              onChange={handleChange}
-              required
-            >
-              <option value="Activo">Activo</option>
-              <option value="Baneado">Baneado</option>
-            </select>
-            {errors.status && (
-              <span className={styles.error}>{errors.status}</span>
-            )}
           </div>
           <button className={styles.regis} type="submit">
             Registrarse

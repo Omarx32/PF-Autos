@@ -32,6 +32,11 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING, // O el tipo de dato apropiado para la ubicación
         allowNull: true, // Puede ser opcional
       },
+      status: { // Agrega el campo isPublished
+        type: DataTypes.BOOLEAN, // Será un booleano
+        allowNull: true, // No puede estar vacío
+        defaultValue: true, // Por defecto, las publicaciones estarán activas
+      },
     },
     {
       timestamps: false,

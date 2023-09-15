@@ -14,7 +14,9 @@ const CardsContainer = ({ currentPage }) => {
   let displayedCars =
     searchResults && searchResults.length > 0 ? searchResults : cars;
 
-  const carsToRender = displayedCars.slice(firstIndex, lastIndex);
+  const carsToRender = displayedCars
+    .filter((car) => car.isPublished) // Filtrar solo las cars con isPublished en true
+    .slice(firstIndex, lastIndex);
 
   useEffect(() => {
     if (searchResults.length === 0) {

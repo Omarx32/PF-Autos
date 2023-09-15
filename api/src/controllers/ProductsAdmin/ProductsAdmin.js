@@ -5,7 +5,7 @@ const ProductsAdmin = async (req, res) => {
     const productId = req.params.id;
     const { isPublished } = req.body; // Puedes enviar esta información en el cuerpo de la solicitud
     try {
-      const product = await Product.findById(productId);
+      const product = await Product.findByPk(productId);
       if (!product) {
         return res.status(404).json({ message: 'Publicación no encontrada' });
       }
