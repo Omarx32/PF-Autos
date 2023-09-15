@@ -30,7 +30,7 @@ const FormLogin = () => {
         // Inicio de sesión exitoso
         alert(data.message);
         localStorage.setItem("fullName", username);
-        window.location.href = "/Home";
+        window.location.href = "/admin";
       } else {
         // Credenciales incorrectas
         alert(data.message);

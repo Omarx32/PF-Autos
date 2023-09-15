@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../NavBar/NavBar.css";
-import { Link } from 'react-router-dom'
-import Favorites from '../Favorites/Favorites';
+import { Link } from "react-router-dom";
+import Favorites from "../Favorites/Favorites";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const [fullName, setFullName] = useState('');
+  const [fullName, setFullName] = useState("");
 
   useEffect(() => {
     // Obtener el nombre del usuario del localStorage al cargar la página
-    const storedFullName = localStorage.getItem('fullName');
+    const storedFullName = localStorage.getItem("fullName");
     if (storedFullName) {
       setFullName(storedFullName);
     }
@@ -18,9 +18,9 @@ const Navbar = () => {
 
   const handleLogout = () => {
     // Eliminar el nombre del usuario del localStorage al cerrar sesión
-    localStorage.removeItem('fullName');
-    navigate('/');
-    setFullName('');
+    localStorage.removeItem("fullName");
+    navigate("/");
+    setFullName("");
     // Aquí puedes agregar cualquier otra lógica para cerrar la sesión, como redirigir al usuario a la página de inicio de sesión, etc.
   };
 
@@ -42,6 +42,11 @@ const Navbar = () => {
           </a>
         </li>
         <li className="nav__item">
+          <a href="/Favorites" className="nav__link">
+            FAVORITOS
+          </a>
+        </li>
+        <li className="nav__item">
           <a href="/Form" className="nav__link">
             VENDER VEHICULO
           </a>
@@ -49,7 +54,7 @@ const Navbar = () => {
         <li className="nav__item">
           {fullName ? (
             <>
-              <span className="nav__welcome">¡Bienvenido, {fullName}!</span>
+              <span className="nav__welcome">¡Bienvenido, {fullName}! </span>
               <button className="nav__logout" onClick={handleLogout}>
                 Cerrar sesión
               </button>
@@ -64,9 +69,6 @@ const Navbar = () => {
           <a href="/Login" className="nav__link">
             INICIAR SESION
           </a>
-        </li>
-        <li className="nav__item">
-          <Link to="/Favorites">FAVORITOS</Link>
         </li>
       </ul>
     </nav>
