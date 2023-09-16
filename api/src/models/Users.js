@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
         allowNull: true,
         defaultValue: "Usuario",
       },
-      status: { // Agrega el campo isPublished
+      isBanned: { 
         type: DataTypes.BOOLEAN, // Será un booleano
         allowNull: true, // No puede estar vacío
         defaultValue: true, // Por defecto, las publicaciones estarán activas
