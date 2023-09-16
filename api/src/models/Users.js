@@ -1,7 +1,7 @@
 const { DataTypes, ValidationError } = require("sequelize");
 
 module.exports = (sequelize) => {
-  sequelize.define(
+  const Users = sequelize.define(
     "Users",
     {
       id: {
@@ -16,10 +16,10 @@ module.exports = (sequelize) => {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true, // Asegura que el correo electrónico sea único
+        unique: true, 
       },
       password: {
-        type: DataTypes.STRING, // Utiliza el tipo de datos STRING para almacenar contraseñas
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           isPasswordValid(value) {
@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
         },
       },
       location: {
-        type: DataTypes.STRING, // Cambia el tipo de datos según el formato de ubicación que desees almacenar
+        type: DataTypes.STRING,
         allowNull: true,
       },
       role: {
@@ -39,14 +39,29 @@ module.exports = (sequelize) => {
         defaultValue: "Usuario",
       },
       isBanned: { 
-        type: DataTypes.BOOLEAN, // Será un booleano
-        allowNull: true, // No puede estar vacío
-        defaultValue: true, // Por defecto, las publicaciones estarán activas
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        defaultValue: true,
       },
     },
     {
       timestamps: false,
     }
   );
-};
 
+  // Método estático para buscar un cliente por su ID
+  Users.findByClientId = async (clientId) => {
+    try {
+      const user = await Users.findOne({
+        where: {
+          id: clientId,
+        },
+      });
+      return user;
+    } catch (error) {
+      throw new Error("Error al buscar el cliente por ID");
+    }
+  };
+
+  return Users;
+};
