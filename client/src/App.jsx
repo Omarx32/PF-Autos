@@ -14,10 +14,11 @@ import Admin from "./Views/Admin/Admin";
 import FormLogin from "./Views/FormLogin/FormLogin";
 
 function App() {
+  
   return (
     <BrowserRouter>
       <div className="test">
-        <Navbar />
+      <Navbar  />
         <main className="background">
           <Routes>
             <Route exact path="/" element={<LandingPage />}></Route>
