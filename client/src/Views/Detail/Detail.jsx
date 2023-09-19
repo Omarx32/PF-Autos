@@ -3,7 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { getDetail } from "../../redux/action/action";
 import { useDispatch, useSelector } from "react-redux";
 import "./Detail.css";
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { initMercadoPago } from "@mercadopago/sdk-react";
 import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Importa los estilos del carrusel
 import { Carousel } from "react-responsive-carousel"; // Importa el componente del carrusel
@@ -19,7 +19,7 @@ const Detail = () => {
   if (!carsDetail) {
     return <div>...Loading</div>;
   }
-  console.log("505", carsDetail);
+
   const {
     id,
     name,
@@ -60,9 +60,8 @@ const Detail = () => {
   };
 
   const handleBuy = async () => {
-    console.log("llego a handler");
     const init_point = await createPreference();
-    console.log("termina handler");
+
     window.location.href = init_point;
   };
 
@@ -76,48 +75,13 @@ const Detail = () => {
       <div className="row">
         <div className="col-md-7">
           <Carousel className="auto">
-            <div>
-              <img
-                src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/QVKIE7QSDVDILNQMAV67YTHB7Y.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                src="https://tn.com.ar/resizer/Q6JFzmyUuUV-pE5Yu6BT2weBO5U=/arc-anglerfish-arc2-prod-artear/public/JXYQG5VUFJAC7GDSL2VVO7NEGI.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                src="https://www.diariomotor.com/imagenes/2016/02/ford-focus-rs-2016-prueba-31-mapdm.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/7WGHH66RBZDQDHKSSHNMIZGI6Q.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/GGYY5HEV2FCZ7GJNCVC7WZZXYM.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/K2VYSYWODLFNIOPCFTA3AORRTI.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                src="https://tn.com.ar/resizer/DJzHJz60jpzT1ZOrToVlLOYZ7SY=/767x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/ZAMXXWHM6FFLRNCJI5FANV2COA.jpg"
-                alt=""
-              />
-            </div>
+            {carsDetail &&
+              carsDetail.image &&
+              carsDetail.image.map((image, index) => (
+                <div key={index}>
+                  <img src={image} alt={`Slide ${index}`} />
+                </div>
+              ))}
           </Carousel>
         </div>
         <div className="col-md-5">
