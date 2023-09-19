@@ -6,7 +6,7 @@
   width: 1220px;
   height: 600px;
   border-radius: 2%;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   align-content: flex-start;
   justify-content: flex-end;
 }
@@ -55,12 +55,13 @@
 
 .auto {
   margin-top: 35px;
-  width: 30vh;
+  width: 500px;
+
   border-radius: 5px !important;
-  margin-left: 50px;
+  margin-left: 100px;
 }
-.poison {
-  width: 50px;
+.mb {
+  max-width: 450px;
 }
 .button {
   margin-top: 10px;
@@ -89,4 +90,43 @@
 }
 .pepito {
   margin-left: 60%;
+}
+/* carousel-styles.scss */
+
+/* Estilo para el contenedor principal del carrusel */
+
+/* Estilos para las diapositivas del carrusel */
+.carousel .slide {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+}
+
+/* Estilo para la flecha de navegación del carrusel */
+.carousel .control-arrow {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Estilo para los indicadores de navegación (puntos) */
+.carousel .thumbs-wrapper {
+  margin-top: 20px;
+}
+
+.carousel .thumbs-wrapper .thumb {
+  width: 20px;
+  height: 20px;
+  background-color: #333;
+  margin-right: 10px;
+  cursor: pointer;
+}
+ul .carousel .slider .animated {
+  height: 400px;
+}
+
+.reviu {
+  margin-top: 50px;
 }

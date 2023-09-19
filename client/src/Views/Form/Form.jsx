@@ -206,15 +206,7 @@ const Form = () => {
                 ))}
               </select>
             </div>
-            <div>
-              <label htmlFor="description">Descripción:</label>
-              <input
-                type="text"
-                value={postCarForm.description}
-                name="description"
-                onChange={changeHandler}
-              />
-            </div>
+
             <div>
               <label className="almendra" htmlFor="price">
                 Precio:
