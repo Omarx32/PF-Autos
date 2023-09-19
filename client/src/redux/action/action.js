@@ -143,3 +143,14 @@ export const removeFav=(id)=>{
       payload:id
   }
 };
+
+export const addReview= (createReview)=>{
+  return async function(dispatch){
+    try{
+      const response= await axios.post("http://localhost:3001/create/review", createReview)
+      return dispatch({type: ADD_REVIEW})
+    } catch(error){
+      console.error(error);
+    }
+  }
+}
