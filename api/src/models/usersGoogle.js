@@ -41,7 +41,7 @@ module.exports = (sequelize) => {
       isBanned: { // Agrega el campo isPublished
         type: DataTypes.BOOLEAN, // Será un booleano
         allowNull: true, // No puede estar vacío
-        defaultValue: true, // Por defecto, las publicaciones estarán activas
+        defaultValue: false, // Por defecto, las publicaciones estarán activas
       },
     },
     {

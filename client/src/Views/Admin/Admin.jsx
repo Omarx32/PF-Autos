@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getCars } from "../../redux/action/action";
 import axios from 'axios';
+import Graficas from "../../Components/Graficas/Graficas"
 
 import "./Admin.css"
 
@@ -60,57 +61,46 @@ const Admin = () => {
             console.error('Error al banear/desbanear el usuario:', error);
         }
     };
-
-    const initialSales = [
-        { id: 1, product: 'Producto 1', amount: 1500 },
-        { id: 2, product: 'Producto 2', amount: 2200 },
-        { id: 3, product: 'Producto 3', amount: 800 },
-    ];
     const [car, setCars] = useState([]);
-    const [sales, setSales] = useState(initialSales);
 
-    const totalSales = sales.reduce((total, sale) => total + sale.amount, 0);
 
     return (
-        <div className="admin-container">
-            <div className="users-section">
-                {usersData.map((user) => (
-                    <div key={user.id}>
-                        <h3>{user.fullName || user.givenName}</h3>
-                        <p>{user.id}</p>
-                        <button onClick={() => {
-                            console.log("userId:", user.id); // Agrega esta línea
-                            handleBanUser(user.id, user.isBanned)
-                        }}>
-                            {user.isBanned ? 'Desbanear' : 'Banear'}
-                        </button>
-                    </div>
-                ))}
+        <div>
+            <div>
+                <Graficas />
             </div>
-            <div className='posts-section'>
-                {cars.map((car) => (
-                    <div key={car.id}>
-                        <h3>{car.name}</h3>
-                        <p>{car.id}</p>
-                        <button onClick={() => {
-                            console.log("productId:", car.id); // Agrega esta línea
-                            handleTogglePublish(car.id, car.isPublished);
-                        }}>
-                            {car.isPublished ? 'Despublicar' : 'Publicar'}
-                        </button>
-                    </div>
-                ))}
-            </div>
-            <div className="sales-section">
-                <h2>Estadísticas de Ventas</h2>
-                <p>Total de Ventas del Mes: ${totalSales}</p>
-                <ul>
-                    {sales.map((sale) => (
-                        <li key={sale.id}>
-                            <span>{sale.product}: ${sale.amount}</span>
-                        </li>
+            <div className='container'>
+                <div className="admin user-card">
+                    <h1>Usuarios</h1>
+                    {usersData.map((user) => (
+                        <div key={user.id} className='users-section'>
+                            <h3>{user.fullName || user.givenName}</h3>
+                            <p>{user.id}</p>
+                            <p>{user.email}</p>
+                            <button onClick={() => {
+                                console.log("userId:", user.id);
+                                handleBanUser(user.id, user.isBanned)
+                            }} className='buttonAdmin'>
+                                {user.isBanned ? 'Desbanear' : 'Banear'}
+                            </button>
+                        </div>
                     ))}
-                </ul>
+                </div>
+                <div className="admin user-card">
+                    <h1>Publicaciones</h1>
+                    {cars.map((car) => (
+                        <div key={car.id} className='posts-section'>
+                            <h3>{car.name}</h3>
+                            <p>{car.id}</p>
+                            <button onClick={() => {
+                                console.log("productId:", car.id);
+                                handleTogglePublish(car.id, car.isPublished);
+                            }} className='buttonAdmin'>
+                                {car.isPublished ? 'Despublicar' : 'Publicar'}
+                            </button>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
