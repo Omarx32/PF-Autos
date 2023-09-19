@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 import "./Form.css";
 import {
@@ -70,7 +71,29 @@ const Form = () => {
     });
   };
 
-  const submitHandler = (e) => {
+  const handleChange = (e) => {
+    const files = e.target.files;
+    const fileList = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        const imageData = event.target.result; // Aquí está la imagen en formato binario
+        fileList.push(imageData);
+
+        // Verificar si hemos leído todas las imágenes
+        if (fileList.length === files.length) {
+          setFile(fileList);
+          setImage(fileList); // Ahora almacenamos los datos binarios en el estado image
+        }
+      };
+
+      reader.readAsDataURL(files[i]);
+    }
+  };
+
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     if (
@@ -87,9 +110,10 @@ const Form = () => {
       postCarForm.category.length === 0
     ) {
       // Crear un objeto de producto
+
       const newProduct = {
         name: postCarForm.name,
-        image: file,
+        image: file, // Ahora puedes enviar el array de datos binarios directamente
         brand: postCarForm.brand,
         description: postCarForm.description,
         price: postCarForm.price,
@@ -103,8 +127,10 @@ const Form = () => {
       };
 
       // Agregar el nuevo producto al estado de productos
+      setFile(file);
       setProducts([...products, newProduct]);
 
+      dispatch(postProduct(newProduct));
       // Limpiar el formulario
       setPostCarForm({
         name: "",
@@ -120,9 +146,7 @@ const Form = () => {
         direccion: "",
         category: [],
       });
-      console.log("dispatch:", postCarForm);
-
-      dispatch(postProduct(postCarForm));
+      console.log("dispatch:", newProduct);
 
       alert("Tu producto ha sido creado exitosamente");
     } else {
@@ -149,19 +173,6 @@ const Form = () => {
         }
       };
     }
-  };
-
-  const handleChange = (e) => {
-    const file = e.target.files;
-    const fileList = [];
-
-    for (let i = 0; i < file.length; i++) {
-      fileList.push(file[i]);
-    }
-
-    console.log(fileList);
-    setFile(fileList);
-    previewFiles(fileList);
   };
 
   return (
