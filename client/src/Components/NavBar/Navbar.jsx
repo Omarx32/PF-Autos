@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import "../NavBar/NavBar.css";
 import { Link } from "react-router-dom";
 import Favorites from "../Favorites/Favorites";
@@ -9,21 +8,21 @@ import Favorites from "../Favorites/Favorites";
 const Navbar = () => {
   const navigate = useNavigate();
   const [fullName, setFullName] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    // Obtener el nombre del usuario del localStorage al cargar la página
     const storedFullName = localStorage.getItem("fullName");
     if (storedFullName) {
       setFullName(storedFullName);
+      setIsLoggedIn(true);
     }
   }, []);
 
   const handleLogout = () => {
-    // Eliminar el nombre del usuario del localStorage al cerrar sesión
     localStorage.removeItem("fullName");
     navigate("/");
     setFullName("");
-    // Aquí puedes agregar cualquier otra lógica para cerrar la sesión, como redirigir al usuario a la página de inicio de sesión, etc.
+    setIsLoggedIn(false);
   };
 
   return (
@@ -34,26 +33,34 @@ const Navbar = () => {
       </a>
       <ul className="nav__menu">
         <li className="nav__item">
-          <a href="/home" className="nav__link">
+          <a href="/home" className="nav__link nav__logout ">
             VEHICULOS
           </a>
         </li>
         <li className="nav__item">
-          <a href="/About" className="nav__link">
+          <a href="/About" className="nav__link nav__logout ">
             NOSOTROS
           </a>
         </li>
         <li className="nav__item">
-
-          <a href="/Favorites" className="nav__link">
+          <a href="/Favorites" className="nav__link nav__logout ">
             FAVORITOS
           </a>
         </li>
-        <li className="nav__item">
-          <a href="/Form" className="nav__link">
-            VENDER VEHICULO
-          </a>
-        </li>
+        {isLoggedIn && (
+          <li className="nav__item">
+            <a href="/Form" className="nav__link nav__logout">
+              VENDER VEHICULO
+            </a>
+          </li>
+        )}
+        {isLoggedIn && localStorage.getItem("role") === "admin" && (
+          <li className="nav__item nav__logout " >
+            <a href="/admin" className="nav__link">
+              ADMINISTRADOR
+            </a>
+          </li>
+        )}
         <li className="nav__item">
           {fullName ? (
             <>
@@ -63,17 +70,18 @@ const Navbar = () => {
               </button>
             </>
           ) : (
-            <a href="/registro" className="nav__link">
-              REGISTRATE
-            </a>
+            <>
+              <div className="nav__link-group " >
+                <a href="/registro" className="nav__link nav__logout ">
+                  REGISTRATE
+                </a>
+                <a href="/Login" className="nav__link nav__logout">
+                  INICIAR SESION
+                </a>
+              </div>
+            </>
           )}
         </li>
-        <li className="nav__item">
-          <a href="/Login" className="nav__link">
-            INICIAR SESION
-          </a>
-        </li>
-
       </ul>
     </nav>
   );

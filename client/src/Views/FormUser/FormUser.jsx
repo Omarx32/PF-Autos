@@ -6,8 +6,7 @@ import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 
 const FormUser = () => {
-  const clientID =
-    "235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com";
+  const clientID = "235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com";
 
   useEffect(() => {
     const start = () => {
@@ -191,7 +190,7 @@ const FormUser = () => {
               <span className={styles.error}>{errors.password}</span>
             )}
           </div>
-          <div className={styles.formGroup}>
+          {/* <div className={styles.formGroup}>
             <label>Rol:</label>
             <select
               name="role"
@@ -203,7 +202,7 @@ const FormUser = () => {
               <option value="Admin">Admin</option>
             </select>
             {errors.role && <span className={styles.error}>{errors.role}</span>}
-          </div>
+          </div> */}
           <button className={styles.regis} type="submit">
             Registrarse
           </button>

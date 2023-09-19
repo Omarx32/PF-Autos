@@ -44,6 +44,7 @@ const FormLogin = () => {
         // Inicio de sesión exitoso
         alert(data.message);
         localStorage.setItem("fullName", username);
+        localStorage.setItem("role", role);
 
         if (role === "admin") {
           window.location.href = "/admin";
