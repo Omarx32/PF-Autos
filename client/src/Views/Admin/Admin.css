@@ -1,59 +1,78 @@
 .container {
   display: flex; /* Establece el contenedor como un contenedor flexible */
   justify-content: space-between; /* Espacio entre los contenedores hijos */
-}
-/* Estilos para la tarjeta contenedora */
-.admin {
-  display: flex; /* Cambiamos el valor a flex para hacerlo un contenedor flexible */
-  width: 100%; /* Ajustamos el ancho al 100% para ocupar todo el espacio disponible */
-  height: auto; /* Cambiamos la altura a "auto" para que se ajuste al contenido */
-  flex-wrap: wrap; /* Permitimos que los elementos secundarios se envuelvan si no caben en una fila */ 
+
 }
 
+/* Estilos CSS para la tarjeta de administrador */
+.admin {
+  background-color: rgb(252, 56, 56); /* Fondo rojo */
+  border: 3px solid black; /* Borde de color azul */
+  border-radius: 10px; /* Borde redondeado */
+  padding: 20px; /* Espaciado interno para el contenido */
+  text-align: center; /* Centrar el contenido horizontalmente */
+}
+
+/* Estilos para el encabezado h1 en la tarjeta */
+.admin h1 {
+  color: rgb(255, 255, 255); /* Color del texto blanco */
+  font-weight: bold; /* Texto en negrita */
+}
+
+/* Estilos para cada elemento de usuario en la tarjeta */
 .admin div {
-  flex: 1; /* Cada elemento secundario tomará igual espacio dentro del contenedor flexible */
-  margin: 10px; /* Agrega margen entre las secciones */
-  padding: 10px; /* Agrega relleno para hacer que las secciones sean más visibles */
-  border: 1px solid #ccc; /* Agrega un borde alrededor de las secciones */
-  backface-visibility: hidden;
-  transition: 1s;
+  background-color:  rgb(255, 72, 72); /* Fondo blanco para cada elemento de usuario */
+  border: 1px solid rgb(0, 0, 0); /* Borde de color verde */
+  border-radius: 5px; /* Borde redondeado para cada elemento de usuario */
+  margin: 20px 0; /* Espaciado entre elementos de usuario */
+  padding: 10px; /* Espaciado interno para cada elemento de usuario */
+  text-align: center; /* Centrar el contenido horizontalmente */
+}
+
+/* Estilos para el botón en cada elemento de usuario */
+.admin .buttonAdmin {
+  background-color: black; /* Fondo naranja para el botón */
+  color: white; /* Color del texto blanco */
+  border: none; /* Sin borde */
+  border-radius: 3px; /* Borde redondeado para el botón */
+  padding: 5px 10px; /* Espaciado interno para el botón */
+  cursor: pointer; /* Cambiar el cursor al pasar el ratón sobre el botón */
+}
+
+/* Estilos para el botón cuando se pasa el ratón sobre él */
+.admin .buttonAdmin:hover {
+  background-color: rgb(0, 17, 255); /* Fondo naranja oscuro al pasar el ratón */
 }
 
 .user-card {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px;
-  background-color: rgb(240, 56, 56);
-  /* Agrega estas propiedades para asegurarte de que no se superpongan */
-  clear: both;
-  overflow: auto;
+  max-height: 500px; /* Establece la altura máxima deseada */
+  max-width: 760px;
+  overflow-y: auto; /* Habilita la barra de desplazamiento vertical cuando sea necesario */
 }
 
-.admin .front{
-  background-color: rgb(240, 56, 56);
-  transform: rotateY(0deg);
+/* Estilos personalizados para la barra de desplazamiento en WebKit */
+.user-card::-webkit-scrollbar {
+  width: 15px; /* Ancho de la barra de desplazamiento */
 }
 
-.admin .back{
-  background-color: rgb(240, 56, 56);
-  transform:  rotateY(180deg);
+.user-card::-webkit-scrollbar-thumb {
+  background-color: #000000; /* Color del pulgar de la barra de desplazamiento */
 }
 
-.admin:hover .front{
-  transform:  rotateY(180deg);
+.user-card::-webkit-scrollbar-thumb:hover {
+  background-color: #363636; /* Color del pulgar de la barra de desplazamiento al pasar el mouse */
 }
-  
 
-.admin:hover .back{
-  transform:  rotateY(360deg);
+.user-card::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Color de la pista de la barra de desplazamiento */
 }
 
 .users-section, .posts-section {
   flex: 1;
   margin: 10px;
   padding: 10px;
-  border: 1px solid #ccc;
-  color: white;
+  border: 1px solid #000000;
+  color: rgb(255, 255, 255);
   display: flex; /* Establece el contenedor como un contenedor flexible */
   flex-direction: column; /* Alinea los elementos internos en una columna */
   justify-content: center; /* Centra verticalmente el contenido */
@@ -61,25 +80,3 @@
   text-align: center; /* Alinea el texto al centro */
 }
 
-.users-section1, .posts-section1 {
-  flex: 1;
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  color: rgb(0, 0, 0);
-  text-align: center; /* Alinea el texto al centro */
-}
-
-.buttonAdmin {
-  background-color: #3498db; /* Color de fondo del botón */
-  color: #fff; /* Color del texto del botón */
-  padding: 8px 16px; /* Espaciado interno del botón */
-  border: none; /* Quita el borde del botón */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
-}
-
-/* Estilo al pasar el cursor sobre el botón */
-.buttonAdmin:hover {
-  background-color: #2980b9; /* Color de fondo del botón al pasar el cursor */
-}
