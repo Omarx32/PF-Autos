@@ -1,72 +1,85 @@
-.admin-container {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
-  }
-  
-  .users-section, .posts-section {
-    flex: 1;
-    padding: 20px;
-    border: 1px solid #ccc;
-    margin: 10px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 10px;
-  }
-  
-  /* Estilo para los títulos de las publicaciones */
-  h3 {
-    font-size: 16px;
-    margin: 0;
-  }
-  
-  /* Estilo para el contenido de las publicaciones */
-  p {
-    font-size: 14px;
-  }
+.container {
+  display: flex; /* Establece el contenedor como un contenedor flexible */
+  justify-content: space-between; /* Espacio entre los contenedores hijos */
+}
+/* Estilos para la tarjeta contenedora */
+.admin {
+  display: flex; /* Cambiamos el valor a flex para hacerlo un contenedor flexible */
+  width: 100%; /* Ajustamos el ancho al 100% para ocupar todo el espacio disponible */
+  height: auto; /* Cambiamos la altura a "auto" para que se ajuste al contenido */
+  flex-wrap: wrap; /* Permitimos que los elementos secundarios se envuelvan si no caben en una fila */ 
+}
 
-  .sales-section {
-    flex: 1;
-    padding: 20px;
-    border: 1px solid #ccc;
-    margin: 10px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
+.admin div {
+  flex: 1; /* Cada elemento secundario tomará igual espacio dentro del contenedor flexible */
+  margin: 10px; /* Agrega margen entre las secciones */
+  padding: 10px; /* Agrega relleno para hacer que las secciones sean más visibles */
+  border: 1px solid #ccc; /* Agrega un borde alrededor de las secciones */
+  backface-visibility: hidden;
+  transition: 1s;
+}
+
+.user-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  background-color: rgb(240, 56, 56);
+  /* Agrega estas propiedades para asegurarte de que no se superpongan */
+  clear: both;
+  overflow: auto;
+}
+
+.admin .front{
+  background-color: rgb(240, 56, 56);
+  transform: rotateY(0deg);
+}
+
+.admin .back{
+  background-color: rgb(240, 56, 56);
+  transform:  rotateY(180deg);
+}
+
+.admin:hover .front{
+  transform:  rotateY(180deg);
+}
   
-  .sales-section h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .sales-section p {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  
-  .sales-section ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .sales-section li {
-    margin-bottom: 5px;
-  }
-  
-  .sales-section span {
-    font-size: 14px;
-    font-weight: bold;
-  }
+
+.admin:hover .back{
+  transform:  rotateY(360deg);
+}
+
+.users-section, .posts-section {
+  flex: 1;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  color: white;
+  display: flex; /* Establece el contenedor como un contenedor flexible */
+  flex-direction: column; /* Alinea los elementos internos en una columna */
+  justify-content: center; /* Centra verticalmente el contenido */
+  align-items: center; /* Centra horizontalmente el contenido */
+  text-align: center; /* Alinea el texto al centro */
+}
+
+.users-section1, .posts-section1 {
+  flex: 1;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  color: rgb(0, 0, 0);
+  text-align: center; /* Alinea el texto al centro */
+}
+
+.buttonAdmin {
+  background-color: #3498db; /* Color de fondo del botón */
+  color: #fff; /* Color del texto del botón */
+  padding: 8px 16px; /* Espaciado interno del botón */
+  border: none; /* Quita el borde del botón */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+}
+
+/* Estilo al pasar el cursor sobre el botón */
+.buttonAdmin:hover {
+  background-color: #2980b9; /* Color de fondo del botón al pasar el cursor */
+}
