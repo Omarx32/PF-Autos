@@ -11,3 +11,4 @@ export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const ADD_FAV="ADD_FAV"
 export const REMOVE_FAV="REMOVE_FAV"
 export const ORDER_BY_NAME_FAV="ORDER_BY_NAME_FAV"
+export const ADD_REVIEW="ADD_REVIEW"
