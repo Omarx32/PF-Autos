@@ -6,7 +6,7 @@ const getCategorys = async () => {
 
     if(category.length === 0){
       // Si no existen, crea las categorías
-      const brandNames = ["Sedán", "Compacto", "Camioneta"]; // Reemplaza con tus categorías reales
+      const brandNames = ["Sedán", "Compacto", "Camioneta","Convertible","Coupé","Hatchback","Deportivo","Minivan"]; // Reemplaza con tus categorías reales
       const createdCategories = await Promise.all(
         brandNames.map((name) => Category.create({ name }))
       );

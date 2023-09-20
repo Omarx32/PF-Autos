@@ -55,14 +55,14 @@
 
 .auto {
   margin-top: 35px;
-  width: 500px;
-
+width: 500px;
   border-radius: 5px !important;
   margin-left: 100px;
 }
 .mb {
   max-width: 450px;
 }
+
 .button {
   margin-top: 10px;
   padding: 10px 20px;
@@ -91,6 +91,7 @@
 .pepito {
   margin-left: 60%;
 }
+
 /* carousel-styles.scss */
 
 /* Estilo para el contenedor principal del carrusel */
@@ -129,4 +130,5 @@ ul .carousel .slider .animated {
 
 .reviu {
   margin-top: 50px;
+
 }

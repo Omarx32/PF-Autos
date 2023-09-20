@@ -65,6 +65,7 @@ const Detail = () => {
     window.location.href = init_point;
   };
 
+
   const [input, setInput] = useState({
     title: "",
     description: "",
@@ -125,14 +126,17 @@ const Detail = () => {
 
       setInput({ title: "", description: "", rating: 0 });
 
+
       console.log(input);
       dispatch(addReview(newReview));
+
 
       alert("Review añadida");
     } else {
       alert("Inténtalo de nuevo");
     }
   };
+
 
   return (
     <div className="nomelacontainer">
@@ -143,12 +147,16 @@ const Detail = () => {
       </div>
       <div className="row">
         <div className="col-md-7">
+
           <Carousel className="auto" showThumbs={false}>
+
             {carsDetail &&
               carsDetail.image &&
               carsDetail.image.map((image, index) => (
                 <div key={index}>
+
                   <img className="mb" src={image} alt={`Slide ${index}`} />
+
                 </div>
               ))}
           </Carousel>
@@ -182,6 +190,7 @@ const Detail = () => {
           Comprar
         </button>
 
+
         <form className="reviu" onSubmit={handleSubmit}>
           <label htmlFor="title">Titula tu comentario</label>
           <input
@@ -200,12 +209,14 @@ const Detail = () => {
             value={input.description}
             onChange={handleInput}
           />
+
           <select name="rating" onChange={handleInput}>
             <option value="0">Califica este producto</option>
             <option value="1">&#x2B50; Mierda</option>
             <option value="2">&#x2B50; &#x2B50; Mediocre</option>
             <option value="3">&#x2B50;&#x2B50;&#x2B50; Aceptable</option>
             <option value="4">&#x2B50;&#x2B50;&#x2B50;&#x2B50; Bueno</option>
+
             <option value="5">
               &#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50; Excelente
             </option>
@@ -213,6 +224,7 @@ const Detail = () => {
           <label htmlFor="">
             ¿Tu cuenta está autenticada por la página o por google?
           </label>
+
           <select name="user">
             <option value="google">google</option>
             <option value="ignate motors">Ignate Motors</option>
