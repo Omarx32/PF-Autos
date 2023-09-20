@@ -1,11 +1,11 @@
 const {Reviews, Users, UsersGoogle, Product}= require("../../db")
 
-const createReview= async (title, description, rating, product, user)=>{
+const createReview= async (title, description, rating, product, email, password)=>{
     try {
         if(!title || !description){
           throw new Error("Falta contenido")  
         }
-        const review= await Reviews.create({title, description, rating, product, user})
+        const review= await Reviews.create({title, description, rating, product, email, password})
 
         const productID= review.ProductId;
         const productMatch= await Product.findOne({
@@ -19,24 +19,27 @@ const createReview= async (title, description, rating, product, user)=>{
             await review.setProduct(productMatch);
         }
 
-        if(!user){throw new Error("Esta revisión no pertenece a ningún usuario")
-        } else if(user==="google"){
-            const userGoogleID= review.UsersGoogleId;
+        if(email && !password){
             const userGoogle= await UsersGoogle.findOne({
-                where: {
-                    id: userGoogleID
-                }
+                where: {email}
             });
+            if(userGoogle){
                 await review.setUsersGoogle(userGoogle);
-        } else{
-            const userID= review.UserId;
-            const user= await Users.findOne({
-                where: {
-                    id: userID
-                }
-            });
-            await review.setUser(user);
+            } else{
+                throw new Error("Esta revisión no pertenece a ningún usuario")
+            }
         }
+        if(email && password){
+            const user= await Users.findOne({
+                where: {email, password}
+            });
+            if(user){
+                await review.setUser(user);             
+            } else{
+                throw new Error("Esta revisión no pertenece a ningún usuario")
+            }
+        }
+
 
         return review;
 

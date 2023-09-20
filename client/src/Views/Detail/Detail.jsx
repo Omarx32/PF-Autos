@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import { getDetail, addReview } from "../../redux/action/action";
+import { getDetail } from "../../redux/action/action";
 import { useDispatch, useSelector } from "react-redux";
 import "./Detail.css";
 import { initMercadoPago } from "@mercadopago/sdk-react";
 import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Importa los estilos del carrusel
 import { Carousel } from "react-responsive-carousel"; // Importa el componente del carrusel
+// import MiContexto from "../contexto";
 
 const Detail = () => {
   const { idCar } = useParams();
@@ -64,13 +65,13 @@ const Detail = () => {
 
     window.location.href = init_point;
   };
-
   const [input, setInput] = useState({
     title: "",
     description: "",
     rating: 0,
     product: idCar,
-    user: "",
+    email: "",
+    password: "",
   });
 
   const handleInput = (event) => {
@@ -81,7 +82,6 @@ const Detail = () => {
     title: "",
     description: "",
     rating: "",
-    user: "",
   });
 
   const validation = (input) => {
@@ -114,21 +114,37 @@ const Detail = () => {
   };
 
   const handleSubmit = (event) => {
-    if (!error.title && !error.description) {
+    if (!error.title && !error.description && !error.rating) {
       const newReview = {
         title: input.title,
         description: input.description,
         rating: input.rating,
         product: input.product,
-        user: input.user,
+        email: input.email,
+        password: input.password,
       };
 
-      setInput({ title: "", description: "", rating: 0 });
+      console.dir(newReview);
+      setInput({
+        title: "",
+        description: "",
+        rating: 0,
+        email: "",
+        password: "",
+      });
 
-      console.log(input);
-      dispatch(addReview(newReview));
+      // dispatch(addReview(newReview));
 
-      alert("Review añadida");
+      axios
+        .post("http://localhost:3001/create/review", newReview)
+        .then((response) => {
+          // Si la respuesta es exitosa
+          alert("Review añadida");
+        })
+        .catch((error) => {
+          // Si ocurre un error
+          alert("Error al crear review");
+        });
     } else {
       alert("Inténtalo de nuevo");
     }
@@ -196,8 +212,7 @@ const Detail = () => {
             onChange={handleInput}
           />
           <label htmlFor="review">
-            ¿Alguna duda? ¿Crítica constructiva? ¿Puteada al vendedor? Déjala
-            aquí
+            ¿Alguna duda? ¿Crítica constructiva? Déjala aquí
           </label>
           <input
             type="text"
@@ -208,26 +223,37 @@ const Detail = () => {
 
           <select name="rating" onChange={handleInput}>
             <option value="0">Califica este producto</option>
-            <option value="1">&#x2B50; Mierda</option>
-            <option value="2">&#x2B50; &#x2B50; Mediocre</option>
+            <option value="1">&#x2B50; Malo</option>
+            <option value="2">&#x2B50;&#x2B50; Mediocre</option>
             <option value="3">&#x2B50;&#x2B50;&#x2B50; Aceptable</option>
             <option value="4">&#x2B50;&#x2B50;&#x2B50;&#x2B50; Bueno</option>
-
             <option value="5">
               &#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50; Excelente
             </option>
           </select>
           <label htmlFor="">
-            ¿Tu cuenta está autenticada por la página o por google?
+            Introduce el email con el que estás registrado
           </label>
-
-          <select name="user">
-            <option value="google">google</option>
-            <option value="ignate motors">Ignate Motors</option>
-          </select>
+          <input
+            type="text"
+            name="email"
+            value={input.email}
+            onChange={handleInput}
+          />
+          <label htmlFor="">Introduce tu clave</label>
+          <input
+            type="password"
+            name="password"
+            value={input.password}
+            onChange={handleInput}
+          />
           <button type="submit">Agregar</button>
         </form>
       </div>
+
+      <button onClick={handleBuy} className="button" target="_blank">
+        Comprar
+      </button>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { all } from "axios";
 import {
   ADD_FAV,
+  CREATE_USER,
   FILTER_BRANDS,
   FILTER_CATEGORY,
   GET_BRANDS,
@@ -12,6 +13,7 @@ import {
   ORDER_BY_NAME_FAV,
   ORDER_BY_PRICE,
   REMOVE_FAV,
+
 } from "../action/typeAction";
 let initialState = {
   allVehiculos: [],
@@ -21,7 +23,8 @@ let initialState = {
   onSearch: {},
   category: [],
   brands: [],
-  favorites:[] 
+  favorites:[],
+  userDetail:{}
 };
 
 function rootReducer(state = initialState, action) {
@@ -154,6 +157,11 @@ function rootReducer(state = initialState, action) {
     return {
       ...state, favorites:arrFav
     }
+
+    case CREATE_USER:
+      return {
+        ...state, userDetail: action.payload
+      }
 
     default:
       return { ...state };

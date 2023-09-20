@@ -3,6 +3,7 @@ const users = require('../controllers/Users/users'); // Asegúrate de importar e
 const usersGoogle = require("../controllers/Users/usersGoogle")
 const userAdmin = require("../controllers/UserAdmin/userAdmin")
 const getUsers = require("../controllers/GetUsers/getUsers");
+const getUserById= require("../controllers/GetUsers/getUserById")
 const estadoUser  = require('../controllers/EstadoUser/EstadoUser');
 const loginUsers = require ("../controllers/LoginUsers/loginUsers")
 
@@ -14,6 +15,7 @@ router.post('/user', users.createUser);
 router.post("/user/google", usersGoogle.createUSersGoogle)
 router.post("/admin", userAdmin.userAdmins);
 router.get("/getUsers", getUsers.getUsers)
+router.get("/getUserId", getUserById)
 router.put("/adminUser/:id", estadoUser.estadoUser)
 router.post ("/login", loginUsers.loginUser)
 
