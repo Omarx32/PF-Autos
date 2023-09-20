@@ -90,3 +90,9 @@
 .pepito {
   margin-left: 60%;
 }
+
+.select {
+  width: 20%; /* Define el ancho del select */
+  height: 35px; /* Define la altura del select */
+  border-radius: 5px; /* Define un borde redondeado para el select si deseas */
+}
