@@ -38,7 +38,7 @@ const About = () => {
       },
     },
     {
-      name: "Programador 5",
+      name: "Omar Sampayo",
       image:
         "https://media.licdn.com/dms/image/D4E35AQEueJ3jGV71EA/profile-framedphoto-shrink_400_400/0/1687377709215?e=1695330000&v=beta&t=BQhhsXMe5O2QPkepaSftlt6TWexUaJpL2JNL0-pRejg",
       socialMedia: {

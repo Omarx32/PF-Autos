@@ -208,7 +208,7 @@ const FormUser = () => {
               <span className={styles.error}>{errors.password}</span>
             )}
           </div>
-          <div className={styles.formGroup}>
+          {/* <div className={styles.formGroup}>
             <label>Rol:</label>
             <select
               name="role"
@@ -220,7 +220,7 @@ const FormUser = () => {
               <option value="Admin">Admin</option>
             </select>
             {errors.role && <span className={styles.error}>{errors.role}</span>}
-          </div>
+          </div> */}
           <button className={styles.regis} type="submit">
             Registrarse
           </button>

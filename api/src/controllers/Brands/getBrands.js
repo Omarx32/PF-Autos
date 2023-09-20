@@ -9,7 +9,7 @@ const getBrands = async () => {
     // Si las marcas ya existen, no las vuelvas a crear
     if (existingBrands.length === 0) {
       // Si no existen, crea las marcas
-      const brandNames = ["Toyota", "Ford", "Chevrolet"]; // Reemplaza con tus marcas reales
+      const brandNames = ["Toyota", "Ford", "Chevrolet", "Honda","Nissan","Volskwagen","Kia","Mazda","Bmw","Hyundai"]; // Reemplaza con tus marcas reales
       const createdBrands = await Promise.all(
         brandNames.map((name) => Brand.create({ name }))
       );

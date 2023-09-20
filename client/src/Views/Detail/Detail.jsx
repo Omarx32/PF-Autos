@@ -3,7 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { getDetail} from "../../redux/action/action";
 import { useDispatch, useSelector } from "react-redux";
 import "./Detail.css";
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { initMercadoPago } from "@mercadopago/sdk-react";
 import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Importa los estilos del carrusel
 import { Carousel } from "react-responsive-carousel"; // Importa el componente del carrusel
@@ -21,7 +21,7 @@ const Detail = () => {
     return <div>...Loading</div>;
   }
 
-  console.log("505", carsDetail);
+
   const {
     id,
     name,
@@ -62,9 +62,8 @@ const Detail = () => {
   };
 
   const handleBuy = async () => {
-    console.log("llego a handler");
     const init_point = await createPreference();
-    console.log("termina handler");
+
     window.location.href = init_point;
   };
 
@@ -80,25 +79,34 @@ const Detail = () => {
     title:"", description:"", rating:""
   })
 
-  const validation=(input)=>{
-    let msj={}
-    if(!input.title){ msj.title="Ingresa un título" } 
-    else{ msj.title="" }
+  const validation = (input) => {
+    let msj = {};
+    if (!input.title) {
+      msj.title = "Ingresa un título";
+    } else {
+      msj.title = "";
+    }
 
-    if(!input.description){
-      msj.description="Ingresa contenido"
-    } else{msj.description=""}
+    if (!input.description) {
+      msj.description = "Ingresa contenido";
+    } else {
+      msj.description = "";
+    }
 
-    if(!input.rating || 0 > input.rating > 5){
-      msj.rating="Solo de 0 a 5 estrellas"
-    } else{msj.rating=""}
+    if (!input.rating || 0 > input.rating > 5) {
+      msj.rating = "Solo de 0 a 5 estrellas";
+    } else {
+      msj.rating = "";
+    }
 
     return msj;
-  }
+  };
 
-  const handleError=(event)=>{
-    setError({...validation({...input, [event.target.name]:event.target.value})})
-  }
+  const handleError = (event) => {
+    setError({
+      ...validation({ ...input, [event.target.name]: event.target.value }),
+    });
+  };
 
   const handleSubmit= (event)=>{
     if(!error.title && !error.description && !error.rating){
@@ -131,7 +139,8 @@ const Detail = () => {
     } else{
       alert("Inténtalo de nuevo")
     }
-  }
+  };
+
 
   return (
     <div className="nomelacontainer">
@@ -142,49 +151,18 @@ const Detail = () => {
       </div>
       <div className="row">
         <div className="col-md-7">
-          <Carousel className="auto">
-            <div>
-              <img
-                src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/QVKIE7QSDVDILNQMAV67YTHB7Y.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                src="https://tn.com.ar/resizer/Q6JFzmyUuUV-pE5Yu6BT2weBO5U=/arc-anglerfish-arc2-prod-artear/public/JXYQG5VUFJAC7GDSL2VVO7NEGI.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                src="https://www.diariomotor.com/imagenes/2016/02/ford-focus-rs-2016-prueba-31-mapdm.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/7WGHH66RBZDQDHKSSHNMIZGI6Q.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/GGYY5HEV2FCZ7GJNCVC7WZZXYM.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/K2VYSYWODLFNIOPCFTA3AORRTI.jpg"
-                alt=""
-              />
-            </div>
-            <div>
-              <img
-                src="https://tn.com.ar/resizer/DJzHJz60jpzT1ZOrToVlLOYZ7SY=/767x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/ZAMXXWHM6FFLRNCJI5FANV2COA.jpg"
-                alt=""
-              />
-            </div>
+
+          <Carousel className="auto" showThumbs={false}>
+
+            {carsDetail &&
+              carsDetail.image &&
+              carsDetail.image.map((image, index) => (
+                <div key={index}>
+
+                  <img className="mb" src={image} alt={`Slide ${index}`} />
+
+                </div>
+              ))}
           </Carousel>
         </div>
 
@@ -216,16 +194,31 @@ const Detail = () => {
         <div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="title">Titula tu comentario</label>
-          <input type="text" name="title" value={input.title} onChange={handleInput} />
-          <label htmlFor="review">¿Alguna duda? ¿Crítica constructiva? ¿Puteada al vendedor? Déjala aquí</label>
-          <input type="text" name="description" value={input.description} onChange={handleInput}/>
+          <input
+            type="text"
+            name="title"
+            value={input.title}
+            onChange={handleInput}
+          />
+          <label htmlFor="review">
+            ¿Alguna duda? ¿Crítica constructiva? Déjala aquí
+          </label>
+          <input
+            type="text"
+            name="description"
+            value={input.description}
+            onChange={handleInput}
+          />
+
           <select name="rating" onChange={handleInput}>
             <option value="0">Califica este producto</option>
             <option value="1">&#x2B50; Malo</option>
             <option value="2">&#x2B50;&#x2B50; Mediocre</option>
             <option value="3">&#x2B50;&#x2B50;&#x2B50; Aceptable</option>
             <option value="4">&#x2B50;&#x2B50;&#x2B50;&#x2B50; Bueno</option>
-            <option value="5">&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50; Excelente</option>
+            <option value="5">
+              &#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50; Excelente
+            </option>
           </select>
           <label htmlFor="">Introduce el email con el que estás registrado</label>
           <input type="text" name="email" value={input.email} onChange={handleInput}/>

@@ -96,5 +96,19 @@ a {
 } 
  
 .nav__logout:hover { 
-  text-shadow: 0 0 3px rgb(245, 245, 242); /* Puedes ajustar el color y la intensidad del resaltado aquí */ 
+  text-shadow: 0 0 6px rgb(245, 245, 242); /* Puedes ajustar el color y la intensidad del resaltado aquí */ 
 }  
+.nav__link-group a {
+  margin-right: 30px; /* Ajusta el valor según el espacio que desees */
+}
+.nav__link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.8vh;
+  cursor: pointer; /* Agrega el cursor pointer para indicar que es interactivo */
+}
+
+.nav__link:hover {
+  text-decoration: none; /* Quita el subrayado al pasar el cursor sobre el enlace */
+  color: #fff; /* Mantén el color de texto original al pasar el cursor sobre el enlace */
+}
