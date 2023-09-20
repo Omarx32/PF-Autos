@@ -9,6 +9,7 @@ const usersRoutes = require("./usersRoutes");
 const brandHandler = require("./brandRoutes");
 const filterCatRoutes = require("./filterCatRoutes");
 const filterBrandsRouter = require("./filterBrandsRouter");
+const reviewRoutes=require("./reviewRoutes")
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
@@ -20,5 +21,6 @@ router.use("/brand", brandHandler);
 router.use("/filt", filterCatRoutes);
 router.use("/filt/brand", filterBrandsRouter);
 router.use("/mp", mpRoutes);
+router.use("/create/review", reviewRoutes)
 
 module.exports = router;

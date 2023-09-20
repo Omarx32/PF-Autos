@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 import "./Form.css";
 import {
@@ -70,7 +71,29 @@ const Form = () => {
     });
   };
 
-  const submitHandler = (e) => {
+  const handleChange = (e) => {
+    const files = e.target.files;
+    const fileList = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        const imageData = event.target.result; // Aquí está la imagen en formato binario
+        fileList.push(imageData);
+
+        // Verificar si hemos leído todas las imágenes
+        if (fileList.length === files.length) {
+          setFile(fileList);
+          setImage(fileList); // Ahora almacenamos los datos binarios en el estado image
+        }
+      };
+
+      reader.readAsDataURL(files[i]);
+    }
+  };
+
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     if (
@@ -87,9 +110,10 @@ const Form = () => {
       postCarForm.category.length === 0
     ) {
       // Crear un objeto de producto
+
       const newProduct = {
         name: postCarForm.name,
-        image: file,
+        image: file, // Ahora puedes enviar el array de datos binarios directamente
         brand: postCarForm.brand,
         description: postCarForm.description,
         price: postCarForm.price,
@@ -103,8 +127,10 @@ const Form = () => {
       };
 
       // Agregar el nuevo producto al estado de productos
+      setFile(file);
       setProducts([...products, newProduct]);
 
+      dispatch(postProduct(newProduct));
       // Limpiar el formulario
       setPostCarForm({
         name: "",
@@ -120,9 +146,7 @@ const Form = () => {
         direccion: "",
         category: [],
       });
-      console.log("dispatch:", postCarForm);
-
-      dispatch(postProduct(postCarForm));
+      console.log("dispatch:", newProduct);
 
       alert("Tu producto ha sido creado exitosamente");
     } else {
@@ -151,28 +175,13 @@ const Form = () => {
     }
   };
 
-  const handleChange = (e) => {
-    const file = e.target.files;
-    const fileList = [];
-
-    for (let i = 0; i < file.length; i++) {
-      fileList.push(file[i]);
-    }
-
-    console.log(fileList);
-    setFile(fileList);
-    previewFiles(fileList);
-  };
-
   return (
     <div>
       <div>
         <form onSubmit={submitHandler} className="form-container">
           <div>
             <div>
-              <label className="almendra" htmlFor="name">
-                Nombre del vehículo:
-              </label>
+              <label htmlFor="name">Nombre:</label>
               <input
                 type="text"
                 value={postCarForm.name}
@@ -181,9 +190,7 @@ const Form = () => {
               />
             </div>
             <div>
-              <label className="almendra" htmlFor="brand">
-                Marca:
-              </label>
+              <label htmlFor="brand">Marca:</label>
               <select
                 name="brand"
                 value={postCarForm.brand}
@@ -198,9 +205,16 @@ const Form = () => {
               </select>
             </div>
             <div>
-              <label className="almendra" htmlFor="price">
-                Precio:
-              </label>
+              <label htmlFor="description">Descripción:</label>
+              <input
+                type="text"
+                value={postCarForm.description}
+                name="description"
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label htmlFor="price">Precio:</label>
               <input
                 type="text"
                 value={postCarForm.price}
@@ -209,9 +223,7 @@ const Form = () => {
               />
             </div>
             <div>
-              <label className="almendra" htmlFor="stock">
-                Cantidad:
-              </label>
+              <label htmlFor="stock">Existencias:</label>
               <input
                 type="text"
                 value={postCarForm.stock}
@@ -220,9 +232,7 @@ const Form = () => {
               />
             </div>
             <div>
-              <label className="almendra" htmlFor="maker">
-                Fabricante:
-              </label>
+              <label htmlFor="maker">Fabricante:</label>
               <input
                 type="text"
                 value={postCarForm.maker}
@@ -233,9 +243,7 @@ const Form = () => {
           </div>
           <div>
             <div>
-              <label className="almendra" htmlFor="model">
-                Año:
-              </label>
+              <label htmlFor="model">Modelo:</label>
               <input
                 type="text"
                 value={postCarForm.model}
@@ -244,9 +252,7 @@ const Form = () => {
               />
             </div>
             <div>
-              <label className="almendra" htmlFor="color">
-                Color:
-              </label>
+              <label htmlFor="color">Color:</label>
               <input
                 type="text"
                 value={postCarForm.color}
@@ -255,9 +261,7 @@ const Form = () => {
               />
             </div>
             <div>
-              <label className="almendra" htmlFor="kilometraje">
-                Kilometraje:
-              </label>
+              <label htmlFor="kilometraje">Kilometraje:</label>
               <input
                 type="text"
                 value={postCarForm.kilometraje}
@@ -266,9 +270,7 @@ const Form = () => {
               />
             </div>
             <div>
-              <label className="almendra" htmlFor="direccion">
-                Dirección:
-              </label>
+              <label htmlFor="direccion">Dirección:</label>
               <input
                 type="text"
                 value={postCarForm.direccion}
@@ -277,9 +279,7 @@ const Form = () => {
               />
             </div>
             <div>
-              <label className="almendra" htmlFor="category">
-                Tipo: (ej: Sedán)
-              </label>
+              <label htmlFor="category">Categoría:</label>
               <select
                 name="category"
                 value={postCarForm.category}
@@ -293,23 +293,9 @@ const Form = () => {
                     </option>
                   ))}
               </select>
-              <div>
-                <label className="almendra" htmlFor="description">
-                  {" "}
-                  Agrega una descripción:
-                </label>
-                <input
-                  type="text"
-                  value={postCarForm.description}
-                  name="description"
-                  onChange={changeHandler}
-                />
-              </div>
             </div>
             <div>
-              <label className="almendra" htmlFor="fileInput">
-                Subir imagen aqui
-              </label>
+              <label htmlFor="fileInput">Upload your image Here</label>
               <input type="file" multiple onChange={handleChange} />
               {image.map((image, index) => (
                 <img
@@ -319,10 +305,10 @@ const Form = () => {
                   style={{ width: "100px", height: "100px", margin: "5px" }}
                 />
               ))}
-              <button>Subir</button>
+              <button>Upload</button>
             </div>
           </div>
-          <input type="submit" value="Publicar" />
+          <input type="submit" value="Crear" />
         </form>
       </div>
     </div>

@@ -2,6 +2,7 @@ import axios from "axios";
 
 import {
   GET_CARS,
+  // ADD_REVIEW,
   GET_CATEGORYS,
   GET_BRANDS,
   GET_DETAIL,
@@ -14,6 +15,7 @@ import {
   ADD_FAV,
   REMOVE_FAV,
   ORDER_BY_NAME_FAV,
+  CREATE_USER
 } from "./typeAction";
 
 export const getCars = () => {
@@ -144,13 +146,54 @@ export const removeFav=(id)=>{
   }
 };
 
-export const addReview= (createReview)=>{
+// export const addReview= (createReview)=>{
+//   return async function(dispatch){
+//     try{
+//       const response= await axios.post("http://localhost:3001/create/review", createReview)
+//       alert("Review añadida ")
+//       return dispatch({type: ADD_REVIEW})
+//     } catch(error){
+//       console.error(error);
+//       alert("Error al crear review")
+//     }
+//   }
+// }
+
+// export const getUserById= ()=>{
+//   return async function(dispatch){
+//     try {
+//       const response= await axios.get("http://localhost:3001/users/getUserById");
+//       const user=response.data;
+//       return dispatch({type: GET_USERS_BY_ID, payload:user})
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   }
+// }
+
+// export const removeUserDetail=()=>{
+//   return {type:REMOVE_USER_DETAIL};
+// }
+
+export const postUser=(createUser)=>{
   return async function(dispatch){
-    try{
-      const response= await axios.post("http://localhost:3001/create/review", createReview)
-      return dispatch({type: ADD_REVIEW})
-    } catch(error){
+    try {
+      const response= await axios.post("http://localhost:3001/users/user", createUser)
+      const user= response.data;
+      console.log("usuario:", user);
+      return dispatch({type:CREATE_USER, payload: user})
+    } catch (error) {
       console.error(error);
     }
   }
 }
+
+// export const login=()=>{
+//   return async function(dispatch){
+//     try {
+      
+//     } catch (error) {
+      
+//     }
+//   }
+// }
