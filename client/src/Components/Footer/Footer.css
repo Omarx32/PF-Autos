@@ -1,64 +1,36 @@
-.futer {
-  background: linear-gradient(to bottom, #ff0000, #ff5733);
-}
-.bluelabel {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2vh 2vh;
-}
-/* Estilos para el Navbar.Brand (el logotipo o el nombre del sitio) */
-.navbar-brand {
-  color: #ffffff;
-  font-size: 25px;
-  margin-right: 40px;
-  padding-right: 20px;
-}
-
-/* Estilos para los enlaces en el Navbar */
-.nav-link {
-  color: #f5f3f3;
-  font-size: 16px;
-  padding-right: 60px;
-}
-
-/* Estilos para el enlace activo en el Navbar */
-.nav-link.active {
-  font-weight: bold; /* Negrita para el enlace activo */
-}
-
-/* Estilos para el menú desplegable en el Navbar */
-.dropdown-menu {
-  background-color: #f7f7f7; /* Color de fondo del menú desplegable */
-  border: none; /* Quita el borde del menú desplegable */
-  display: flex;
-}
-
-/* Estilos para los elementos del menú desplegable */
-.dropdown-item {
-  color: #333; /* Color del texto de los elementos del menú desplegable */
-}
-
-/* Estilos para los elementos del menú desplegable al hacer hover */
-.dropdown-item:hover {
-  background-color: #ddd; /* Color de fondo al hacer hover en los elementos */
-  color: #555; /* Color del texto al hacer hover en los elementos */
-}
-
-/* Estilos para el separador en el menú desplegable */
-.dropdown-divider {
-  border-top: 1px solid #ccc; /* Línea divisoria entre elementos */
-}
-.logou {
-  font-size: 30px; /* Tamaño de fuente del logo o marca */
-  color: #fff;
-  display: flex;
+.footer {
+  background-image: linear-gradient(to right, #434343 0%, black 100%);
+  color: #ffffff; /* Cambia el color del texto según tus preferencias */
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #2b2a2a;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  width: 25%;
 }
 
-/* Overwrites bootstrap 20 margin bottom */
-.Navbar {
-  margin-bottom: 20px;
-  border-radius: 0%;
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-nav a {
+  text-decoration: none;
+  color: #fff; /* Cambia el color del enlace según tus preferencias */
+  margin: 0 10px;
+}
+
+.footer-nav a:hover {
+  text-decoration: underline; /* Cambia el estilo al pasar el mouse por encima */
+}
+
+@media (max-width: 768px) {
+  .futer {
+    padding: 10px;
+    font-size: 14px;
+  }
 }
