@@ -303,10 +303,47 @@ const Form = () => {
                     {cat.name}
                   </option>
                 ))}
+
             </select>
             {errors.category && fieldTouched.category && (
               <span className="error">{errors.category}</span>
             )}
+
+              </select>
+            </div>
+
+            <div>
+              <label className="almendra" htmlFor="price">
+                Precio:
+              </label>
+              <input
+                type="text"
+                value={postCarForm.price}
+                name="price"
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label htmlFor="stock">Cantidad:</label>
+              <input
+                type="text"
+                value={postCarForm.stock}
+                name="stock"
+                onChange={changeHandler}
+              />
+            </div>
+            <div>
+              <label className="almendra" htmlFor="maker">
+                Fabricante:
+              </label>
+              <input
+                type="text"
+                value={postCarForm.maker}
+                name="maker"
+                onChange={changeHandler}
+              />
+            </div>
+
           </div>
           <div>
             <label htmlFor="description">Agrega una descripción:</label>

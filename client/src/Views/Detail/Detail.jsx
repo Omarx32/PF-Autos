@@ -65,58 +65,78 @@ const Detail = () => {
     window.location.href = init_point;
   };
 
-  const [input, setInput]=useState({
-    title:"", description:"", rating:0, product:idCar, user:""
-  })
 
-  const handleInput=(event)=>{
-    setInput({...input, [event.target.name]:event.target.value});
-  }
+  const [input, setInput] = useState({
+    title: "",
+    description: "",
+    rating: 0,
+    product: idCar,
+    user: "",
+  });
 
-  const [error, setError]=useState({
-    title:"", description:"", rating:"", user:""
-  })
+  const handleInput = (event) => {
+    setInput({ ...input, [event.target.name]: event.target.value });
+  };
 
-  const validation=(input)=>{
-    let msj={}
-    if(!input.title){ msj.title="Ingresa un título" } 
-    else{ msj.title="" }
+  const [error, setError] = useState({
+    title: "",
+    description: "",
+    rating: "",
+    user: "",
+  });
 
-    if(!input.description){
-      msj.description="Ingresa contenido"
-    } else{msj.description=""}
+  const validation = (input) => {
+    let msj = {};
+    if (!input.title) {
+      msj.title = "Ingresa un título";
+    } else {
+      msj.title = "";
+    }
 
-    if(!input.rating || 0 > input.rating > 5){
-      msj.rating="Solo de 0 a 5 estrellas"
-    } else{msj.rating=""}
+    if (!input.description) {
+      msj.description = "Ingresa contenido";
+    } else {
+      msj.description = "";
+    }
+
+    if (!input.rating || 0 > input.rating > 5) {
+      msj.rating = "Solo de 0 a 5 estrellas";
+    } else {
+      msj.rating = "";
+    }
 
     return msj;
-  }
+  };
 
-  const handleError=(event)=>{
-    setError({...validation({...input, [event.target.name]:event.target.value})})
-  }
+  const handleError = (event) => {
+    setError({
+      ...validation({ ...input, [event.target.name]: event.target.value }),
+    });
+  };
 
-  const handleSubmit=(event)=>{
-    if(!error.title && !error.description){
-      const newReview={
-        title:input.title,
+  const handleSubmit = (event) => {
+    if (!error.title && !error.description) {
+      const newReview = {
+        title: input.title,
         description: input.description,
         rating: input.rating,
-        product:input.product,
-        user: input.user
-      }
+        product: input.product,
+        user: input.user,
+      };
 
-      setInput({title:"", description:"", rating:0})
+      setInput({ title: "", description: "", rating: 0 });
+
 
       console.log(input);
       dispatch(addReview(newReview));
 
-      alert("Review añadida")
-    } else{
-      alert("Inténtalo de nuevo")
+
+      alert("Review añadida");
+    } else {
+      alert("Inténtalo de nuevo");
     }
-  }
+  };
+
 
   return (
     <div className="nomelacontainer">
@@ -127,12 +147,16 @@ const Detail = () => {
       </div>
       <div className="row">
         <div className="col-md-7">
-          <Carousel className="auto">
+
+          <Carousel className="auto" showThumbs={false}>
+
             {carsDetail &&
               carsDetail.image &&
               carsDetail.image.map((image, index) => (
                 <div key={index}>
-                  <img src={image} alt={`Slide ${index}`} />
+
+                  <img className="mb" src={image} alt={`Slide ${index}`} />
+
                 </div>
               ))}
           </Carousel>
@@ -165,21 +189,42 @@ const Detail = () => {
         <button onClick={handleBuy} className="button" target="_blank">
           Comprar
         </button>
-        
-        <form onSubmit={handleSubmit}>
+
+
+        <form className="reviu" onSubmit={handleSubmit}>
           <label htmlFor="title">Titula tu comentario</label>
-          <input type="text" name="title" value={input.title} onChange={handleInput} />
-          <label htmlFor="review">¿Alguna duda? ¿Crítica constructiva? ¿Puteada al vendedor? Déjala aquí</label>
-          <input type="text" name="description" value={input.description} onChange={handleInput}/>
+          <input
+            type="text"
+            name="title"
+            value={input.title}
+            onChange={handleInput}
+          />
+          <label htmlFor="review">
+            ¿Alguna duda? ¿Crítica constructiva? ¿Puteada al vendedor? Déjala
+            aquí
+          </label>
+          <input
+            type="text"
+            name="description"
+            value={input.description}
+            onChange={handleInput}
+          />
+
           <select name="rating" onChange={handleInput}>
             <option value="0">Califica este producto</option>
             <option value="1">&#x2B50; Mierda</option>
             <option value="2">&#x2B50; &#x2B50; Mediocre</option>
             <option value="3">&#x2B50;&#x2B50;&#x2B50; Aceptable</option>
             <option value="4">&#x2B50;&#x2B50;&#x2B50;&#x2B50; Bueno</option>
-            <option value="5">&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50; Excelente</option>
+
+            <option value="5">
+              &#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50; Excelente
+            </option>
           </select>
-          <label htmlFor="">¿Tu cuenta está autenticada por la página o por google?</label>
+          <label htmlFor="">
+            ¿Tu cuenta está autenticada por la página o por google?
+          </label>
+
           <select name="user">
             <option value="google">google</option>
             <option value="ignate motors">Ignate Motors</option>

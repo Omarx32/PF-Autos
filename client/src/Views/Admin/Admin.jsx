@@ -65,39 +65,42 @@ const Admin = () => {
 
 
     return (
-        <div className="admin-container">
-            <div className="users-section">
-                <h1>Usuarios: </h1>
-                {usersData.map((user) => (
-                    <div key={user.id}>
-                        <h3>{user.fullName || user.givenName}</h3>
-                        <p>{user.id}</p>
-                        <button onClick={() => {
-                            console.log("userId:", user.id); // Agrega esta línea
-                            handleBanUser(user.id, user.isBanned)
-                        }}>
-                            {user.isBanned ? 'Desbanear' : 'Banear'}
-                        </button>
-                    </div>
-                ))}
-            </div>
-            <div className='posts-section'>
-                <h1>Publicaciones: </h1>
-                {cars.map((car) => (
-                    <div key={car.id}>
-                        <h3>{car.name}</h3>
-                        <p>{car.id}</p>
-                        <button onClick={() => {
-                            console.log("productId:", car.id); // Agrega esta línea
-                            handleTogglePublish(car.id, car.isPublished);
-                        }}>
-                            {car.isPublished ? 'Despublicar' : 'Publicar'}
-                        </button>
-                    </div>
-                ))}
-            </div>
+        <div>
             <div>
                 <Graficas />
+            </div>
+            <div className='container'>
+                <div className="admin user-card">
+                    <h1>Usuarios</h1>
+                    {usersData.map((user) => (
+                        <div key={user.id} className='users-section'>
+                            <h3>{user.fullName || user.givenName}</h3>
+                            <p>{user.id}</p>
+                            <p>{user.email}</p>
+                            <button onClick={() => {
+                                console.log("userId:", user.id);
+                                handleBanUser(user.id, user.isBanned)
+                            }} className='buttonAdmin'>
+                                {user.isBanned ? 'Desbanear' : 'Banear'}
+                            </button>
+                        </div>
+                    ))}
+                </div>
+                <div className="admin user-card">
+                    <h1>Publicaciones</h1>
+                    {cars.map((car) => (
+                        <div key={car.id} className='posts-section'>
+                            <h3>{car.name}</h3>
+                            <p>{car.id}</p>
+                            <button onClick={() => {
+                                console.log("productId:", car.id);
+                                handleTogglePublish(car.id, car.isPublished);
+                            }} className='buttonAdmin'>
+                                {car.isPublished ? 'Despublicar' : 'Publicar'}
+                            </button>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
