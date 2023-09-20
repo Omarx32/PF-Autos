@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-
 import "./Form.css";
 import {
   postProduct,
@@ -16,8 +15,7 @@ const Form = () => {
   const brand = useSelector((state) => state.brands);
   const [file, setFile] = useState([]);
   const [image, setImage] = useState([]);
-  const [products, setProducts] = useState([]); // Agregamos un estado para almacenar los productos
-
+  const [products, setProducts] = useState([]);
   const [postCarForm, setPostCarForm] = useState({
     name: "",
     image: [],
@@ -32,8 +30,19 @@ const Form = () => {
     direccion: "",
     category: [],
   });
-
   const [errors, setErrors] = useState({});
+  const [fieldTouched, setFieldTouched] = useState({
+    name: false,
+    brand: false,
+    price: false,
+    stock: false,
+    maker: false,
+    model: false,
+    kilometraje: false,
+    direccion: false,
+    category: false,
+    description: false,
+  });
 
   useEffect(() => {
     dispatch(getCategorys());
@@ -43,16 +52,25 @@ const Form = () => {
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
-    setErrors(
-      validation({
-        ...postCarForm,
-        [property]: value,
-      })
-    );
     setPostCarForm({
       ...postCarForm,
       [property]: value,
     });
+
+    // Marcar el campo como tocado
+    setFieldTouched({
+      ...fieldTouched,
+      [property]: true,
+    });
+
+    // Validar el campo solo si el usuario ha interactuado con él
+    if (fieldTouched[property]) {
+      const updatedErrors = validation({
+        ...postCarForm,
+        [property]: value,
+      });
+      setErrors(updatedErrors);
+    }
   };
 
   const selectBrandHandler = (event) => {
@@ -77,18 +95,15 @@ const Form = () => {
 
     for (let i = 0; i < files.length; i++) {
       const reader = new FileReader();
-
       reader.onload = (event) => {
-        const imageData = event.target.result; // Aquí está la imagen en formato binario
+        const imageData = event.target.result;
         fileList.push(imageData);
 
-        // Verificar si hemos leído todas las imágenes
         if (fileList.length === files.length) {
           setFile(fileList);
-          setImage(fileList); // Ahora almacenamos los datos binarios en el estado image
+          setImage(fileList);
         }
       };
-
       reader.readAsDataURL(files[i]);
     }
   };
@@ -96,24 +111,10 @@ const Form = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if (
-      !errors.name ||
-      !errors.brand ||
-      !errors.description ||
-      !errors.price ||
-      !errors.stock ||
-      !errors.maker ||
-      !errors.model ||
-      !errors.color ||
-      !errors.kilometraje ||
-      !errors.direccion ||
-      postCarForm.category.length === 0
-    ) {
-      // Crear un objeto de producto
-
+    if (Object.keys(errors).length === 0 && postCarForm.category.length > 0) {
       const newProduct = {
         name: postCarForm.name,
-        image: file, // Ahora puedes enviar el array de datos binarios directamente
+        image: file,
         brand: postCarForm.brand,
         description: postCarForm.description,
         price: postCarForm.price,
@@ -126,12 +127,10 @@ const Form = () => {
         category: postCarForm.category,
       };
 
-      // Agregar el nuevo producto al estado de productos
       setFile(file);
       setProducts([...products, newProduct]);
-
       dispatch(postProduct(newProduct));
-      // Limpiar el formulario
+
       setPostCarForm({
         name: "",
         image: [],
@@ -146,11 +145,11 @@ const Form = () => {
         direccion: "",
         category: [],
       });
-      console.log("dispatch:", newProduct);
 
+      console.log("dispatch:", newProduct);
       alert("Tu producto ha sido creado exitosamente");
     } else {
-      alert("Algo salió mal. Por favor, inténtalo de nuevo.");
+      alert("Debes llenar todos los campos");
     }
   };
 
@@ -161,13 +160,11 @@ const Form = () => {
     for (let i = 0; i < files.length; i++) {
       const reader = new FileReader();
       readers.push(reader);
-
       reader.readAsDataURL(files[i]);
 
       reader.onloadend = () => {
         imagePreviews.push(reader.result);
 
-        // Verificar si hemos previsualizado todas las imágenes
         if (imagePreviews.length === files.length) {
           setImage(imagePreviews);
         }
@@ -177,140 +174,163 @@ const Form = () => {
 
   return (
     <div>
-      <div>
-        <form onSubmit={submitHandler} className="form-container">
+      <form onSubmit={submitHandler} className="form-container">
+        <div className="form-row">
           <div>
-            <div>
-              <label htmlFor="name">Nombre:</label>
-              <input
-                type="text"
-                value={postCarForm.name}
-                name="name"
-                onChange={changeHandler}
-              />
-            </div>
-            <div>
-              <label htmlFor="brand">Marca:</label>
-              <select
-                name="brand"
-                value={postCarForm.brand}
-                onChange={selectBrandHandler}
-              >
-                <option value="">-</option>
-                {brand?.map((brand) => (
-                  <option value={brand.name} key={brand.id}>
-                    {brand.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label htmlFor="description">Descripción:</label>
-              <input
-                type="text"
-                value={postCarForm.description}
-                name="description"
-                onChange={changeHandler}
-              />
-            </div>
-            <div>
-              <label htmlFor="price">Precio:</label>
-              <input
-                type="text"
-                value={postCarForm.price}
-                name="price"
-                onChange={changeHandler}
-              />
-            </div>
-            <div>
-              <label htmlFor="stock">Existencias:</label>
-              <input
-                type="text"
-                value={postCarForm.stock}
-                name="stock"
-                onChange={changeHandler}
-              />
-            </div>
-            <div>
-              <label htmlFor="maker">Fabricante:</label>
-              <input
-                type="text"
-                value={postCarForm.maker}
-                name="maker"
-                onChange={changeHandler}
-              />
-            </div>
+            <label htmlFor="name">Nombre:</label>
+            <input
+              type="text"
+              value={postCarForm.name}
+              name="name"
+              onChange={changeHandler}
+            />
+            {fieldTouched.name && errors.name && (
+              <span className="error">{errors.name}</span>
+            )}
           </div>
           <div>
-            <div>
-              <label htmlFor="model">Modelo:</label>
-              <input
-                type="text"
-                value={postCarForm.model}
-                name="model"
-                onChange={changeHandler}
-              />
-            </div>
-            <div>
-              <label htmlFor="color">Color:</label>
-              <input
-                type="text"
-                value={postCarForm.color}
-                name="color"
-                onChange={changeHandler}
-              />
-            </div>
-            <div>
-              <label htmlFor="kilometraje">Kilometraje:</label>
-              <input
-                type="text"
-                value={postCarForm.kilometraje}
-                name="kilometraje"
-                onChange={changeHandler}
-              />
-            </div>
-            <div>
-              <label htmlFor="direccion">Dirección:</label>
-              <input
-                type="text"
-                value={postCarForm.direccion}
-                name="direccion"
-                onChange={changeHandler}
-              />
-            </div>
-            <div>
-              <label htmlFor="category">Categoría:</label>
-              <select
-                name="category"
-                value={postCarForm.category}
-                onChange={selectCategoryHandler}
-              >
-                <option value="">-</option>
-                {category &&
-                  category.map((cat) => (
-                    <option key={cat.id} value={cat.name}>
-                      {cat.name}
-                    </option>
-                  ))}
-              </select>
-            </div>
-            <div>
-              <label htmlFor="fileInput">Upload your image Here</label>
-              <input type="file" multiple onChange={handleChange} />
-              {image.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt={`Preview ${index}`}
-                  style={{ width: "100px", height: "100px", margin: "5px" }}
-                />
+            <label htmlFor="brand">Marca:</label>
+            <select
+              name="brand"
+              value={postCarForm.brand}
+              onChange={changeHandler}
+            >
+              <option value="">selecciona la marca</option>
+              {brand?.map((brand) => (
+                <option value={brand.name} key={brand.id}>
+                  {brand.name}
+                </option>
               ))}
-              <button>Upload</button>
-            </div>
+            </select>
+            {errors.brand && fieldTouched.brand && (
+              <span className="error">{errors.brand}</span>
+            )}
+          </div>
+          <div>
+            <label htmlFor="price">Precio:</label>
+            <input
+              type="text"
+              value={postCarForm.price}
+              name="price"
+              onChange={changeHandler}
+            />
+            {errors.price && fieldTouched.price && (
+              <span className="error">{errors.price}</span>
+            )}
+          </div>
+          <div>
+            <label htmlFor="stock">Cantidad:</label>
+            <input
+              type="text"
+              value={postCarForm.stock}
+              name="stock"
+              onChange={changeHandler}
+            />
+            {errors.stock && fieldTouched.stock && (
+              <span className="error">{errors.stock}</span>
+            )}
+          </div>
+          <div>
+            <label htmlFor="maker">Fabricante:</label>
+            <input
+              type="text"
+              value={postCarForm.maker}
+              name="maker"
+              onChange={changeHandler}
+            />
+            {errors.maker && fieldTouched.maker && (
+              <span className="error">{errors.maker}</span>
+            )}
+          </div>
+          <div>
+            <label htmlFor="model">Año:</label>
+            <input
+              type="text"
+              value={postCarForm.model}
+              name="model"
+              onChange={changeHandler}
+            />
+            {errors.model && fieldTouched.model && (
+              <span className="error">{errors.model}</span>
+            )}
+          </div>
+          <div>
+            <label htmlFor="color">Color:</label>
+            <input
+              type="text"
+              value={postCarForm.color}
+              name="color"
+              onChange={changeHandler}
+            />
+            {errors.color && fieldTouched.color && (
+              <span className="error">{errors.color}</span>
+            )}
+          </div>
+          <div>
+            <label htmlFor="kilometraje">Kilometraje:</label>
+            <input
+              type="text"
+              value={postCarForm.kilometraje}
+              name="kilometraje"
+              onChange={changeHandler}
+            />
+            {errors.kilometraje && fieldTouched.kilometraje && (
+              <span className="error">{errors.kilometraje}</span>
+            )}
+          </div>
+          <div>
+            <label htmlFor="direccion">Dirección:</label>
+            <select
+              name="direccion"
+              value={postCarForm.direccion}
+              onChange={changeHandler}
+            >
+              <option value="">Selecciona el tipo de dirección</option>
+              <option value="hidraulica">Hidráulica</option>
+              <option value="mecanica">Mecánica</option>
+            </select>
+            {errors.direccion && fieldTouched.direccion && (
+              <span className="error">{errors.direccion}</span>
+            )}
+          </div>
+          <div>
+            <label htmlFor="category">Categoría:</label>
+            <select
+              name="category"
+              value={postCarForm.category}
+              onChange={changeHandler}
+            >
+              <option value="">selecciona una Categoria</option>
+              {category &&
+                category.map((cat) => (
+                  <option key={cat.id} value={cat.name}>
+                    {cat.name}
+                  </option>
+                ))}
+            </select>
+            {errors.category && fieldTouched.category && (
+              <span className="error">{errors.category}</span>
+            )}
+          </div>
+          <div>
+            <label htmlFor="description">Agrega una descripción:</label>
+            <input
+              type="text"
+              value={postCarForm.description}
+              name="description"
+              onChange={changeHandler}
+            />
+            {errors.description && fieldTouched.description && (
+              <span className="error">{errors.description}</span>
+            )}
+          </div>
+          <div>
+            <label htmlFor="fileInput">Subir imagen aquí:</label>
+            <input type="file" multiple onChange={handleChange} />
           </div>
         </div>
         <div className="button-container">
-          <button type="submit">Publicar</button>
+          <button type="submit">Crear</button>
         </div>
       </form>
     </div>

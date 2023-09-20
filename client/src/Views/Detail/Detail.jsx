@@ -250,10 +250,6 @@ const Detail = () => {
           <button type="submit">Agregar</button>
         </form>
       </div>
-
-      <button onClick={handleBuy} className="button" target="_blank">
-        Comprar
-      </button>
     </div>
   );
 };

@@ -5,12 +5,9 @@ import styles from "./Form.module.css";
 import { validateField } from "./validationUser";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
-// import { postUser } from "../../redux/action/action";
-import MiContexto from "../contexto";
-import Detail from "../Detail/Detail";
 
 const FormUser = () => {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const clientID =
     "235598000858-au8tkevevdd8slqjhag6gl9td3lljcp5.apps.googleusercontent.com";
 
@@ -40,25 +37,26 @@ const FormUser = () => {
     validateField(name, value, setErrors, errors);
   };
 
-  let user="";
+  let user = "";
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const hasErrors = Object.keys(errors).length > 0;
     const isFormEmpty = Object.values(formData).some((value) => value === "");
     if (!hasErrors && !isFormEmpty) {
-      axios.get("http://ip-api.com/json")
-      .then((locationResponse) => {
-        const location = locationResponse.data.city;
-        const formDataWithLocation = {
-          ...formData,
-          location: location,
-        };
-      // dispatch(postUser)
+      axios
+        .get("http://ip-api.com/json")
+        .then((locationResponse) => {
+          const location = locationResponse.data.city;
+          const formDataWithLocation = {
+            ...formData,
+            location: location,
+          };
+          // dispatch(postUser)
           axios
             .post("http://localhost:3001/users/user", formDataWithLocation)
             .then((response) => {
-              user=response.data;
+              user = response.data;
               console.log("Usuario registrado con éxito:", user);
               localStorage.setItem("fullName", formData.fullName);
               alert("Usuario creado con éxito");
@@ -71,7 +69,11 @@ const FormUser = () => {
               });
             })
             .catch((error) => {
-              if (error.response && error.response.data && error.response.data.mensaje) {
+              if (
+                error.response &&
+                error.response.data &&
+                error.response.data.mensaje
+              ) {
                 setErrors({ ...errors, email: error.response.data.mensaje });
               } else {
                 console.error("Error al registrar el usuario:", error);
@@ -81,15 +83,15 @@ const FormUser = () => {
         .catch((error) => {
           console.error("Error al obtener la ubicación del usuario:", error);
         });
-        // localStorage.setItem("fullName", formData.fullName);
-        // alert("Usuario creado con éxito");
-        // window.location.href = "/Home";
-        // setFormData({
-        //           fullName: "",
-        //           email: "",
-        //           password: "",
-        //           role: "Usuario",
-        //         });
+      // localStorage.setItem("fullName", formData.fullName);
+      // alert("Usuario creado con éxito");
+      // window.location.href = "/Home";
+      // setFormData({
+      //           fullName: "",
+      //           email: "",
+      //           password: "",
+      //           role: "Usuario",
+      //         });
     } else {
       alert("Debes digitar todos los campos.");
     }
@@ -234,8 +236,8 @@ const FormUser = () => {
           />
         </form>
       </div>
-    
-    {/* <MiContexto.Provider value={user}>
+
+      {/* <MiContexto.Provider value={user}>
           <Detail/>
     </MiContexto.Provider> */}
     </div>
