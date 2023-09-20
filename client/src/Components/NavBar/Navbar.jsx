@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../NavBar/NavBar.css";
@@ -28,37 +27,34 @@ const Navbar = () => {
   return (
     <nav className="nav">
       <div className="divLogo">IGNITE MOTORS</div>
-      <a href="#" className="nav__brand">
-        {" "}
-      </a>
       <ul className="nav__menu">
         <li className="nav__item">
-          <a href="/home" className="nav__link nav__logout ">
+          <Link to="/home" className="nav__link nav__logout ">
             VEHICULOS
-          </a>
+          </Link>
         </li>
         <li className="nav__item">
-          <a href="/About" className="nav__link nav__logout ">
+          <Link to="/About" className="nav__link nav__logout ">
             NOSOTROS
-          </a>
+          </Link>
         </li>
-        <li className="nav__item">
-          <a href="/Favorites" className="nav__link nav__logout ">
+        {/* <li className="nav__item">
+          <a to="/Favorites" className="nav__link nav__logout ">
             FAVORITOS
           </a>
-        </li>
+        </li> */}
         {isLoggedIn && (
           <li className="nav__item">
-            <a href="/Form" className="nav__link nav__logout">
+            <Link to="/Form" className="nav__link nav__logout">
               VENDER VEHICULO
-            </a>
+            </Link>
           </li>
         )}
         {isLoggedIn && localStorage.getItem("role") === "admin" && (
-          <li className="nav__item nav__logout " >
-            <a href="/admin" className="nav__link">
+          <li className="nav__item nav__logout ">
+            <Link to="/admin" className="nav__link">
               ADMINISTRADOR
-            </a>
+            </Link>
           </li>
         )}
         <li className="nav__item">
@@ -71,13 +67,13 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <div className="nav__link-group " >
-                <a href="/registro" className="nav__link nav__logout ">
+              <div className="nav__link-group ">
+                <Link to="/registro" className="nav__link nav__logout ">
                   REGISTRATE
-                </a>
-                <a href="/Login" className="nav__link nav__logout">
+                </Link>
+                <Link to="/Login" className="nav__link nav__logout">
                   INICIAR SESION
-                </a>
+                </Link>
               </div>
             </>
           )}

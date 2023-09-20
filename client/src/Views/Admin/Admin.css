@@ -1,7 +1,6 @@
 .container {
   display: flex; /* Establece el contenedor como un contenedor flexible */
   justify-content: space-between; /* Espacio entre los contenedores hijos */
-
 }
 
 /* Estilos CSS para la tarjeta de administrador */
@@ -21,7 +20,11 @@
 
 /* Estilos para cada elemento de usuario en la tarjeta */
 .admin div {
-  background-color:  rgb(255, 72, 72); /* Fondo blanco para cada elemento de usuario */
+  background-color: rgb(
+    255,
+    72,
+    72
+  ); /* Fondo blanco para cada elemento de usuario */
   border: 1px solid rgb(0, 0, 0); /* Borde de color verde */
   border-radius: 5px; /* Borde redondeado para cada elemento de usuario */
   margin: 20px 0; /* Espaciado entre elementos de usuario */
@@ -41,7 +44,11 @@
 
 /* Estilos para el botón cuando se pasa el ratón sobre él */
 .admin .buttonAdmin:hover {
-  background-color: rgb(0, 17, 255); /* Fondo naranja oscuro al pasar el ratón */
+  background-color: rgb(
+    0,
+    17,
+    255
+  ); /* Fondo naranja oscuro al pasar el ratón */
 }
 
 .user-card {
@@ -67,7 +74,8 @@
   background-color: #f1f1f1; /* Color de la pista de la barra de desplazamiento */
 }
 
-.users-section, .posts-section {
+.users-section,
+.posts-section {
   flex: 1;
   margin: 10px;
   padding: 10px;
@@ -80,3 +88,34 @@
   text-align: center; /* Alinea el texto al centro */
 }
 
+@media (max-width: 767px) {
+  .container {
+    flex-direction: column;
+  }
+
+  /* Reducir el ancho de .admin */
+  .admin {
+    width: 100%;
+  }
+
+  /* Alinear .admin al centro en pantallas pequeñas */
+  .admin h1 {
+    text-align: center;
+  }
+
+  /* Estilos para cada elemento de usuario en pantallas pequeñas */
+  .admin div {
+    margin: 10px 0;
+  }
+
+  /* Estilos para el botón en pantallas pequeñas */
+  .admin .buttonAdmin {
+    padding: 8px 16px;
+  }
+
+  /* Alineación de .users-section y .posts-section en pantallas pequeñas */
+  .users-section,
+  .posts-section {
+    margin: 10px;
+  }
+}

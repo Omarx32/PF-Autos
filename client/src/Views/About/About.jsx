@@ -31,7 +31,7 @@ const About = () => {
     },
     {
       name: "Lorenzo Santos",
-      image: "URL_IMAGEN_4",
+      image: "https://avatars.githubusercontent.com/u/119063320?v=4",
       socialMedia: {
         github: "https://github.com/AbareKiller100",
         linkedin: "https://www.linkedin.com/in/lorenzo-santos-34a109267/",
@@ -47,11 +47,11 @@ const About = () => {
       },
     },
     {
-      name: "Programador 6",
-      image: "URL_IMAGEN_6",
+      name: "Chirstian Barrera ",
+      image: "https://avatars.githubusercontent.com/u/71193472?v=4",
       socialMedia: {
-        github: "LINK_GITHUB_6",
-        linkedin: "LINK_LINKEDIN_6",
+        github: "https://github.com/camilobr89",
+        linkedin: "https://www.linkedin.com/in/chirstian-barrera/",
       },
     },
     {

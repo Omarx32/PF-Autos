@@ -36,9 +36,9 @@ const Card = ({ id, image, name }) => {
           <img src={image} alt={name}></img>{" "}
         </NavLink>
         <h1 className="title">{name}</h1>
-        <button className="aymicorazon" onClick={handleFavorite}>
+        {/* <button className="aymicorazon" onClick={handleFavorite}>
           {isFav ? "❤️" : "🤍"}
-        </button>{" "}
+        </button>{" "} */}
       </div>
     </div>
   );
