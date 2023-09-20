@@ -65,7 +65,6 @@ const Detail = () => {
     window.location.href = init_point;
   };
 
-
   const [input, setInput] = useState({
     title: "",
     description: "",
@@ -126,10 +125,8 @@ const Detail = () => {
 
       setInput({ title: "", description: "", rating: 0 });
 
-
       console.log(input);
       dispatch(addReview(newReview));
-
 
       alert("Review añadida");
     } else {
@@ -137,60 +134,59 @@ const Detail = () => {
     }
   };
 
-
   return (
     <div className="nomelacontainer">
-      <div className="btnOut">
-        <NavLink to="/Home">
-          <button>x</button>
-        </NavLink>
-      </div>
-      <div className="row">
-        <div className="col-md-7">
-
-          <Carousel className="auto" showThumbs={false}>
-
-            {carsDetail &&
-              carsDetail.image &&
-              carsDetail.image.map((image, index) => (
-                <div key={index}>
-
-                  <img className="mb" src={image} alt={`Slide ${index}`} />
-
-                </div>
-              ))}
-          </Carousel>
-        </div>
-        <div className="col-md-5">
-          <div className="project-info-box mt-0">
-            <h5>{name}</h5>
-            <p className="mb-0">{description}</p>
+      <div class="product-wrapper">
+        <div className="row product-container">
+          <div className="col-md-7">
+            <Carousel className="auto" showThumbs={false}>
+              {carsDetail &&
+                carsDetail.image &&
+                carsDetail.image.map((image, index) => (
+                  <div key={index}>
+                    <img className="mb" src={image} alt={`Slide ${index}`} />
+                  </div>
+                ))}
+            </Carousel>
+          </div>
+          <div className="col-md-5 product-details">
+            <div className="project-info-box mt-0">
+              <h5>{name}</h5>
+              <p className="mb-0">{description}</p>
+            </div>
+            <div className="info">
+              <p className="pepito">
+                <b>Marca:</b> {brand}
+              </p>
+              <p className="pepito">
+                <b>Año:</b> {model}
+              </p>
+              <p className="pepito">
+                <b>Kilometraje:</b> {kilometraje}
+              </p>
+              <p className="pepito">
+                <b>Direccion:</b> {direccion}
+              </p>
+              <p className="pepito">
+                <b>Precio:</b> {price}
+              </p>
+              <button
+                onClick={handleBuy}
+                className="button btn-product"
+                target="_blank"
+              >
+                Comprar
+              </button>
+            </div>
+            <div className="btnOut">
+              <NavLink to="/Home">
+                <button>X</button>
+              </NavLink>
+            </div>
           </div>
         </div>
-
-        <div className="info">
-          <p className="pepito">
-            <b>Marca:</b> {brand}
-          </p>
-          <p className="pepito">
-            <b>Año:</b> {model}
-          </p>
-          <p className="pepito">
-            <b>Kilometraje:</b> {kilometraje}
-          </p>
-          <p className="pepito">
-            <b>Direccion:</b> {direccion}
-          </p>
-          <p className="pepito">
-            <b>Precio:</b> {price}
-          </p>
-        </div>
-
-        <button onClick={handleBuy} className="button" target="_blank">
-          Comprar
-        </button>
-
-
+      </div>
+      <div class="pushme">
         <form className="reviu" onSubmit={handleSubmit}>
           <label htmlFor="title">Titula tu comentario</label>
           <input

@@ -76,3 +76,36 @@
   text-decoration: none; /* Quita el subrayado al pasar el cursor sobre el enlace */
   color: #fff; /* Mantén el color de texto original al pasar el cursor sobre el enlace */
 }
+
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav h2 {
+    font-size: 2vh;
+  }
+
+  .nav__brand {
+    font-size: 2.5vh;
+    margin-bottom: 20px;
+  }
+
+  .nav__menu {
+    flex-direction: column;
+    gap: 2vh;
+  }
+
+  .nav__menu li {
+    margin: 0;
+  }
+
+  .nav__link {
+    font-size: 2vh;
+  }
+
+  .nav__link.active {
+    font-weight: bold;
+  }
+}

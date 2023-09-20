@@ -34,3 +34,12 @@ label {
   font-size: small;
   color: aliceblue;
 }
+@media (max-width: 800px) {
+  .contenedorF {
+    max-width: 100%;
+  }
+
+  .formulinocat {
+    flex-direction: column;
+  }
+}

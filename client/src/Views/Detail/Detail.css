@@ -1,14 +1,11 @@
 .nomelacontainer {
-  background: #f5f5f5;
   margin-top: 40px;
   display: flex;
-  flex-wrap: wrap;
   width: 1220px;
-  height: 600px;
+  height: auto;
+  gap: 32px;
   border-radius: 2%;
-  margin-bottom: 50px;
-  align-content: flex-start;
-  justify-content: flex-end;
+  flex-direction: column;
 }
 
 .col-md-5 {
@@ -59,6 +56,7 @@
   border-radius: 5px;
   margin-left: 100px;
 }
+
 .mb {
   max-width: 450px;
 }
@@ -72,7 +70,6 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
-  margin-left: 20px;
 }
 
 .btnOut button {
@@ -87,9 +84,11 @@
 }
 .info {
   margin-top: 10px;
-}
-.pepito {
-  margin-left: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0px 40px;
 }
 
 /* carousel-styles.scss */
@@ -130,6 +129,7 @@ ul .carousel .slider .animated {
 
 .reviu {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .reviu label {
@@ -154,8 +154,56 @@ ul .carousel .slider .animated {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .reviu button[type="submit"]:hover {
   background-color: #0056b3;
+}
+
+.product-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.product-container {
+  display: flex;
+}
+
+.product-details {
+  position: relative;
+}
+
+.btnOut {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 12px;
+}
+
+@media (max-width: 768px) {
+  .nomelacontainer {
+    flex-direction: column;
+  }
+
+  .col-md-5,
+  .col-md-7 {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .project-info-box {
+    margin-right: 0;
+  }
+
+  .auto {
+    margin-left: 0;
+  }
+
+  .info {
+    padding: 0;
+  }
 }

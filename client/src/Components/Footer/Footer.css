@@ -24,10 +24,6 @@
   margin: 0 10px;
 }
 
-.footer-nav a:hover {
-  text-decoration: underline; /* Cambia el estilo al pasar el mouse por encima */
-}
-
 @media (max-width: 768px) {
   .futer {
     padding: 10px;

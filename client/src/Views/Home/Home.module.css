@@ -37,3 +37,19 @@
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
 }
+
+@media (max-width: 768px) {
+  .SubTitle {
+    font-size: 3vh;
+  }
+
+  .filtros {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filtros select {
+    width: 100%;
+    margin: 1vh 0;
+  }
+}

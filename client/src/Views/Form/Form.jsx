@@ -330,7 +330,7 @@ const Form = () => {
           </div>
         </div>
         <div className="button-container">
-          <button type="submit">Crear</button>
+          <button type="submit">Publicar</button>
         </div>
       </form>
     </div>

@@ -114,3 +114,13 @@ select {
 .regiscongugul:hover {
   background-color: #357ae8;
 }
+@media (max-width: 800px) {
+  .form {
+    width: 100%;
+  }
+
+  .formContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+}
