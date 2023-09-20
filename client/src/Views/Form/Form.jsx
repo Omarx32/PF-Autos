@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -36,16 +35,14 @@ const Form = () => {
     name: false,
     brand: false,
     price: false,
-    stock:false,
-    maker:false,
-    model:false,
-    kilometraje:false,
-    direccion:false,
-    category:false,
-    description:false
-
+    stock: false,
+    maker: false,
+    model: false,
+    kilometraje: false,
+    direccion: false,
+    category: false,
+    description: false,
   });
-
 
   useEffect(() => {
     dispatch(getCategorys());
@@ -59,13 +56,13 @@ const Form = () => {
       ...postCarForm,
       [property]: value,
     });
-  
+
     // Marcar el campo como tocado
     setFieldTouched({
       ...fieldTouched,
       [property]: true,
     });
-  
+
     // Validar el campo solo si el usuario ha interactuado con él
     if (fieldTouched[property]) {
       const updatedErrors = validation({
@@ -75,9 +72,6 @@ const Form = () => {
       setErrors(updatedErrors);
     }
   };
-  
-  
-  
 
   const selectBrandHandler = (event) => {
     const brandValue = event.target.value;
@@ -117,10 +111,7 @@ const Form = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if (
-      Object.keys(errors).length === 0 &&
-      postCarForm.category.length > 0
-    ) {
+    if (Object.keys(errors).length === 0 && postCarForm.category.length > 0) {
       const newProduct = {
         name: postCarForm.name,
         image: file,
@@ -154,7 +145,7 @@ const Form = () => {
         direccion: "",
         category: [],
       });
-    
+
       console.log("dispatch:", newProduct);
       alert("Tu producto ha sido creado exitosamente");
     } else {
@@ -182,10 +173,10 @@ const Form = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={submitHandler} className="form-container">
+    <div className="form-container">
+      <form onSubmit={submitHandler} className="form">
         <div className="form-row">
-          <div>
+          <div className="form-group">
             <label htmlFor="name">Nombre:</label>
             <input
               type="text"
@@ -193,26 +184,29 @@ const Form = () => {
               name="name"
               onChange={changeHandler}
             />
-             {fieldTouched.name && errors.name && <span className="error">{errors.name}</span>}
-
+            {fieldTouched.name && errors.name && (
+              <span className="error">{errors.name}</span>
+            )}
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="brand">Marca:</label>
             <select
               name="brand"
               value={postCarForm.brand}
               onChange={changeHandler}
             >
-              <option value="">selecciona la marca</option>
+              <option value="">Selecciona la marca</option>
               {brand?.map((brand) => (
                 <option value={brand.name} key={brand.id}>
                   {brand.name}
                 </option>
               ))}
             </select>
-            {errors.brand && fieldTouched.brand && <span className="error">{errors.brand}</span>}
+            {errors.brand && fieldTouched.brand && (
+              <span className="error">{errors.brand}</span>
+            )}
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="price">Precio:</label>
             <input
               type="text"
@@ -220,9 +214,11 @@ const Form = () => {
               name="price"
               onChange={changeHandler}
             />
-            {errors.price && fieldTouched.price && <span className="error">{errors.price}</span>}
+            {errors.price && fieldTouched.price && (
+              <span className="error">{errors.price}</span>
+            )}
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="stock">Cantidad:</label>
             <input
               type="text"
@@ -230,9 +226,11 @@ const Form = () => {
               name="stock"
               onChange={changeHandler}
             />
-            {errors.stock && fieldTouched.stock && <span className="error">{errors.stock}</span>}
+            {errors.stock && fieldTouched.stock && (
+              <span className="error">{errors.stock}</span>
+            )}
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="maker">Fabricante:</label>
             <input
               type="text"
@@ -240,9 +238,11 @@ const Form = () => {
               name="maker"
               onChange={changeHandler}
             />
-            {errors.maker &&  fieldTouched.maker && <span className="error">{errors.maker}</span>}
+            {errors.maker && fieldTouched.maker && (
+              <span className="error">{errors.maker}</span>
+            )}
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="model">Año:</label>
             <input
               type="text"
@@ -250,9 +250,11 @@ const Form = () => {
               name="model"
               onChange={changeHandler}
             />
-            {errors.model && fieldTouched.model && <span className="error">{errors.model}</span>}
+            {errors.model && fieldTouched.model && (
+              <span className="error">{errors.model}</span>
+            )}
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="color">Color:</label>
             <input
               type="text"
@@ -260,9 +262,11 @@ const Form = () => {
               name="color"
               onChange={changeHandler}
             />
-            {errors.color && fieldTouched.color && <span className="error">{errors.color}</span>}
+            {errors.color && fieldTouched.color && (
+              <span className="error">{errors.color}</span>
+            )}
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="kilometraje">Kilometraje:</label>
             <input
               type="text"
@@ -274,7 +278,7 @@ const Form = () => {
               <span className="error">{errors.kilometraje}</span>
             )}
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="direccion">Dirección:</label>
             <select
               name="direccion"
@@ -289,63 +293,26 @@ const Form = () => {
               <span className="error">{errors.direccion}</span>
             )}
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="category">Categoría:</label>
             <select
               name="category"
               value={postCarForm.category}
               onChange={changeHandler}
             >
-              <option value="">selecciona una Categoria</option>
+              <option value="">Selecciona una categoría</option>
               {category &&
                 category.map((cat) => (
                   <option key={cat.id} value={cat.name}>
                     {cat.name}
                   </option>
                 ))}
-
             </select>
             {errors.category && fieldTouched.category && (
               <span className="error">{errors.category}</span>
             )}
-
-              </select>
-            </div>
-
-            <div>
-              <label className="almendra" htmlFor="price">
-                Precio:
-              </label>
-              <input
-                type="text"
-                value={postCarForm.price}
-                name="price"
-                onChange={changeHandler}
-              />
-            </div>
-            <div>
-              <label htmlFor="stock">Cantidad:</label>
-              <input
-                type="text"
-                value={postCarForm.stock}
-                name="stock"
-                onChange={changeHandler}
-              />
-            </div>
-            <div>
-              <label className="almendra" htmlFor="maker">
-                Fabricante:
-              </label>
-              <input
-                type="text"
-                value={postCarForm.maker}
-                name="maker"
-                onChange={changeHandler}
-              />
-            </div>
-
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="description">Agrega una descripción:</label>
             <input
               type="text"
@@ -357,7 +324,7 @@ const Form = () => {
               <span className="error">{errors.description}</span>
             )}
           </div>
-          <div>
+          <div className="form-group">
             <label htmlFor="fileInput">Subir imagen aquí:</label>
             <input type="file" multiple onChange={handleChange} />
           </div>

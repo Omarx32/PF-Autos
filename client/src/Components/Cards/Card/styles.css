@@ -54,3 +54,14 @@
 .card-details a:hover {
   color: #0056b3;
 }
+.aymicorazon {
+  position: absolute;
+  top: 7%; /* Coloca el botón en la mitad vertical de la imagen */
+  left: 95%; /* Coloca el botón en la mitad horizontal de la imagen */
+  transform: translate(-50%, -50%); /* Centra el botón en la imagen */
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  /* Puedes personalizar los estilos del botón según tus preferencias */
+}

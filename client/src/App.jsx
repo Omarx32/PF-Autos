@@ -1,7 +1,7 @@
 import "./App.css";
 import LandingPage from "./Views/LandingPage/LandingPage";
 import Footer from "./Components/Footer/Footer";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Views/Home/Home";
 import Detail from "./Views/Detail/Detail";
 import Form from "./Views/Form/Form";
@@ -15,7 +15,7 @@ import FormLogin from "./Views/FormLogin/FormLogin";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <div className="test">
         <Navbar />
         <main className="background">
@@ -32,9 +32,9 @@ function App() {
           </Routes>
         </main>
 
-        {/* <Footer /> */}
+        <Footer />
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
 
